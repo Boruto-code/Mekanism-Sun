@@ -1,0 +1,42 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+
+[[mods]]
+modId="mekanismsun"
+version="${mod_version}"
+displayName="${mod_name}"
+authors="${mod_authors}"
+description='''${mod_description}'''
+
+[[dependencies.mekanismsun]]
+modId = "neoforge"
+versionRange = "${neo_version_range}"
+ordering = "NONE"
+side = "BOTH"
+[[dependencies.mekanismsun]]
+modId = "minecraft"
+versionRange = "${minecraft_version_range}"
+ordering = "NONE"
+side = "BOTH"
+[[dependencies.mekanismsun]]
+modId = "mekanism"
+versionRange = "${mekanism_version_range}"
+ordering = "AFTER"
+side = "BOTH"
+[[dependencies.mekanismsun]]
+modId = "projecte"
+versionRange = "${projecte_version_range}"
+ordering = "AFTER"
+side = "BOTH"
+[[dependencies.mekanismsun]]
+modId = "projectexpansion"
+versionRange = "${projectexpansion_version_range}"
+ordering = "AFTER"
+side = "BOTH"
+[[dependencies.mekanismsun]]
+modId = "jei"
+type = "optional"
+versionRange = "[19,)"
+ordering = "BEFORE"
+side = "BOTH"

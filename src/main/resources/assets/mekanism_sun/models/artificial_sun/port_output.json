@@ -1,0 +1,6 @@
+{
+  "parent": "mekanismsun:block/artificial/port",
+  "textures": {
+    "all": "mekanismsun:block/artificial_sun_port_output"
+  }
+}

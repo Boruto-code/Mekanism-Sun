@@ -1,0 +1,25 @@
+package com.hamburger0abcde.mekanismsun.registries;
+
+import com.hamburger0abcde.mekanismsun.MekanismSun;
+import com.hamburger0abcde.mekanismsun.tile.artificial_sun.TileEntityArtificialSunCasing;
+import com.hamburger0abcde.mekanismsun.tile.artificial_sun.TileEntityArtificialSunPort;
+import mekanism.common.capabilities.Capabilities;
+import mekanism.common.registration.impl.TileEntityTypeDeferredRegister;
+import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
+import mekanism.common.tile.base.TileEntityMekanism;
+
+public class MSTileEntityTypes {
+    public static final TileEntityTypeDeferredRegister TILE_ENTITY_TYPES = new TileEntityTypeDeferredRegister(MekanismSun.MODID);
+
+    public static final TileEntityTypeRegistryObject<TileEntityArtificialSunCasing> ARTIFICIAL_SUN_CASING =
+            TILE_ENTITY_TYPES.mekBuilder(MSBlocks.ARTIFICIAL_SUN_CASING, TileEntityArtificialSunCasing::new)
+                    .clientTicker(TileEntityMekanism::tickClient)
+                    .serverTicker(TileEntityMekanism::tickServer)
+                    .withSimple(Capabilities.CONFIGURABLE).build();
+
+    public static final TileEntityTypeRegistryObject<TileEntityArtificialSunPort> ARTIFICIAL_SUN_PORT =
+            TILE_ENTITY_TYPES.mekBuilder(MSBlocks.ARTIFICIAL_SUN_PORT, TileEntityArtificialSunPort::new)
+                    .clientTicker(TileEntityMekanism::tickClient)
+                    .serverTicker(TileEntityMekanism::tickServer)
+                    .withSimple(Capabilities.CONFIGURABLE).build();
+}
