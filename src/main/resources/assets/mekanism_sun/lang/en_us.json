@@ -1,0 +1,8 @@
+{
+  "constants.mekanismsun.mod_name": "Mekanism: Sun",
+  "block.mekanismsun.artificial_sun_casing": "Artificial Sun Casing",
+  "block.mekanismsun.artificial_sun_port": "Artificial Sun Port",
+  "chemical.mekanismsun.helium": "Helium",
+  "artificial_sun.mekanismsun.port_mode": "Toggled Artificial Sun Port mode to: %1$s.",
+  "artificial_sun.mekanismsun.artificial_sun": "Artificial Sun"
+}

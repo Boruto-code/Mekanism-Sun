@@ -2,6 +2,7 @@ package com.hamburger0abcde.mekanismsun;
 
 import com.hamburger0abcde.mekanismsun.config.MSConfig;
 import com.hamburger0abcde.mekanismsun.content.artificial_sun.ArtificialSunMultiblockData;
+import com.hamburger0abcde.mekanismsun.multiblock.MSBuilders;
 import com.hamburger0abcde.mekanismsun.multiblock.artificial_sun.ArtificialSunCache;
 import com.hamburger0abcde.mekanismsun.multiblock.artificial_sun.ArtificialValidator;
 import com.hamburger0abcde.mekanismsun.registries.MSBlocks;
@@ -9,6 +10,7 @@ import com.hamburger0abcde.mekanismsun.registries.MSChemicals;
 import com.hamburger0abcde.mekanismsun.registries.MSCreativeTabs;
 import com.hamburger0abcde.mekanismsun.registries.MSTileEntityTypes;
 import com.mojang.logging.LogUtils;
+import mekanism.common.command.builders.BuildCommand;
 import mekanism.common.lib.multiblock.MultiblockManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -56,12 +58,14 @@ public class MekanismSun {
     public MekanismSun(IEventBus modEventBus, ModContainer modContainer) {
         MSConfig.registerConfigs(modContainer);
 
+        modEventBus.addListener(this::commonSetup);
+
         MSBlocks.BLOCKS.register(modEventBus);
         MSCreativeTabs.CREATIVE_TABS.register(modEventBus);
         MSTileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
         MSChemicals.CHEMICALS.register(modEventBus);
 
-        NeoForge.EVENT_BUS.register(this);
+        //NeoForge.EVENT_BUS.register(this);
         modEventBus.addListener(MSConfig::onConfigLoad);
     }
 
@@ -69,5 +73,9 @@ public class MekanismSun {
         return ResourceLocation.fromNamespaceAndPath(MODID, path);
     }
 
-
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            BuildCommand.register("artificial_sun", MekanismSunLang.ARTIFICIAL_SUN, new MSBuilders.ArtificialSunBuilder());
+        });
+    }
 }

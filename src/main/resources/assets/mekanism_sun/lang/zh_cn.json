@@ -1,0 +1,8 @@
+{
+  "constants.mekanismsun.mod_name": "通用机械：人造太阳",
+  "block.mekanismsun.artificial_sun_casing": "人造太阳外壳",
+  "block.mekanismsun.artificial_sun_port": "人造太阳端口",
+  "chemical.mekanismsun.helium": "氦",
+  "artificial_sun.mekanismsun.port_mode": "端口模式变更为：%1$s",
+  "artificial_sun.mekanismsun.artificial_sun": "人造太阳"
+}

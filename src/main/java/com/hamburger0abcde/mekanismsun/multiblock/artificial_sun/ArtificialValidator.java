@@ -16,13 +16,13 @@ import net.minecraft.world.level.block.state.BlockState;
 public class ArtificialValidator extends CuboidStructureValidator<ArtificialSunMultiblockData> {
     private static final VoxelCuboid BOUNDS = new VoxelCuboid(7, 7, 7);
     private static final byte[][] ALLOWED_GRID = {
-            {0, 1, 1, 1, 1, 1, 0},
+            {0, 0, 1, 1, 1, 0, 0},
+            {0, 1, 2, 2, 2, 1, 0},
             {1, 2, 2, 2, 2, 2, 1},
             {1, 2, 2, 2, 2, 2, 1},
             {1, 2, 2, 2, 2, 2, 1},
-            {1, 2, 2, 2, 2, 2, 1},
-            {1, 2, 2, 2, 2, 2, 1},
-            {0, 1, 1, 1, 1, 1, 0}
+            {0, 1, 2, 2, 2, 1, 0},
+            {0, 0, 1, 1, 1, 0, 0}
     };
 
     @Override
