@@ -13,7 +13,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class ArtificialValidator extends CuboidStructureValidator<ArtificialSunMultiblockData> {
+public class ArtificialSunValidator extends CuboidStructureValidator<ArtificialSunMultiblockData> {
     private static final VoxelCuboid BOUNDS = new VoxelCuboid(7, 7, 7);
     private static final byte[][] ALLOWED_GRID = {
             {0, 0, 1, 1, 1, 0, 0},
@@ -31,7 +31,6 @@ public class ArtificialValidator extends CuboidStructureValidator<ArtificialSunM
         if (relative.isWall()) {
             Structure.Axis axis = Structure.Axis.get(cuboid.getSide(pos));
             Structure.Axis h = axis.horizontal(), v = axis.vertical();
-            Direction side = cuboid.getSide(pos);
             pos = pos.subtract(cuboid.getMinPos());
             return StructureRequirement.REQUIREMENTS[ALLOWED_GRID[h.getCoord(pos)][v.getCoord(pos)]];
         }
