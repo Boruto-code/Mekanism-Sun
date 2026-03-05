@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "mekanismsun:block/artificial_sun_port"
+    },
+    "active=true": {
+      "model": "mekanismsun:block/artificial_sun_port_output"
+    }
+  }
+}
