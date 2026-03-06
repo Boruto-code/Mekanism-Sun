@@ -1,6 +1,5 @@
 package com.hamburger0abcde.mekanismsun.multiblock.artificial_sun;
 
-import com.hamburger0abcde.mekanismsun.content.artificial_sun.ArtificialSunMultiblockData;
 import mekanism.api.SerializationConstants;
 import mekanism.common.lib.multiblock.MultiblockCache;
 import mekanism.common.util.NBTUtils;

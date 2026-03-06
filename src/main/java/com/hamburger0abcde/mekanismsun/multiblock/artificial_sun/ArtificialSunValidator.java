@@ -1,6 +1,5 @@
 package com.hamburger0abcde.mekanismsun.multiblock.artificial_sun;
 
-import com.hamburger0abcde.mekanismsun.content.artificial_sun.ArtificialSunMultiblockData;
 import com.hamburger0abcde.mekanismsun.registries.MSBlockTypes;
 import mekanism.common.content.blocktype.BlockType;
 import mekanism.common.lib.math.voxel.VoxelCuboid;
@@ -9,7 +8,6 @@ import mekanism.common.lib.multiblock.FormationProtocol.CasingType;
 import mekanism.common.lib.multiblock.FormationProtocol.StructureRequirement;
 import mekanism.common.lib.multiblock.Structure;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 

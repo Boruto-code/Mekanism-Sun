@@ -1,7 +1,6 @@
 package com.hamburger0abcde.mekanismsun.block.attribute;
 
 import com.hamburger0abcde.mekanismsun.MekanismSunLang;
-import com.hamburger0abcde.mekanismsun.content.artificial_sun.ArtificialSunMultiblockData;
 import io.netty.buffer.ByteBuf;
 import mekanism.api.IIncrementalEnum;
 import mekanism.api.annotations.NothingNullByDefault;
@@ -10,7 +9,6 @@ import mekanism.api.text.IHasTextComponent;
 import mekanism.api.text.ILangEntry;
 import mekanism.common.block.attribute.Attribute;
 import mekanism.common.block.attribute.AttributeState;
-import mekanism.generators.common.block.attribute.AttributeStateFissionPortMode;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;

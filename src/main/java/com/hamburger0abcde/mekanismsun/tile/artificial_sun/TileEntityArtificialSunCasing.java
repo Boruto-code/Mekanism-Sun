@@ -1,7 +1,7 @@
 package com.hamburger0abcde.mekanismsun.tile.artificial_sun;
 
 import com.hamburger0abcde.mekanismsun.MekanismSun;
-import com.hamburger0abcde.mekanismsun.content.artificial_sun.ArtificialSunMultiblockData;
+import com.hamburger0abcde.mekanismsun.multiblock.artificial_sun.ArtificialSunMultiblockData;
 import com.hamburger0abcde.mekanismsun.registries.MSBlocks;
 import mekanism.api.SerializationConstants;
 import mekanism.common.lib.multiblock.MultiblockManager;

@@ -1,7 +1,7 @@
 package com.hamburger0abcde.mekanismsun;
 
 import com.hamburger0abcde.mekanismsun.config.MSConfig;
-import com.hamburger0abcde.mekanismsun.content.artificial_sun.ArtificialSunMultiblockData;
+import com.hamburger0abcde.mekanismsun.multiblock.artificial_sun.ArtificialSunMultiblockData;
 import com.hamburger0abcde.mekanismsun.multiblock.MSBuilders;
 import com.hamburger0abcde.mekanismsun.multiblock.artificial_sun.ArtificialSunCache;
 import com.hamburger0abcde.mekanismsun.multiblock.artificial_sun.ArtificialSunValidator;

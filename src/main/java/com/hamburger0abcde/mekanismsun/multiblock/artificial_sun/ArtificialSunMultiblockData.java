@@ -1,6 +1,5 @@
-package com.hamburger0abcde.mekanismsun.content.artificial_sun;
+package com.hamburger0abcde.mekanismsun.multiblock.artificial_sun;
 
-import com.hamburger0abcde.mekanismsun.block.attribute.AttributeStateArtificialSunPortMode.ArtificialSunPortMode;
 import com.hamburger0abcde.mekanismsun.config.MSConfig;
 import com.hamburger0abcde.mekanismsun.registries.MSChemicals;
 import com.hamburger0abcde.mekanismsun.tile.artificial_sun.TileEntityArtificialSunCasing;
@@ -31,7 +30,6 @@ import mekanism.common.util.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 
