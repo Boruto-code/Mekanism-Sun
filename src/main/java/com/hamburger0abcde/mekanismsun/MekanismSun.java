@@ -5,10 +5,7 @@ import com.hamburger0abcde.mekanismsun.multiblock.artificial_sun.ArtificialSunMu
 import com.hamburger0abcde.mekanismsun.multiblock.MSBuilders;
 import com.hamburger0abcde.mekanismsun.multiblock.artificial_sun.ArtificialSunCache;
 import com.hamburger0abcde.mekanismsun.multiblock.artificial_sun.ArtificialSunValidator;
-import com.hamburger0abcde.mekanismsun.registries.MSBlocks;
-import com.hamburger0abcde.mekanismsun.registries.MSChemicals;
-import com.hamburger0abcde.mekanismsun.registries.MSCreativeTabs;
-import com.hamburger0abcde.mekanismsun.registries.MSTileEntityTypes;
+import com.hamburger0abcde.mekanismsun.registries.*;
 import com.mojang.logging.LogUtils;
 import mekanism.common.command.builders.BuildCommand;
 import mekanism.common.lib.multiblock.MultiblockManager;
@@ -24,7 +21,7 @@ import org.slf4j.Logger;
 public class MekanismSun {
     public static final String MODID = "mekanismsun";
     public static final String NAME = "MekanismSun";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public static final MultiblockManager<ArtificialSunMultiblockData> artificialSunManager =
             new MultiblockManager<>("artificial_sun", ArtificialSunCache::new, ArtificialSunValidator::new);
@@ -38,6 +35,7 @@ public class MekanismSun {
         MSCreativeTabs.CREATIVE_TABS.register(modEventBus);
         MSTileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
         MSChemicals.CHEMICALS.register(modEventBus);
+        MSContainerTypes.CONTAINER_TYPES.register(modEventBus);
 
         //NeoForge.EVENT_BUS.register(this);
         modEventBus.addListener(MSConfig::onConfigLoad);

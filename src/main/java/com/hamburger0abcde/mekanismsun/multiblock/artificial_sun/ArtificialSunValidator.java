@@ -7,9 +7,12 @@ import mekanism.common.lib.multiblock.CuboidStructureValidator;
 import mekanism.common.lib.multiblock.FormationProtocol.CasingType;
 import mekanism.common.lib.multiblock.FormationProtocol.StructureRequirement;
 import mekanism.common.lib.multiblock.Structure;
+import mekanism.common.lib.multiblock.StructureHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+
+import java.util.EnumSet;
 
 public class ArtificialSunValidator extends CuboidStructureValidator<ArtificialSunMultiblockData> {
     private static final VoxelCuboid BOUNDS = new VoxelCuboid(7, 7, 7);
@@ -44,5 +47,11 @@ public class ArtificialSunValidator extends CuboidStructureValidator<ArtificialS
             return CasingType.VALVE;
         }
         return CasingType.INVALID;
+    }
+
+    @Override
+    public boolean precheck() {
+        cuboid = StructureHelper.fetchCuboid(structure, BOUNDS, BOUNDS, EnumSet.allOf(VoxelCuboid.CuboidSide.class), 72);
+        return cuboid != null;
     }
 }

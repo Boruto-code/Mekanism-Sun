@@ -1,5 +1,6 @@
 package com.hamburger0abcde.mekanismsun.tile.artificial_sun;
 
+import com.hamburger0abcde.mekanismsun.MekanismSun;
 import com.hamburger0abcde.mekanismsun.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.block.attribute.AttributeStateArtificialSunPortMode;
 import com.hamburger0abcde.mekanismsun.block.attribute.AttributeStateArtificialSunPortMode.ArtificialSunPortMode;
@@ -53,6 +54,7 @@ public class TileEntityArtificialSunPort extends TileEntityArtificialSunCasing {
 
     @Override
     public @Nullable IChemicalTankHolder getInitialChemicalTanks(IContentsListener listener) {
+        MekanismSun.LOGGER.info("[DEBUG]Port at {}: getChemicalTanks", worldPosition);
         return side -> getMultiblock().getChemicalTanks(side);
     }
 
