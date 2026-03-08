@@ -14,6 +14,7 @@ public enum MekanismSunLang implements ILangEntry {
     ARTIFICIAL_SUN_PORT_MODE_CHANGE("artificial_sun", "port_mode_change"),
     ARTIFICIAL_SUN_PORT_MODE_INPUT("artificial_sun", "port_mode_input"),
     ARTIFICIAL_SUN_PORT_MODE_OUTPUT("artificial_sun", "port_mode_output"),
+    ARTIFICIAL_SUN_BURN_RATE_LIMIT("artificial_sun", "burn_rate_limit")
     ;
 
     private final String key;

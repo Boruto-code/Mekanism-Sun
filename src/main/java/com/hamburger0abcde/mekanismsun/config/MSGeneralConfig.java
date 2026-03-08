@@ -17,19 +17,22 @@ public class MSGeneralConfig extends BaseMekanismConfig {
     public final CachedLongValue sunFuelCapacity;
     public final CachedLongValue sunEnergyCapacity;
     public final CachedDoubleValue sunDefaultBurnRate;
+    public final CachedDoubleValue sunMaxBurnRate;
 
     MSGeneralConfig() {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
 
         MSConfigTranslations.SERVER_SUN.applyToBuilder(builder).push(ARTIFICIAL_SUN_CATEGORY);
         energyPerHydrogen = CachedLongValue.definePositive(this, builder, MSConfigTranslations.SERVER_SUN_HYDROGEN_ENERGY,
-                "hydrogenEnergy", 512_000_000L);
+                "hydrogenEnergy", 2_048_000_000L);
         sunFuelCapacity = CachedLongValue.wrap(this, MSConfigTranslations.SERVER_SUN_FUEL_CAPACITY.applyToBuilder(builder)
                 .defineInRange("fuelCapacity", FluidType.BUCKET_VOLUME, 1L, 1_000L * FluidType.BUCKET_VOLUME));
         sunEnergyCapacity = CachedLongValue.wrap(this, MSConfigTranslations.SERVER_SUN_ENERGY_CAPACITY.applyToBuilder(builder)
-                .defineInRange("energyCapacity", 1_024_000_000L, 1L, Long.MAX_VALUE));
+                .defineInRange("energyCapacity", 8_192_000_000L, 1L, Long.MAX_VALUE));
         sunDefaultBurnRate = CachedDoubleValue.wrap(this, MSConfigTranslations.SERVER_SUN_DEFAULT_BURN_RATE.applyToBuilder(builder)
                 .defineInRange("defaultBurnRate", 1D, 0.1D, 100D));
+        sunMaxBurnRate = CachedDoubleValue.wrap(this, MSConfigTranslations.SERVER_SUN_MAX_BURN_RATE.applyToBuilder(builder)
+                .defineInRange("maxBurnRate", 100D, 0.1D, 1000D));
         builder.pop();
         configSpec = builder.build();
     }

@@ -69,4 +69,8 @@ public class TileEntityArtificialSunCasing extends TileEntityMultiblock<Artifici
         super.handleUpdateTag(tag,provider);
         NBTUtils.setBooleanIfPresent(tag, SerializationConstants.HANDLE_SOUND, value -> handleSound = value);
     }
+
+    public void setRateLimitFromPacket(double rate) {
+        getMultiblock().setRateLimit(rate);
+    }
 }

@@ -30,7 +30,7 @@ public record ArtificialSunRecipeViewerRecipe(ResourceLocation id, ChemicalStack
     public static List<ArtificialSunRecipeViewerRecipe> getArtificialSunRecipes() {
         return Collections.singletonList(new ArtificialSunRecipeViewerRecipe(
                 RecipeViewerUtils.synthetic(MekanismSun.rl("helium"), "artificial_sun"),
-                IngredientCreatorAccess.chemicalStack().fromHolder(MekanismChemicals.HYDROGEN, 2),
+                IngredientCreatorAccess.chemicalStack().fromHolder(MekanismChemicals.HYDROGEN, 1),
                 MSChemicals.HELIUM.asStack(1)
         ));
     }

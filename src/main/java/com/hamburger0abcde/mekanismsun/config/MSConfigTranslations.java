@@ -16,7 +16,9 @@ public enum MSConfigTranslations implements IConfigTranslation {
     SERVER_SUN_ENERGY_CAPACITY("server.sun.energy_capacity", "Energy Capacity",
             "Amount of energy (Joules) the artificial sun can store."),
     SERVER_SUN_DEFAULT_BURN_RATE("server.sun.default_burn_rate", "Default Burn Rate",
-            "The default burn rate of the fission reactor.")
+            "The default burn rate of the artificial sun."),
+    SERVER_SUN_MAX_BURN_RATE("server.sun.max_burn_rate", "Max Burn Rate",
+            "The max burn rate of the artificial sun.")
     ;
 
     private final String key;

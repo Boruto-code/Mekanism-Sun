@@ -54,7 +54,6 @@ public class TileEntityArtificialSunPort extends TileEntityArtificialSunCasing {
 
     @Override
     public @Nullable IChemicalTankHolder getInitialChemicalTanks(IContentsListener listener) {
-        MekanismSun.LOGGER.info("[DEBUG]Port at {}: getChemicalTanks", worldPosition);
         return side -> getMultiblock().getChemicalTanks(side);
     }
 

@@ -4,5 +4,8 @@
   "block.mekanismsun.artificial_sun_port": "Artificial Sun Port",
   "chemical.mekanismsun.helium": "Helium",
   "artificial_sun.mekanismsun.port_mode": "Toggled Artificial Sun Port mode to: %1$s.",
-  "artificial_sun.mekanismsun.artificial_sun": "Artificial Sun"
+  "artificial_sun.mekanismsun.artificial_sun": "Artificial Sun",
+  "artificial_sun.mekanismsun.burn_rate_limit": "Burn Rate Limit: %1$d",
+  "description.mekanismsun.artificial_sun_casing": "Using a high-strength shell treated with antimatter, it contains immense energy and can withstand the high temperatures of the sun.",
+  "description.mekanismsun.artificial_sun_port": "A port used for the transfer of energy and substances in the Artificial Sun."
 }
