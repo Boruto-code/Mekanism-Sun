@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "mekanismsun:artificial_sun_casing"
+    },
+    "A": {
+      "item": "mekanism:pellet_antimatter"
+    },
+    "C": {
+      "tag": "c:circuits/ultimate"
+    }
+  },
+  "pattern": [
+    "C#C",
+    "#A#",
+    "C#C"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mekanismsun:artificial_sun_port"
+  }
+}

@@ -51,7 +51,7 @@ public class GuiArtificialSun extends GuiMekanismTile<TileEntityArtificialSunCas
                 () -> tile.getMultiblock().getChemicalTanks(null), GaugeType.STANDARD, this, 125, 20));
         addRenderableWidget(new GuiEnergyGauge(tile.getMultiblock().energyContainer, GaugeType.STANDARD, this, 150, 20));
 
-        addRenderableWidget(new GuiInnerScreen(this, 30, 20, 80, 45, () -> {
+        addRenderableWidget(new GuiInnerScreen(this, 30, 20, 80, 42, () -> {
             List<Component> list = new ArrayList<>();
             ArtificialSunMultiblockData multiblock = tile.getMultiblock();
             boolean active = multiblock.lastBurnRate > 0;
@@ -59,7 +59,7 @@ public class GuiArtificialSun extends GuiMekanismTile<TileEntityArtificialSunCas
             list.add(MekanismSunLang.ARTIFICIAL_SUN_BURN_RATE_LIMIT.translate(multiblock.rateLimit));
             return list;
         }).recipeViewerCategories(MSRecipeViewerRecipeTypes.ARTIFICIAL_SUN));
-        rateLimitField = addRenderableWidget(new GuiTextField(this, 40, 65, 54, 12));
+        rateLimitField = addRenderableWidget(new GuiTextField(this, 40, 68, 54, 12));
         rateLimitField.setEnterHandler(this::setRateLimit);
         rateLimitField.setInputValidator(InputValidator.DECIMAL);
         long adjustedMaxBurn = Math.max(0, MathUtils.clampToLong(MSConfig.GENERAL.sunMaxBurnRate.get()) - 1);

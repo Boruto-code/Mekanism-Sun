@@ -1,0 +1,17 @@
+{
+  "type": "mekanism:nucleosynthesizing",
+  "chemical_input": {
+    "amount": 50,
+    "chemical": "mekanism:antimatter"
+  },
+  "duration": 500,
+  "item_input": {
+    "count": 1,
+    "item": "projectexpansion:compact_sun"
+  },
+  "output": {
+    "count": 1,
+    "id": "mekanismsun:artificial_sun_casing"
+  },
+  "per_tick_usage": false
+}
