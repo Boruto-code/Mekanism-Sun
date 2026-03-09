@@ -1,4 +1,4 @@
-package com.hamburger0abcde.mekanismsun.tile.artificial_sun;
+package com.hamburger0abcde.mekanismsun.tiles.artificial_sun;
 
 import com.hamburger0abcde.mekanismsun.MekanismSun;
 import com.hamburger0abcde.mekanismsun.multiblock.artificial_sun.ArtificialSunMultiblockData;

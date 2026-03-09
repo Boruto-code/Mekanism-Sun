@@ -1,9 +1,5 @@
-package com.hamburger0abcde.mekanismsun.tile.artificial_sun;
+package com.hamburger0abcde.mekanismsun.tiles.artificial_sun;
 
-import com.hamburger0abcde.mekanismsun.MekanismSun;
-import com.hamburger0abcde.mekanismsun.MekanismSunLang;
-import com.hamburger0abcde.mekanismsun.block.attribute.AttributeStateArtificialSunPortMode;
-import com.hamburger0abcde.mekanismsun.block.attribute.AttributeStateArtificialSunPortMode.ArtificialSunPortMode;
 import com.hamburger0abcde.mekanismsun.registries.MSBlocks;
 import mekanism.api.IContentsListener;
 import mekanism.api.chemical.IChemicalHandler;
@@ -14,7 +10,6 @@ import mekanism.common.capabilities.holder.chemical.IChemicalTankHolder;
 import mekanism.common.capabilities.holder.energy.IEnergyContainerHolder;
 import mekanism.common.integration.computer.annotation.ComputerMethod;
 import mekanism.common.integration.energy.BlockEnergyCapabilityCache;
-import mekanism.common.lib.multiblock.MultiblockData;
 import mekanism.common.lib.multiblock.MultiblockData.EnergyOutputTarget;
 import mekanism.common.lib.multiblock.MultiblockData.CapabilityOutputTarget;
 import mekanism.common.util.text.BooleanStateDisplay;
@@ -25,7 +20,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.capabilities.BlockCapability;
 import net.neoforged.neoforge.capabilities.BlockCapabilityCache;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -33,7 +27,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Predicate;
 
 public class TileEntityArtificialSunPort extends TileEntityArtificialSunCasing {
     private final Map<Direction, BlockCapabilityCache<IChemicalHandler, @Nullable Direction>> chemicalCapabilityCaches =
