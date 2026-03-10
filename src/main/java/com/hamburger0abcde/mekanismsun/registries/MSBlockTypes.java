@@ -4,9 +4,12 @@ import com.hamburger0abcde.mekanismsun.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunPort;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityFreezer;
+import mekanism.api.Upgrade;
 import mekanism.common.block.attribute.Attributes;
+import mekanism.common.config.MekanismConfig;
 import mekanism.common.content.blocktype.BlockTypeTile;
 import mekanism.common.content.blocktype.Machine;
+import mekanism.common.lib.transmitter.TransmissionType;
 import mekanism.common.registries.MekanismSounds;
 
 public class MSBlockTypes {
@@ -26,7 +29,12 @@ public class MSBlockTypes {
             .externalMultiblock()
             .build();
 
-    /*public static final Machine<TileEntityFreezer> FREEZER = Machine.MachineBuilder
+    public static final Machine<TileEntityFreezer> FREEZER = Machine.MachineBuilder
             .createMachine(() -> MSTileEntityTypes.FREEZER, MekanismSunLang.DESCRIPTION_FREEZER)
-            .withGui(() -> MSContainerTypes);*/
+            .withGui(() -> MSContainerTypes.FREEZER).withSound(MekanismSounds.PRESSURIZED_REACTION_CHAMBER)
+            .withEnergyConfig(MekanismConfig.usage.pressurizedReactionBase, MekanismConfig.storage.pressurizedReactionBase)
+            .withSupportedUpgrades(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING)
+            .withComputerSupport("freezer")
+            .withSideConfig(TransmissionType.CHEMICAL, TransmissionType.FLUID)
+            .build();
 }

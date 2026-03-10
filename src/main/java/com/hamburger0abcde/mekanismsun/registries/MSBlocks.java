@@ -4,13 +4,21 @@ import com.hamburger0abcde.mekanismsun.MekanismSun;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunPort;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityFreezer;
+import mekanism.common.attachments.component.AttachedEjector;
+import mekanism.common.attachments.component.AttachedSideConfig;
+import mekanism.common.attachments.containers.ContainerType;
+import mekanism.common.attachments.containers.chemical.ChemicalTanksBuilder;
+import mekanism.common.attachments.containers.fluid.FluidTanksBuilder;
 import mekanism.common.block.interfaces.IHasDescription;
 import mekanism.common.block.prefab.BlockBasicMultiblock;
-import mekanism.common.block.prefab.BlockTile;
+import mekanism.common.block.prefab.BlockTile.BlockTileModel;
 import mekanism.common.content.blocktype.Machine;
 import mekanism.common.item.block.ItemBlockTooltip;
 import mekanism.common.registration.impl.BlockDeferredRegister;
 import mekanism.common.registration.impl.BlockRegistryObject;
+import mekanism.common.registries.MekanismAttachmentTypes;
+import mekanism.common.registries.MekanismDataComponents;
+import mekanism.common.resource.BlockResourceInfo;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MapColor;
 
@@ -38,7 +46,21 @@ public class MSBlocks {
                     properties -> properties.mapColor(MapColor.COLOR_YELLOW))
     );
 
-    public static final BlockRegistryObject<BlockTile.BlockTileModel<TileEntityFreezer, Machine<TileEntityFreezer>>,
-            ItemBlockTooltip<BlockTile.BlockTileModel<TileEntityFreezer, Machine<TileEntityFreezer>>>> FREEZER =
-                BLOCKS.register("freezer", () -> new BlockTile.BlockTileModel<>());
+    public static final BlockRegistryObject<BlockTileModel<TileEntityFreezer, Machine<TileEntityFreezer>>,
+            ItemBlockTooltip<BlockTileModel<TileEntityFreezer, Machine<TileEntityFreezer>>>> FREEZER =
+                BLOCKS.register("freezer", () -> new BlockTileModel<>(MSBlockTypes.FREEZER,
+                        properties -> properties.mapColor(BlockResourceInfo.STEEL.getMapColor())),
+                        (block, properties) -> new ItemBlockTooltip<>(
+                                block, true, properties
+                                .component(MekanismDataComponents.EJECTOR, AttachedEjector.DEFAULT)
+                                .component(MekanismDataComponents.SIDE_CONFIG, AttachedSideConfig.ROTARY)
+                        )).forItemHolder(holder -> holder
+                                .addAttachmentOnlyContainers(ContainerType.CHEMICAL, () -> ChemicalTanksBuilder.builder()
+                                        .addBasic(TileEntityFreezer.MAX_CHEMICAL)
+                                        .build()
+                                ).addAttachmentOnlyContainers(ContainerType.FLUID, () -> FluidTanksBuilder.builder()
+                                        .addBasic(TileEntityFreezer.MAX_FLUID)
+                                        .build()
+                                )
+                        );
 }

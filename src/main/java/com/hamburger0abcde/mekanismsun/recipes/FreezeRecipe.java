@@ -13,10 +13,11 @@ import org.jetbrains.annotations.Contract;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 @Getter
 @NothingNullByDefault
-public abstract class FreezeRecipe extends MekanismRecipe<SingleChemicalRecipeInput> {
+public abstract class FreezeRecipe extends MekanismRecipe<SingleChemicalRecipeInput> implements Predicate<ChemicalStack> {
     private final ChemicalStackIngredient inputChemical;
     private final long energyRequired;
     private final int duration;
