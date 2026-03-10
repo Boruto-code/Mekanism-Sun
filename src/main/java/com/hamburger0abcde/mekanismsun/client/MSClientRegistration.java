@@ -10,7 +10,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
-@EventBusSubscriber(modid = MekanismSun.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = MekanismSun.MODID, value = Dist.CLIENT)
 public class MSClientRegistration {
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerScreens(RegisterMenuScreensEvent event) {

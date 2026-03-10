@@ -1,9 +1,12 @@
 package com.hamburger0abcde.mekanismsun.tiles.machine;
 
+import com.hamburger0abcde.mekanismsun.client.recipe_viewer.jei.MSJEI;
+import com.hamburger0abcde.mekanismsun.client.recipe_viewer.type.MSRecipeViewerRecipeTypes;
 import com.hamburger0abcde.mekanismsun.recipes.FreezeCachedRecipe;
 import com.hamburger0abcde.mekanismsun.recipes.FreezeRecipe;
 import com.hamburger0abcde.mekanismsun.registries.MSBlocks;
 import com.hamburger0abcde.mekanismsun.registries.MSRecipeType;
+import lombok.Getter;
 import mekanism.api.AutomationType;
 import mekanism.api.IContentsListener;
 import mekanism.api.RelativeSide;
@@ -21,6 +24,7 @@ import mekanism.api.recipes.inputs.InputHelper;
 import mekanism.api.recipes.outputs.IOutputHandler;
 import mekanism.api.recipes.outputs.OutputHelper;
 import mekanism.api.recipes.vanilla_input.SingleChemicalRecipeInput;
+import mekanism.client.recipe_viewer.type.IRecipeViewerRecipeType;
 import mekanism.common.capabilities.energy.MachineEnergyContainer;
 import mekanism.common.capabilities.fluid.BasicFluidTank;
 import mekanism.common.capabilities.holder.chemical.ChemicalTankHelper;
@@ -82,6 +86,7 @@ public class TileEntityFreezer extends TileEntityRecipeMachine<FreezeRecipe>
     private final IInputHandler<@NotNull ChemicalStack> inputHandler;
     private final IOutputHandler<@NotNull FluidStack> outputHandler;
 
+    @Getter
     private MachineEnergyContainer<TileEntityFreezer> energyContainer;
     @WrappingComputerMethod(wrapper = ComputerIInventorySlotWrapper.class, methodNames = "getChemicalItemInput",
             docPlaceholder = "chemical item input slot")
@@ -182,5 +187,15 @@ public class TileEntityFreezer extends TileEntityRecipeMachine<FreezeRecipe>
                 .setActive(this::setActive)
                 .setEnergyRequirements(energyContainer::getEnergyPerTick, energyContainer)
                 .setOnFinish(this::markForSave);
+    }
+
+    @ComputerMethod(methodDescription = ComputerConstants.DESCRIPTION_GET_ENERGY_USAGE)
+    long getEnergyUsage() {
+        return getActive() ? energyContainer.getEnergyPerTick() : 0;
+    }
+
+    @Override
+    public @Nullable IRecipeViewerRecipeType<FreezeRecipe> recipeViewerType() {
+        return MSRecipeViewerRecipeTypes.FREEZE;
     }
 }

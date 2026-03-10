@@ -1,0 +1,12 @@
+{
+  "parent": "mekanism:block/machine",
+  "textures": {
+    "sides": "mekanismsun:block/freezer/right",
+    "front": "mekanismsun:block/freezer/front",
+    "west": "mekanismsun:block/freezer/right",
+    "east": "mekanismsun:block/freezer/left",
+    "south": "mekanismsun:block/freezer/back",
+    "up": "mekanismsun:block/freezer/top",
+    "down": "mekanismsun:block/freezer/bottom"
+  }
+}
