@@ -3,8 +3,10 @@ package com.hamburger0abcde.mekanismsun.registries;
 import com.hamburger0abcde.mekanismsun.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunPort;
+import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityFreezer;
 import mekanism.common.block.attribute.Attributes;
 import mekanism.common.content.blocktype.BlockTypeTile;
+import mekanism.common.content.blocktype.Machine;
 import mekanism.common.registries.MekanismSounds;
 
 public class MSBlockTypes {
@@ -23,4 +25,8 @@ public class MSBlockTypes {
             .with(Attributes.ACTIVE, Attributes.COMPARATOR)
             .externalMultiblock()
             .build();
+
+    /*public static final Machine<TileEntityFreezer> FREEZER = Machine.MachineBuilder
+            .createMachine(() -> MSTileEntityTypes.FREEZER, MekanismSunLang.DESCRIPTION_FREEZER)
+            .withGui(() -> MSContainerTypes);*/
 }

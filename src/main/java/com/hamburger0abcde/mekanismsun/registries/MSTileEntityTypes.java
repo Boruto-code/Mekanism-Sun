@@ -3,6 +3,7 @@ package com.hamburger0abcde.mekanismsun.registries;
 import com.hamburger0abcde.mekanismsun.MekanismSun;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunPort;
+import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityFreezer;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.registration.impl.TileEntityTypeDeferredRegister;
 import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
@@ -22,4 +23,10 @@ public class MSTileEntityTypes {
                     .clientTicker(TileEntityMekanism::tickClient)
                     .serverTicker(TileEntityMekanism::tickServer)
                     .withSimple(Capabilities.CONFIGURABLE).build();
+
+    public static final TileEntityTypeRegistryObject<TileEntityFreezer> FREEZER =
+            TILE_ENTITY_TYPES.mekBuilder(MSBlocks.FREEZER, TileEntityFreezer::new)
+                    .clientTicker(TileEntityMekanism::tickClient)
+                    .serverTicker(TileEntityMekanism::tickServer)
+                    .withSimple(Capabilities.CONFIG_CARD).build();
 }

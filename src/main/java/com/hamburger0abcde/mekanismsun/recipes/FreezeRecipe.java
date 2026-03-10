@@ -7,6 +7,7 @@ import mekanism.api.recipes.MekanismRecipe;
 import mekanism.api.recipes.ingredients.ChemicalStackIngredient;
 import mekanism.api.recipes.ingredients.FluidStackIngredient;
 import mekanism.api.recipes.vanilla_input.SingleChemicalRecipeInput;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.Contract;
 
@@ -40,5 +41,23 @@ public abstract class FreezeRecipe extends MekanismRecipe<SingleChemicalRecipeIn
     @Contract(value = "_ -> new", pure = true)
     public FluidStack getOutput(ChemicalStack chemical) {
         return outputFluid.getRepresentations().getFirst().copy();
+    }
+
+    public FluidStackIngredient getOutputRaw() {
+        return outputFluid;
+    }
+
+    @Override
+    public boolean isIncomplete() {
+        return inputChemical.hasNoMatchingInstances() || outputFluid.hasNoMatchingInstances();
+    }
+
+    public boolean test(ChemicalStack chemicalStack) {
+        return this.inputChemical.test(chemicalStack);
+    }
+
+    @Override
+    public boolean matches(SingleChemicalRecipeInput input, Level level) {
+        return !isIncomplete() && test(input.chemical());
     }
 }

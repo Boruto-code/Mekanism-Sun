@@ -3,8 +3,11 @@ package com.hamburger0abcde.mekanismsun.registries;
 import com.hamburger0abcde.mekanismsun.MekanismSun;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunPort;
+import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityFreezer;
 import mekanism.common.block.interfaces.IHasDescription;
 import mekanism.common.block.prefab.BlockBasicMultiblock;
+import mekanism.common.block.prefab.BlockTile;
+import mekanism.common.content.blocktype.Machine;
 import mekanism.common.item.block.ItemBlockTooltip;
 import mekanism.common.registration.impl.BlockDeferredRegister;
 import mekanism.common.registration.impl.BlockRegistryObject;
@@ -35,5 +38,7 @@ public class MSBlocks {
                     properties -> properties.mapColor(MapColor.COLOR_YELLOW))
     );
 
-
+    public static final BlockRegistryObject<BlockTile.BlockTileModel<TileEntityFreezer, Machine<TileEntityFreezer>>,
+            ItemBlockTooltip<BlockTile.BlockTileModel<TileEntityFreezer, Machine<TileEntityFreezer>>>> FREEZER =
+                BLOCKS.register("freezer", () -> new BlockTile.BlockTileModel<>());
 }

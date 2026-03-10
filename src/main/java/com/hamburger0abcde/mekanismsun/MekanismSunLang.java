@@ -8,6 +8,7 @@ public enum MekanismSunLang implements ILangEntry {
 
     DESCRIPTION_ARTIFICIAL_SUN_CASING("description", "artificial_sun_casing"),
     DESCRIPTION_ARTIFICIAL_SUN_PORT("description", "artificial_sun_port"),
+    DESCRIPTION_FREEZER("description", "freezer"),
 
     ARTIFICIAL_SUN("artificial_sun", "artificial_sun"),
     ARTIFICIAL_SUN_PORT_MODE("artificial_sun", "port_mode"),
