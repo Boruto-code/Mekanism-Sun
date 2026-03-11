@@ -4,6 +4,7 @@
   "block.mekanismsun.artificial_sun_port": "人造太阳端口",
   "block.mekanismsun.freezer": "冷冻机",
   "chemical.mekanismsun.helium": "氦",
+  "container.mekanismsun.freezer": "冷冻机",
   "artificial_sun.mekanismsun.port_mode": "端口模式变更为：%1$s",
   "artificial_sun.mekanismsun.artificial_sun": "人造太阳",
   "artificial_sun.mekanismsun.burn_rate_limit": "燃烧速率：%1$d",

@@ -1,6 +1,5 @@
-package com.hamburger0abcde.mekanismsun.registries;
+package com.hamburger0abcde.mekanismsun.recipes;
 
-import com.hamburger0abcde.mekanismsun.recipes.FreezeRecipe;
 import mekanism.api.recipes.vanilla_input.SingleChemicalRecipeInput;
 import mekanism.common.recipe.lookup.cache.InputRecipeCache;
 import mekanism.common.registration.impl.RecipeTypeRegistryObject;

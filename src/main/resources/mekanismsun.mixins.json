@@ -1,0 +1,10 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.hamburger0abcde.mekanismsun.mixins",
+  "compatibilityLevel": "JAVA_21",
+  "refmap": "mekanismsun.refmap.json",
+  "mixins": [
+    "MekanismRecipeTypeMixin"
+  ]
+}

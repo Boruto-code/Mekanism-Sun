@@ -4,12 +4,10 @@ import com.hamburger0abcde.mekanismsun.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.ArtificialSunRecipeViewerRecipe;
 import com.hamburger0abcde.mekanismsun.recipes.FreezeRecipe;
 import com.hamburger0abcde.mekanismsun.registries.MSBlocks;
-import com.hamburger0abcde.mekanismsun.registries.MSRecipeType;
+import com.hamburger0abcde.mekanismsun.recipes.MSRecipeType;
 import mekanism.api.annotations.NothingNullByDefault;
 import mekanism.client.recipe_viewer.type.FakeRVRecipeType;
 import mekanism.client.recipe_viewer.type.RVRecipeTypeWrapper;
-import mekanism.common.recipe.lookup.cache.IInputRecipeCache;
-import net.minecraft.world.item.crafting.RecipeInput;
 
 @NothingNullByDefault
 public class MSRecipeViewerRecipeTypes {

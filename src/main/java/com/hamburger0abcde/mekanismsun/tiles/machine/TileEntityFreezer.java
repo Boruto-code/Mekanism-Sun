@@ -1,11 +1,10 @@
 package com.hamburger0abcde.mekanismsun.tiles.machine;
 
-import com.hamburger0abcde.mekanismsun.client.recipe_viewer.jei.MSJEI;
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.type.MSRecipeViewerRecipeTypes;
 import com.hamburger0abcde.mekanismsun.recipes.FreezeCachedRecipe;
 import com.hamburger0abcde.mekanismsun.recipes.FreezeRecipe;
 import com.hamburger0abcde.mekanismsun.registries.MSBlocks;
-import com.hamburger0abcde.mekanismsun.registries.MSRecipeType;
+import com.hamburger0abcde.mekanismsun.recipes.MSRecipeType;
 import lombok.Getter;
 import mekanism.api.AutomationType;
 import mekanism.api.IContentsListener;
@@ -15,10 +14,8 @@ import mekanism.api.chemical.ChemicalStack;
 import mekanism.api.chemical.IChemicalTank;
 import mekanism.api.chemical.attribute.ChemicalAttributeValidator;
 import mekanism.api.functions.ConstantPredicates;
-import mekanism.api.recipes.ChemicalToChemicalRecipe;
 import mekanism.api.recipes.cache.CachedRecipe;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
-import mekanism.api.recipes.cache.OneInputCachedRecipe;
 import mekanism.api.recipes.inputs.IInputHandler;
 import mekanism.api.recipes.inputs.InputHelper;
 import mekanism.api.recipes.outputs.IOutputHandler;
@@ -28,7 +25,6 @@ import mekanism.client.recipe_viewer.type.IRecipeViewerRecipeType;
 import mekanism.common.capabilities.energy.MachineEnergyContainer;
 import mekanism.common.capabilities.fluid.BasicFluidTank;
 import mekanism.common.capabilities.holder.chemical.ChemicalTankHelper;
-import mekanism.common.capabilities.holder.chemical.ChemicalTankHolder;
 import mekanism.common.capabilities.holder.chemical.IChemicalTankHolder;
 import mekanism.common.capabilities.holder.energy.EnergyContainerHelper;
 import mekanism.common.capabilities.holder.energy.IEnergyContainerHolder;
@@ -51,11 +47,9 @@ import mekanism.common.recipe.lookup.ISingleRecipeLookupHandler;
 import mekanism.common.recipe.lookup.cache.InputRecipeCache.SingleChemical;
 import mekanism.common.tile.component.TileComponentEjector;
 import mekanism.common.tile.prefab.TileEntityProgressMachine;
-import mekanism.common.tile.prefab.TileEntityRecipeMachine;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.fluids.IFluidTank;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -147,9 +141,9 @@ public class TileEntityFreezer extends TileEntityProgressMachine<FreezeRecipe>
     protected IInventorySlotHolder getInitialInventory(IContentsListener listener, IContentsListener recipeCacheListener,
                                                        IContentsListener recipeCacheUnpauseListener) {
         InventorySlotHelper builder = InventorySlotHelper.forSideWithConfig(this);
-        builder.addSlot(chemicalInputSlot = ChemicalInventorySlot.drain(inputChemicalTank, listener, 5, 25));
-        builder.addSlot(fluidOutputSlot = FluidInventorySlot.fill(outputFluidTank, listener, 155, 25));
-        builder.addSlot(energySlot = EnergyInventorySlot.fillOrConvert(energyContainer, this::getLevel, listener, 155, 5));
+        builder.addSlot(chemicalInputSlot = ChemicalInventorySlot.drain(inputChemicalTank, listener, 10, 60));
+        builder.addSlot(fluidOutputSlot = FluidInventorySlot.fill(outputFluidTank, listener, 145, 60));
+        builder.addSlot(energySlot = EnergyInventorySlot.fillOrConvert(energyContainer, this::getLevel, listener, 155, 60));
         chemicalInputSlot.setSlotType(ContainerSlotType.INPUT);
         chemicalInputSlot.setSlotOverlay(SlotOverlay.PLUS);
         fluidOutputSlot.setSlotType(ContainerSlotType.OUTPUT);
