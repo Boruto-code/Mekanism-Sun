@@ -11,46 +11,41 @@ import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.Contract;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-@Getter
 @NothingNullByDefault
 public abstract class FreezeRecipe extends MekanismRecipe<SingleChemicalRecipeInput> implements Predicate<ChemicalStack> {
     private final ChemicalStackIngredient inputChemical;
-    private final long energyRequired;
-    private final int duration;
-    private final FluidStackIngredient outputFluid;
+    private final FluidStack outputFluid;
 
-    public FreezeRecipe(ChemicalStackIngredient inputChemical, long energyRequired, int duration,
-                        FluidStackIngredient outputFluid) {
+    public FreezeRecipe(ChemicalStackIngredient inputChemical, FluidStack outputFluid) {
         this.inputChemical = Objects.requireNonNull(inputChemical, "Chemical input cannot be null.");
-        this.energyRequired = Objects.requireNonNull(energyRequired, "Required energy cannot be null.");
-        if (duration <= 0) {
-            throw new IllegalArgumentException("Duration must be positive.");
-        }
-        this.duration = duration;
         Objects.requireNonNull(outputFluid, "Fluid output cannot be null");
         this.outputFluid = outputFluid;
     }
 
     public List<FluidStack> getOutputDefinition() {
-        return outputFluid.getRepresentations();
+        return Collections.singletonList(outputFluid);
     }
 
-    @Contract(value = "_ -> new", pure = true)
+    public ChemicalStackIngredient getInput() {
+        return inputChemical;
+    }
+
     public FluidStack getOutput(ChemicalStack chemical) {
-        return outputFluid.getRepresentations().getFirst().copy();
+        return outputFluid.copy();
     }
 
-    public FluidStackIngredient getOutputRaw() {
-        return outputFluid;
+    public FluidStack getOutputRaw() {
+        return outputFluid.copy();
     }
 
     @Override
     public boolean isIncomplete() {
-        return inputChemical.hasNoMatchingInstances() || outputFluid.hasNoMatchingInstances();
+        return inputChemical.hasNoMatchingInstances();
     }
 
     public boolean test(ChemicalStack chemicalStack) {

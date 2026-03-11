@@ -33,7 +33,7 @@ public class FreezeCachedRecipe extends CachedRecipe<FreezeRecipe> {
     protected void calculateOperationsThisTick(OperationTracker tracker) {
         super.calculateOperationsThisTick(tracker);
         if (tracker.shouldContinueChecking()) {
-            recipeChemical = inputHandler.getRecipeInput(recipe.getInputChemical());
+            recipeChemical = inputHandler.getRecipeInput(recipe.getInput());
             if (recipeChemical.isEmpty()) {
                 tracker.mismatchedRecipe();
             } else {

@@ -43,6 +43,7 @@ public class MekanismSun {
         MSTileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
         MSChemicals.CHEMICALS.register(modEventBus);
         MSContainerTypes.CONTAINER_TYPES.register(modEventBus);
+        MSRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
 
         //NeoForge.EVENT_BUS.register(this);
         modEventBus.addListener(MSConfig::onConfigLoad);

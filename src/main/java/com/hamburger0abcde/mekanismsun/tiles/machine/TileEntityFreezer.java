@@ -61,7 +61,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class TileEntityFreezer extends TileEntityRecipeMachine<FreezeRecipe>
+public class TileEntityFreezer extends TileEntityProgressMachine<FreezeRecipe>
         implements ISingleRecipeLookupHandler.ChemicalRecipeLookupHandler<FreezeRecipe> {
 
     public static final RecipeError NOT_ENOUGH_CHEMICAL_INPUT_ERROR = RecipeError.create();
@@ -99,7 +99,7 @@ public class TileEntityFreezer extends TileEntityRecipeMachine<FreezeRecipe>
     EnergyInventorySlot energySlot;
 
     public TileEntityFreezer(BlockPos pos, BlockState state) {
-        super(MSBlocks.FREEZER, pos, state, TRACKED_ERROR_TYPES);
+        super(MSBlocks.FREEZER, pos, state, TRACKED_ERROR_TYPES, 100);
         configComponent.setupItemIOConfig(chemicalInputSlot, fluidOutputSlot, energySlot);
         configComponent.setupIOConfig(TransmissionType.CHEMICAL, inputChemicalTank, RelativeSide.LEFT, true);
         configComponent.setupIOConfig(TransmissionType.FLUID, outputFluidTank, RelativeSide.RIGHT, true);
