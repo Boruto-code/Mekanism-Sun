@@ -1,8 +1,10 @@
 {
   "constants.mekanismsun.mod_name": "通用机械：人造太阳",
+  "item.mekanismsun.helium_bucket": "液态氦桶",
   "block.mekanismsun.artificial_sun_casing": "人造太阳外壳",
   "block.mekanismsun.artificial_sun_port": "人造太阳端口",
   "block.mekanismsun.freezer": "冷冻机",
+  "block.mekanismsun.helium": "液态氦",
   "chemical.mekanismsun.helium": "氦",
   "container.mekanismsun.freezer": "冷冻机",
   "artificial_sun.mekanismsun.port_mode": "端口模式变更为：%1$s",

@@ -1,5 +1,6 @@
 package com.hamburger0abcde.mekanismsun.client.gui;
 
+import com.hamburger0abcde.mekanismsun.client.recipe_viewer.type.MSRecipeViewerRecipeTypes;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityFreezer;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import mekanism.client.gui.GuiMekanismTile;
@@ -27,17 +28,18 @@ public class GuiFreezer extends GuiMekanismTile<TileEntityFreezer, MekanismTileC
     @Override
     protected void addGuiElements() {
         super.addGuiElements();
-        addRenderableWidget(new GuiVerticalPowerBar(this, tile.getEnergyContainer(), 155, 20))
+        addRenderableWidget(new GuiHorizontalPowerBar(this, tile.getEnergyContainer(), 50, 70))
                 .warning(WarningType.NOT_ENOUGH_ENERGY, tile.getWarningCheck(RecipeError.NOT_ENOUGH_ENERGY))
                 .warning(WarningType.NOT_ENOUGH_ENERGY_REDUCED_RATE, tile.getWarningCheck(RecipeError.NOT_ENOUGH_ENERGY_REDUCED_RATE));
         addRenderableWidget(new GuiChemicalGauge(() -> tile.inputChemicalTank, () -> tile.getChemicalTanks(null),
-                GaugeType.STANDARD, this, 25, 5))
+                GaugeType.STANDARD, this, 25, 10))
                 .warning(WarningType.NO_MATCHING_RECIPE, tile.getWarningCheck(TileEntityFreezer.NOT_ENOUGH_CHEMICAL_INPUT_ERROR));
         addRenderableWidget(new GuiFluidGauge(() -> tile.outputFluidTank, () -> tile.getFluidTanks(null),
-                GaugeType.STANDARD, this, 133, 5))
+                GaugeType.STANDARD, this, 133, 10))
                 .warning(WarningType.NO_SPACE_IN_OUTPUT, tile.getWarningCheck(TileEntityFreezer.NOT_ENOUGH_FLUID_OUTPUT_ERROR));
-        addRenderableWidget(new GuiProgress(tile::getScaledProgress, ProgressType.RIGHT, this, 77, 43))
-                .warning(WarningType.INPUT_DOESNT_PRODUCE_OUTPUT, tile.getWarningCheck(RecipeError.INPUT_DOESNT_PRODUCE_OUTPUT));
+        addRenderableWidget(new GuiProgress(tile::getScaledProgress, ProgressType.LARGE_RIGHT, this, 65, 40))
+                .warning(WarningType.INPUT_DOESNT_PRODUCE_OUTPUT, tile.getWarningCheck(RecipeError.INPUT_DOESNT_PRODUCE_OUTPUT))
+                .recipeViewerCategories(MSRecipeViewerRecipeTypes.FREEZE);
     }
 
     @Override

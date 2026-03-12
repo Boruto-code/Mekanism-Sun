@@ -141,13 +141,12 @@ public class TileEntityFreezer extends TileEntityProgressMachine<FreezeRecipe>
     protected IInventorySlotHolder getInitialInventory(IContentsListener listener, IContentsListener recipeCacheListener,
                                                        IContentsListener recipeCacheUnpauseListener) {
         InventorySlotHelper builder = InventorySlotHelper.forSideWithConfig(this);
-        builder.addSlot(chemicalInputSlot = ChemicalInventorySlot.drain(inputChemicalTank, listener, 10, 60));
-        builder.addSlot(fluidOutputSlot = FluidInventorySlot.fill(outputFluidTank, listener, 145, 60));
-        builder.addSlot(energySlot = EnergyInventorySlot.fillOrConvert(energyContainer, this::getLevel, listener, 155, 60));
+        builder.addSlot(chemicalInputSlot = ChemicalInventorySlot.drain(inputChemicalTank, listener, 5, 30));
+        builder.addSlot(fluidOutputSlot = FluidInventorySlot.fill(outputFluidTank, listener, 155, 30));
+        builder.addSlot(energySlot = EnergyInventorySlot.fillOrConvert(energyContainer, this::getLevel, listener, 110, 65));
         chemicalInputSlot.setSlotType(ContainerSlotType.INPUT);
         chemicalInputSlot.setSlotOverlay(SlotOverlay.PLUS);
         fluidOutputSlot.setSlotType(ContainerSlotType.OUTPUT);
-        fluidOutputSlot.setSlotOverlay(SlotOverlay.MINUS);
         return builder.build();
     }
 

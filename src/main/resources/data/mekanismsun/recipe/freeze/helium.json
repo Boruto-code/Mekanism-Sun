@@ -1,0 +1,11 @@
+{
+  "type": "mekanismsun:freeze",
+  "input": {
+    "chemical": "mekanismsun:helium",
+    "amount": 1
+  },
+  "output": {
+    "id": "mekanismsun:helium",
+    "amount": 1
+  }
+}

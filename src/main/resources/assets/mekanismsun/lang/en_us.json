@@ -1,10 +1,12 @@
 {
   "constants.mekanismsun.mod_name": "Mekanism: Sun",
+  "item.mekanismsun.helium_bucket": "Liquid Helium Bucket",
   "block.mekanismsun.artificial_sun_casing": "Artificial Sun Casing",
   "block.mekanismsun.artificial_sun_port": "Artificial Sun Port",
   "block.mekanismsun.freezer": "Freezer",
+  "block.mekanismsun.helium": "Liquid Helium",
   "chemical.mekanismsun.helium": "Helium",
-  "container.mekanismsun.freezer": "冷冻机",
+  "container.mekanismsun.freezer": "Freezer",
   "artificial_sun.mekanismsun.port_mode": "Toggled Artificial Sun Port mode to: %1$s.",
   "artificial_sun.mekanismsun.artificial_sun": "Artificial Sun",
   "artificial_sun.mekanismsun.burn_rate_limit": "Burn Rate Limit: %1$d",

@@ -3,7 +3,9 @@ package com.hamburger0abcde.mekanismsun.client.recipe_viewer.jei;
 import com.hamburger0abcde.mekanismsun.MekanismSun;
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.ArtificialSunRecipeViewerRecipe;
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.jei.machine.ArtificialSunRecipeCategory;
+import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.jei.machine.FreezeRecipeCategory;
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.type.MSRecipeViewerRecipeTypes;
+import com.hamburger0abcde.mekanismsun.recipes.MSRecipeType;
 import mekanism.client.recipe_viewer.jei.CatalystRegistryHelper;
 import mekanism.client.recipe_viewer.jei.RecipeRegistryHelper;
 import mezz.jei.api.IModPlugin;
@@ -28,10 +30,13 @@ public class MSJEI implements IModPlugin {
         IGuiHelper guiHelper = registry.getJeiHelpers().getGuiHelper();
 
         registry.addRecipeCategories(new ArtificialSunRecipeCategory(guiHelper, MSRecipeViewerRecipeTypes.ARTIFICIAL_SUN));
+        registry.addRecipeCategories(new FreezeRecipeCategory(guiHelper));
     }
 
     @Override
     public void registerRecipes(IRecipeRegistration registry) {
+        RecipeRegistryHelper.register(registry, MSRecipeViewerRecipeTypes.FREEZE, MSRecipeType.FREEZE);
+
         RecipeRegistryHelper.register(registry, MSRecipeViewerRecipeTypes.ARTIFICIAL_SUN,
                 ArtificialSunRecipeViewerRecipe.getArtificialSunRecipes());
     }
@@ -39,5 +44,6 @@ public class MSJEI implements IModPlugin {
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registry) {
         CatalystRegistryHelper.register(registry, MSRecipeViewerRecipeTypes.ARTIFICIAL_SUN);
+        CatalystRegistryHelper.register(registry, MSRecipeViewerRecipeTypes.FREEZE);
     }
 }

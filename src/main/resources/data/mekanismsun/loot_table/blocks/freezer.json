@@ -11,12 +11,12 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "mekanismsun:artificial_sun_port"
+          "name": "mekanismsun:freezer"
         }
       ],
       "name": "main",
       "rolls": 1.0
     }
   ],
-  "random_sequence": "mekanismsun:blocks/artificial_sun_port"
+  "random_sequence": "mekanismsun:blocks/freezer"
 }
