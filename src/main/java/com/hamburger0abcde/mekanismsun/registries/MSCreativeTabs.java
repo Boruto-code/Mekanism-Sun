@@ -15,6 +15,7 @@ public class MSCreativeTabs {
                 builder.withTabsBefore(MekanismCreativeTabs.MEKANISM.getKey())
                         .displayItems((displayParameters, output) -> {
                             CreativeTabDeferredRegister.addToDisplay(MSBlocks.BLOCKS, output);
+                            CreativeTabDeferredRegister.addToDisplay(MSItems.ITEMS, output);
                         })
             );
 }

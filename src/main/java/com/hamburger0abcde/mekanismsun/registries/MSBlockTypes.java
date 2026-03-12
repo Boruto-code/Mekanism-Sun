@@ -3,7 +3,6 @@ package com.hamburger0abcde.mekanismsun.registries;
 import com.hamburger0abcde.mekanismsun.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunPort;
-import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityFreezer;
 import mekanism.api.Upgrade;
 import mekanism.common.block.attribute.Attributes;
 import mekanism.common.config.MekanismConfig;
@@ -27,14 +26,5 @@ public class MSBlockTypes {
             .withSound(MekanismSounds.SPS)
             .with(Attributes.ACTIVE, Attributes.COMPARATOR)
             .externalMultiblock()
-            .build();
-
-    public static final Machine<TileEntityFreezer> FREEZER = Machine.MachineBuilder
-            .createMachine(() -> MSTileEntityTypes.FREEZER, MekanismSunLang.DESCRIPTION_FREEZER)
-            .withGui(() -> MSContainerTypes.FREEZER).withSound(MekanismSounds.PRESSURIZED_REACTION_CHAMBER)
-            .withEnergyConfig(MekanismConfig.usage.pressurizedReactionBase, MekanismConfig.storage.pressurizedReactionBase)
-            .withSupportedUpgrades(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING)
-            .withComputerSupport("freezer")
-            .withSideConfig(TransmissionType.CHEMICAL, TransmissionType.FLUID)
             .build();
 }

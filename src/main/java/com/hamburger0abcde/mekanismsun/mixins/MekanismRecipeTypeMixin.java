@@ -1,6 +1,5 @@
 package com.hamburger0abcde.mekanismsun.mixins;
 
-import com.hamburger0abcde.mekanismsun.recipes.FreezeRecipe;
 import com.hamburger0abcde.mekanismsun.recipes.MSRecipeType;
 import mekanism.api.recipes.MekanismRecipe;
 import mekanism.common.Mekanism;
@@ -29,8 +28,6 @@ public class MekanismRecipeTypeMixin {
 
     @Inject(method = "<clinit>", at = @At("TAIL"))
     private static void mekanismsun$initMSRecipe(CallbackInfo ci) {
-        MSRecipeType.FREEZE = register(Mekanism.rl("freeze"),
-                recipeType ->
-                        new InputRecipeCache.SingleChemical<>(recipeType, FreezeRecipe::getInput));
+
     }
 }

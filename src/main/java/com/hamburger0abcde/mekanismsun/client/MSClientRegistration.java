@@ -2,7 +2,6 @@ package com.hamburger0abcde.mekanismsun.client;
 
 import com.hamburger0abcde.mekanismsun.MekanismSun;
 import com.hamburger0abcde.mekanismsun.client.gui.GuiArtificialSun;
-import com.hamburger0abcde.mekanismsun.client.gui.GuiFreezer;
 import com.hamburger0abcde.mekanismsun.registries.MSContainerTypes;
 import mekanism.client.ClientRegistrationUtil;
 import net.neoforged.api.distmarker.Dist;
@@ -16,6 +15,5 @@ public class MSClientRegistration {
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerScreens(RegisterMenuScreensEvent event) {
         ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ARTIFICIAL_SUN, GuiArtificialSun::new);
-        ClientRegistrationUtil.registerScreen(event, MSContainerTypes.FREEZER, GuiFreezer::new);
     }
 }
