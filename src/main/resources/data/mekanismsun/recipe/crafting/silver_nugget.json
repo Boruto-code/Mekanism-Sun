@@ -3,11 +3,11 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "mekanism:silver_ingot"
+      "item": "mekanismsun:silver_ingot"
     }
   ],
   "result": {
     "count": 9,
-    "id": "mekanism:silver_nugget"
+    "id": "mekanismsun:silver_nugget"
   }
 }
