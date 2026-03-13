@@ -5,6 +5,8 @@
   "item.mekanismsun.silver_nugget": "Silver Nugget",
   "block.mekanismsun.artificial_sun_casing": "Artificial Sun Casing",
   "block.mekanismsun.artificial_sun_port": "Artificial Sun Port",
+  "block.mekanismsun.silver_ore": "Silver Ore",
+  "block.mekanismsun.deepslate_silver_ore": "Deepslate Silver Ore",
   "chemical.mekanismsun.helium": "Helium",
   "artificial_sun.mekanismsun.port_mode": "Toggled Artificial Sun Port mode to: %1$s.",
   "artificial_sun.mekanismsun.artificial_sun": "Artificial Sun",
