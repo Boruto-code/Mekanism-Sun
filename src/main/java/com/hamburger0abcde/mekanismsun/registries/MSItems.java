@@ -8,6 +8,8 @@ import net.minecraft.world.item.Item;
 public class MSItems {
     public static final ItemDeferredRegister ITEMS = new ItemDeferredRegister(MekanismSun.MODID);
 
+    public static final ItemRegistryObject<Item> RAW_SILVER = ITEMS.register("raw_silver");
+
     public static final ItemRegistryObject<Item> SILVER_INGOT = ITEMS.register("silver_ingot");
 
     public static final ItemRegistryObject<Item> SILVER_DUST = ITEMS.register("silver_dust");
