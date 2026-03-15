@@ -1,0 +1,10 @@
+{
+  "type": "mekanism:chemical_conversion",
+  "input": {
+    "tag": "c:dusts/electrum"
+  },
+  "output": {
+    "amount": 10,
+    "id": "mekanismsun:electrum"
+  }
+}

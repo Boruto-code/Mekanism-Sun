@@ -1,5 +1,7 @@
 package com.hamburger0abcde.mekanismsun.mixins;
 
+import com.hamburger0abcde.mekanismsun.recipes.AlloyingRecipe;
+import com.hamburger0abcde.mekanismsun.recipes.MSInputRecipeCache;
 import com.hamburger0abcde.mekanismsun.recipes.MSRecipeType;
 import mekanism.api.recipes.MekanismRecipe;
 import mekanism.common.Mekanism;
@@ -28,6 +30,9 @@ public class MekanismRecipeTypeMixin {
 
     @Inject(method = "<clinit>", at = @At("TAIL"))
     private static void mekanismsun$initMSRecipe(CallbackInfo ci) {
-
+        MSRecipeType.ALLOYING = register(Mekanism.rl("alloying"),
+                recipeType ->
+                        new MSInputRecipeCache.ItemItemChemical<>(recipeType,
+                                AlloyingRecipe::getMainInput, AlloyingRecipe::getExtraInput, AlloyingRecipe::getChemicalInput));
     }
 }

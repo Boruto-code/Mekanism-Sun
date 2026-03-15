@@ -2,6 +2,7 @@ package com.hamburger0abcde.mekanismsun.client.recipe_viewer.jei;
 
 import com.hamburger0abcde.mekanismsun.MekanismSun;
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.ArtificialSunRecipeViewerRecipe;
+import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.jei.machine.AlloyingRecipeCategory;
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.jei.machine.ArtificialSunRecipeCategory;
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.type.MSRecipeViewerRecipeTypes;
 import com.hamburger0abcde.mekanismsun.recipes.MSRecipeType;
@@ -29,16 +30,19 @@ public class MSJEI implements IModPlugin {
         IGuiHelper guiHelper = registry.getJeiHelpers().getGuiHelper();
 
         registry.addRecipeCategories(new ArtificialSunRecipeCategory(guiHelper, MSRecipeViewerRecipeTypes.ARTIFICIAL_SUN));
+        registry.addRecipeCategories(new AlloyingRecipeCategory(guiHelper, MSRecipeViewerRecipeTypes.ALLOYING));
     }
 
     @Override
     public void registerRecipes(IRecipeRegistration registry) {
         RecipeRegistryHelper.register(registry, MSRecipeViewerRecipeTypes.ARTIFICIAL_SUN,
                 ArtificialSunRecipeViewerRecipe.getArtificialSunRecipes());
+        RecipeRegistryHelper.register(registry, MSRecipeViewerRecipeTypes.ALLOYING, MSRecipeType.ALLOYING);
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registry) {
         CatalystRegistryHelper.register(registry, MSRecipeViewerRecipeTypes.ARTIFICIAL_SUN);
+        CatalystRegistryHelper.register(registry, MSRecipeViewerRecipeTypes.ALLOYING);
     }
 }

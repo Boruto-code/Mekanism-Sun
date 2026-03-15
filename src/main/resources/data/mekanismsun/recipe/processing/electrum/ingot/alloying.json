@@ -1,0 +1,16 @@
+{
+  "type": "mekanismsun:alloying",
+  "main_input": {
+    "item": "minecraft:gold_ingot"
+  },
+  "extra_input": {
+    "item": "mekanismsun:silver_ingot"
+  },
+  "chemical_input": {
+    "amount": 100,
+    "chemical": "mekanismsun:helium"
+  },
+  "output": {
+    "id": "mekanismsun:electrum_ingot"
+  }
+}

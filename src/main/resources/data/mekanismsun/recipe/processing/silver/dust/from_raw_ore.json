@@ -1,0 +1,11 @@
+{
+  "type": "mekanism:enriching",
+  "input": {
+    "count": 1,
+    "tag": "c:raw_materials/silver"
+  },
+  "output": {
+    "count": 4,
+    "id": "mekanismsun:silver_dust"
+  }
+}

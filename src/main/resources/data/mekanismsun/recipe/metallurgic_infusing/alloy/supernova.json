@@ -1,0 +1,14 @@
+{
+  "type": "mekanism:metallurgic_infusing",
+  "chemical_input": {
+    "amount": 20,
+    "tag": "mekanismsun:electrum"
+  },
+  "item_input": {
+    "tag": "mekanism:alloys/atomic"
+  },
+  "output": {
+    "id": "mekanismsun:supernova_alloy"
+  },
+  "per_tick_usage": false
+}

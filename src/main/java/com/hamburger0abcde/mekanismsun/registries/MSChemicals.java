@@ -10,4 +10,6 @@ public class MSChemicals {
     public static final ChemicalDeferredRegister CHEMICALS = new ChemicalDeferredRegister(MekanismSun.MODID);
 
     public static final DeferredChemical<Chemical> HELIUM = CHEMICALS.register(MSChemicalConstants.HELIUM);
+
+    public static final DeferredChemical<Chemical> ELECTRUM = CHEMICALS.register(MSChemicalConstants.ELECTRUM);
 }

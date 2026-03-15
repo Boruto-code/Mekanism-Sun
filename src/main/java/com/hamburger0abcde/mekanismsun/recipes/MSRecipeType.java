@@ -1,8 +1,9 @@
 package com.hamburger0abcde.mekanismsun.recipes;
 
-import mekanism.api.recipes.vanilla_input.SingleChemicalRecipeInput;
-import mekanism.common.recipe.lookup.cache.InputRecipeCache;
+import com.hamburger0abcde.mekanismsun.recipes.vanilla_input.ItemItemChemicalRecipeInput;
 import mekanism.common.registration.impl.RecipeTypeRegistryObject;
 
 public class MSRecipeType {
+    public static RecipeTypeRegistryObject<ItemItemChemicalRecipeInput, AlloyingRecipe,
+            MSInputRecipeCache.ItemItemChemical<AlloyingRecipe>> ALLOYING;
 }

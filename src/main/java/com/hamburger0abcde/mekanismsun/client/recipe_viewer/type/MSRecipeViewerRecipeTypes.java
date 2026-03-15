@@ -2,14 +2,21 @@ package com.hamburger0abcde.mekanismsun.client.recipe_viewer.type;
 
 import com.hamburger0abcde.mekanismsun.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.ArtificialSunRecipeViewerRecipe;
+import com.hamburger0abcde.mekanismsun.recipes.AlloyingRecipe;
 import com.hamburger0abcde.mekanismsun.registries.MSBlocks;
 import com.hamburger0abcde.mekanismsun.recipes.MSRecipeType;
 import mekanism.api.annotations.NothingNullByDefault;
 import mekanism.client.recipe_viewer.type.FakeRVRecipeType;
 import mekanism.client.recipe_viewer.type.RVRecipeTypeWrapper;
+import mekanism.common.recipe.lookup.cache.IInputRecipeCache;
+import net.minecraft.world.item.crafting.RecipeInput;
 
 @NothingNullByDefault
 public class MSRecipeViewerRecipeTypes {
+    public static final RVRecipeTypeWrapper<?, AlloyingRecipe, ?> ALLOYING =
+            new RVRecipeTypeWrapper(MSRecipeType.ALLOYING, AlloyingRecipe.class,
+                    -28, -16, 144, 54, MSBlocks.ALLOYER);
+
     public static final FakeRVRecipeType<ArtificialSunRecipeViewerRecipe> ARTIFICIAL_SUN =
             new FakeRVRecipeType<>(MSBlocks.ARTIFICIAL_SUN_CASING.getId(), MSBlocks.ARTIFICIAL_SUN_CASING,
                     MekanismSunLang.ARTIFICIAL_SUN, ArtificialSunRecipeViewerRecipe.class,

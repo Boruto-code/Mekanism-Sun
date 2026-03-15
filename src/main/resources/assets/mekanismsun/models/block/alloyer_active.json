@@ -1,0 +1,7 @@
+{
+  "parent": "mekanismsun:block/alloyer",
+  "textures": {
+    "front": "mekanismsun:block/alloyer/front_active",
+    "down": "mekanismsun:block/alloyer/bottom_active"
+  }
+}

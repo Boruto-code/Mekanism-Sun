@@ -1,6 +1,7 @@
 package com.hamburger0abcde.mekanismsun.client;
 
 import com.hamburger0abcde.mekanismsun.MekanismSun;
+import com.hamburger0abcde.mekanismsun.client.gui.GuiAlloyer;
 import com.hamburger0abcde.mekanismsun.client.gui.GuiArtificialSun;
 import com.hamburger0abcde.mekanismsun.registries.MSContainerTypes;
 import mekanism.client.ClientRegistrationUtil;
@@ -15,5 +16,6 @@ public class MSClientRegistration {
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerScreens(RegisterMenuScreensEvent event) {
         ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ARTIFICIAL_SUN, GuiArtificialSun::new);
+        ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ALLOYER, GuiAlloyer::new);
     }
 }
