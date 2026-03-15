@@ -1,5 +1,6 @@
 package com.hamburger0abcde.mekanismsun.recipes;
 
+import com.hamburger0abcde.mekanismsun.recipes.alloying.AlloyingRecipe;
 import com.hamburger0abcde.mekanismsun.recipes.vanilla_input.ItemItemChemicalRecipeInput;
 import mekanism.common.registration.impl.RecipeTypeRegistryObject;
 

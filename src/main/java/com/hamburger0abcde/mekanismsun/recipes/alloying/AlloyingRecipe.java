@@ -1,4 +1,4 @@
-package com.hamburger0abcde.mekanismsun.recipes;
+package com.hamburger0abcde.mekanismsun.recipes.alloying;
 
 import com.hamburger0abcde.mekanismsun.recipes.vanilla_input.ItemItemChemicalRecipeInput;
 import lombok.Getter;
@@ -47,6 +47,10 @@ public abstract class AlloyingRecipe extends MekanismRecipe<ItemItemChemicalReci
 
     @Contract(value = "_, _, _ -> new", pure = true)
     public ItemStack getOutput(@NotNull ItemStack input, @NotNull ItemStack extra, @NotNull ChemicalStack chemical) {
+        return output.copy();
+    }
+
+    public ItemStack getOutputRaw() {
         return output.copy();
     }
 

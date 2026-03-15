@@ -1,4 +1,4 @@
-package com.hamburger0abcde.mekanismsun.recipes;
+package com.hamburger0abcde.mekanismsun.recipes.alloying;
 
 import mekanism.api.annotations.NothingNullByDefault;
 import mekanism.api.chemical.ChemicalStack;
