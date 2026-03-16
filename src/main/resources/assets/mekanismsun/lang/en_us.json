@@ -9,6 +9,7 @@
   "item.mekanismsun.electrum_nugget": "Electrum Nugget",
   "item.mekanismsun.supernova_alloy": "Supernova Alloy",
   "block.mekanismsun.alloyer": "Alloyer",
+  "block.mekanismsun.transmutator": "Transmutator",
   "block.mekanismsun.artificial_sun_casing": "Artificial Sun Casing",
   "block.mekanismsun.artificial_sun_port": "Artificial Sun Port",
   "block.mekanismsun.silver_ore": "Silver Ore",
@@ -16,9 +17,12 @@
   "chemical.mekanismsun.helium": "Helium",
   "chemical.mekanismsun.electrum": "Electrum",
   "container.mekanismsun.alloyer": "Alloyer",
+  "container.mekanismsun.transmutator": "Transmutator",
   "artificial_sun.mekanismsun.port_mode": "Toggled Artificial Sun Port mode to: %1$s.",
   "artificial_sun.mekanismsun.artificial_sun": "Artificial Sun",
   "artificial_sun.mekanismsun.burn_rate_limit": "Burn Rate Limit: %1$d",
+  "description.mekanismsun.alloyer": "Melt the two metals together to cast an alloy.",
+  "description.mekanismsun.transmutator": "An enhanced version of the Philosopher's Stone.",
   "description.mekanismsun.artificial_sun_casing": "Using a high-strength shell treated with antimatter, it contains immense energy and can withstand the high temperatures of the sun.",
   "description.mekanismsun.artificial_sun_port": "A port used for the transfer of energy and substances in the Artificial Sun."
 }

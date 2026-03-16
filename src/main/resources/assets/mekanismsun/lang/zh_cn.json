@@ -9,6 +9,7 @@
   "item.mekanismsun.electrum_nugget": "琥珀金粒",
   "item.mekanismsun.supernova_alloy": "新星合金",
   "block.mekanismsun.alloyer": "合金炉",
+  "block.mekanismsun.transmutator": "嬗变机",
   "block.mekanismsun.artificial_sun_casing": "人造太阳外壳",
   "block.mekanismsun.artificial_sun_port": "人造太阳端口",
   "block.mekanismsun.silver_ore": "银矿石",
@@ -16,9 +17,12 @@
   "chemical.mekanismsun.helium": "氦",
   "chemical.mekanismsun.electrum": "琥珀金",
   "container.mekanismsun.alloyer": "合金炉",
+  "container.mekanismsun.transmutator": "嬗变机",
   "artificial_sun.mekanismsun.port_mode": "端口模式变更为：%1$s",
   "artificial_sun.mekanismsun.artificial_sun": "人造太阳",
   "artificial_sun.mekanismsun.burn_rate_limit": "燃烧速率：%1$d",
+  "description.mekanismsun.alloyer": "将两种金属熔铸成合金。",
+  "description.mekanismsun.transmutator": "贤者之石的增强版。",
   "description.mekanismsun.artificial_sun_casing": "使用经过反物质处理的高强度外壳，蕴含着强大的能量，可以抵挡太阳的高温。",
   "description.mekanismsun.artificial_sun_port": "在人造太阳中用于能量和物质传输的端口。"
 }

@@ -3,10 +3,12 @@ package com.hamburger0abcde.mekanismsun.mixins;
 import com.hamburger0abcde.mekanismsun.recipes.alloying.AlloyingRecipe;
 import com.hamburger0abcde.mekanismsun.recipes.MSInputRecipeCache;
 import com.hamburger0abcde.mekanismsun.recipes.MSRecipeType;
+import mekanism.api.recipes.ItemStackToItemStackRecipe;
 import mekanism.api.recipes.MekanismRecipe;
 import mekanism.common.Mekanism;
 import mekanism.common.recipe.MekanismRecipeType;
 import mekanism.common.recipe.lookup.cache.IInputRecipeCache;
+import mekanism.common.recipe.lookup.cache.InputRecipeCache;
 import mekanism.common.registration.impl.RecipeTypeRegistryObject;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeInput;
@@ -29,9 +31,12 @@ public class MekanismRecipeTypeMixin {
 
     @Inject(method = "<clinit>", at = @At("TAIL"))
     private static void mekanismsun$initMSRecipe(CallbackInfo ci) {
-        MSRecipeType.ALLOYING = register(Mekanism.rl("alloying"),
+        MSRecipeType.ALLOYING = register(Mekanism.rl("alloyer"),
                 recipeType ->
                         new MSInputRecipeCache.ItemItemChemical<>(recipeType,
                                 AlloyingRecipe::getMainInput, AlloyingRecipe::getExtraInput, AlloyingRecipe::getChemicalInput));
+        MSRecipeType.TRANSMUTATION = register(Mekanism.rl("transmutation"),
+                recipeType ->
+                        new InputRecipeCache.SingleItem<>(recipeType, ItemStackToItemStackRecipe::getInput));
     }
 }

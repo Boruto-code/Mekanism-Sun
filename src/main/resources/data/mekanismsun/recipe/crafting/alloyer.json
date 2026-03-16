@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "c:circuits/ultimate"
+    },
+    "B": {
+      "item": "mekanism:energized_smelter"
+    },
+    "C": {
+      "tag": "c:alloys/ultimate"
+    }
+  },
+  "pattern": [
+    "CBC",
+    "BAB",
+    "CBC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mekanismsun:alloyer"
+  }
+}

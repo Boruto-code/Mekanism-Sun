@@ -1,0 +1,7 @@
+{
+  "parent": "mekanismsun:block/transmutator",
+  "textures": {
+    "front": "mekanismsun:block/transmutator/front_active",
+    "down": "mekanismsun:block/transmutator/bottom_active"
+  }
+}
