@@ -126,7 +126,10 @@ public class TileEntityAlloyer extends TileEntityProgressMachine<AlloyingRecipe>
     protected IEnergyContainerHolder getInitialEnergyContainers(IContentsListener listener, IContentsListener recipeCacheListener,
                                                                 IContentsListener unpause) {
         EnergyContainerHelper builder = EnergyContainerHelper.forSideWithConfig(this);
-        builder.addContainer(energyContainer = MachineEnergyContainer.input(this, listener));
+        energyContainer = MachineEnergyContainer.input(this, listener);
+        energyContainer.setEnergyPerTick(80);
+        builder.addContainer(energyContainer);
+
         return builder.build();
     }
 
