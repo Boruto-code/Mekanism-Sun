@@ -17,5 +17,6 @@ public class MSClientRegistration {
     public static void registerScreens(RegisterMenuScreensEvent event) {
         ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ARTIFICIAL_SUN, GuiArtificialSun::new);
         ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ALLOYER, GuiAlloyer::new);
+        ClientRegistrationUtil.registerElectricScreen(event, MSContainerTypes.TRANSMUTATOR);
     }
 }

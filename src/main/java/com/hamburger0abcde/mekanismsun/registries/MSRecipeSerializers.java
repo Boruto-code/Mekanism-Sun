@@ -2,6 +2,7 @@ package com.hamburger0abcde.mekanismsun.registries;
 
 import com.hamburger0abcde.mekanismsun.MekanismSun;
 import com.hamburger0abcde.mekanismsun.recipes.alloying.BasicAlloyingRecipe;
+import com.hamburger0abcde.mekanismsun.recipes.transmutation.BasicTransmutationRecipe;
 import com.mojang.datafixers.util.Function4;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import mekanism.api.SerializationConstants;
@@ -21,6 +22,8 @@ public class MSRecipeSerializers {
 
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<BasicAlloyingRecipe>> ALLOYING =
             RECIPE_SERIALIZERS.register("alloying", () -> alloying(BasicAlloyingRecipe::new));
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<BasicTransmutationRecipe>> TRANSMUTATION =
+            RECIPE_SERIALIZERS.register("transmutation", () -> MekanismRecipeSerializer.itemToItem(BasicTransmutationRecipe::new));
 
     public static <RECIPE extends BasicAlloyingRecipe> MekanismRecipeSerializer<RECIPE> alloying(Function4<ItemStackIngredient,
                 ItemStackIngredient, ChemicalStackIngredient, ItemStack, RECIPE> factory) {

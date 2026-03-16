@@ -15,4 +15,10 @@ public class MSAttachedSideConfig {
         configInfo.put(TransmissionType.ENERGY, AttachedSideConfig.LightConfigInfo.INPUT_ONLY);
         return new AttachedSideConfig(configInfo);
     });
+    public static final AttachedSideConfig TRANSMUTATOR_MACHINE = Util.make(() -> {
+        Map<TransmissionType, AttachedSideConfig.LightConfigInfo> configInfo = new EnumMap<>(TransmissionType.class);
+        configInfo.put(TransmissionType.ITEM, AttachedSideConfig.LightConfigInfo.MACHINE);
+        configInfo.put(TransmissionType.ENERGY, AttachedSideConfig.LightConfigInfo.INPUT_ONLY);
+        return new AttachedSideConfig(configInfo);
+    });
 }

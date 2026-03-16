@@ -1,5 +1,6 @@
 package com.hamburger0abcde.mekanismsun.tiles.machine;
 
+import com.hamburger0abcde.mekanismsun.client.recipe_viewer.type.MSRecipeViewerRecipeTypes;
 import com.hamburger0abcde.mekanismsun.recipes.alloying.AlloyerCachedRecipe;
 import com.hamburger0abcde.mekanismsun.recipes.alloying.AlloyingRecipe;
 import com.hamburger0abcde.mekanismsun.recipes.MSInputRecipeCache;
@@ -19,6 +20,7 @@ import mekanism.api.recipes.inputs.IInputHandler;
 import mekanism.api.recipes.inputs.InputHelper;
 import mekanism.api.recipes.outputs.IOutputHandler;
 import mekanism.api.recipes.outputs.OutputHelper;
+import mekanism.client.recipe_viewer.type.IRecipeViewerRecipeType;
 import mekanism.common.capabilities.energy.MachineEnergyContainer;
 import mekanism.common.capabilities.holder.chemical.ChemicalTankHelper;
 import mekanism.common.capabilities.holder.chemical.IChemicalTankHolder;
@@ -189,8 +191,8 @@ public class TileEntityAlloyer extends TileEntityProgressMachine<AlloyingRecipe>
     }
 
 
-    /*@Override
+    @Override
     public @Nullable IRecipeViewerRecipeType<AlloyingRecipe> recipeViewerType() {
-        return MSRecipeViewerRecipeTypes;
-    }*/
+        return MSRecipeViewerRecipeTypes.ALLOYING;
+    }
 }

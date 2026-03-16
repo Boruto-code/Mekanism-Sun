@@ -8,6 +8,7 @@ import com.hamburger0abcde.mekanismsun.client.recipe_viewer.type.MSRecipeViewerR
 import com.hamburger0abcde.mekanismsun.recipes.MSRecipeType;
 import mekanism.client.recipe_viewer.jei.CatalystRegistryHelper;
 import mekanism.client.recipe_viewer.jei.RecipeRegistryHelper;
+import mekanism.client.recipe_viewer.jei.machine.ItemStackToItemStackRecipeCategory;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -31,6 +32,7 @@ public class MSJEI implements IModPlugin {
 
         registry.addRecipeCategories(new ArtificialSunRecipeCategory(guiHelper, MSRecipeViewerRecipeTypes.ARTIFICIAL_SUN));
         registry.addRecipeCategories(new AlloyingRecipeCategory(guiHelper, MSRecipeViewerRecipeTypes.ALLOYING));
+        registry.addRecipeCategories(new ItemStackToItemStackRecipeCategory(guiHelper, MSRecipeViewerRecipeTypes.TRANSMUTATION));
     }
 
     @Override
@@ -38,11 +40,13 @@ public class MSJEI implements IModPlugin {
         RecipeRegistryHelper.register(registry, MSRecipeViewerRecipeTypes.ARTIFICIAL_SUN,
                 ArtificialSunRecipeViewerRecipe.getArtificialSunRecipes());
         RecipeRegistryHelper.register(registry, MSRecipeViewerRecipeTypes.ALLOYING, MSRecipeType.ALLOYING);
+        RecipeRegistryHelper.register(registry, MSRecipeViewerRecipeTypes.TRANSMUTATION, MSRecipeType.TRANSMUTATION);
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registry) {
         CatalystRegistryHelper.register(registry, MSRecipeViewerRecipeTypes.ARTIFICIAL_SUN);
         CatalystRegistryHelper.register(registry, MSRecipeViewerRecipeTypes.ALLOYING);
+        CatalystRegistryHelper.register(registry, MSRecipeViewerRecipeTypes.TRANSMUTATION);
     }
 }
