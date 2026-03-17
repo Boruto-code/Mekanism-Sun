@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "mekanism:antiprotonic_nucleosynthesizer"
+    },
+    "B": {
+      "item": "projecte:philosophers_stone"
+    },
+    "C": {
+      "tag": "c:alloys/supernova"
+    }
+  },
+  "pattern": [
+    "CBC",
+    "BAB",
+    "CBC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mekanismsun:transmutator"
+  }
+}
