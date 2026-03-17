@@ -1,0 +1,11 @@
+{
+  "type": "mekanismsun:transmutation",
+  "input": {
+    "count": 1,
+    "item": "minecraft:glass_bottle"
+  },
+  "output": {
+    "count": 1,
+    "id": "minecraft:experience_bottle"
+  }
+}

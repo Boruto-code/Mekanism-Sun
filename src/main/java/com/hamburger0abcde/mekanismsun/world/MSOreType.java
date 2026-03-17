@@ -16,7 +16,7 @@ import java.util.List;
 
 @Getter
 public enum MSOreType implements StringRepresentable {
-    SILVER(MSResources.SILVER, 2, 8, new BaseOreConfig("normal", 4, 0.1F,
+    SILVER(MSResources.SILVER, 2, 8, new BaseOreConfig("normal", 6, 0.1F,
             4, HeightShape.TRAPEZOID, OreAnchor.absolute(-48), OreAnchor.absolute(32)))
     ;
 

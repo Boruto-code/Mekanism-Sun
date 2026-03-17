@@ -92,6 +92,7 @@ public class MSBlocks {
                             .addOutput().addEnergy().build()));
 
     //TODO: Electric Neutron Activator
+    //TODO: Copy mods to modpack
 
     public static final BlockRegistryObject<BlockBasicMultiblock<TileEntityArtificialSunCasing>,
             ItemBlockTooltip<BlockBasicMultiblock<TileEntityArtificialSunCasing>>> ARTIFICIAL_SUN_CASING = registerBlock(

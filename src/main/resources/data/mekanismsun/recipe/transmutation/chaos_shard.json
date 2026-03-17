@@ -1,0 +1,17 @@
+{
+  "type": "mekanismsun:transmutation",
+  "input": {
+    "count": 1,
+    "item": "minecraft:prismarine_shard"
+  },
+  "output": {
+    "count": 1,
+    "id": "draconicevolution:chaos_shard"
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "draconicevolution"
+    }
+  ]
+}
