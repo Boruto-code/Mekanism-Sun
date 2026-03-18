@@ -20,8 +20,8 @@ import net.minecraft.world.level.material.MapColor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class MSBlockOre extends Block implements IHasDescription {
-    private final MSOreType ore;
+public class MSBlockOre /*extends Block implements IHasDescription*/ {
+    /*private final MSOreType ore;
     private String descriptionTranslationKey;
 
     public MSBlockOre(MSOreType ore) {
@@ -33,9 +33,9 @@ public class MSBlockOre extends Block implements IHasDescription {
     public MSBlockOre(MSOreType ore, BlockBehaviour.Properties properties) {
         super(properties);
         this.ore = ore;
-    }
+    }*/
 
-    @NotNull
+    /*@NotNull
     public String getDescriptionTranslationKey() {
         if (descriptionTranslationKey == null) {
             descriptionTranslationKey = Util.makeDescriptionId("description",
@@ -54,5 +54,5 @@ public class MSBlockOre extends Block implements IHasDescription {
     public int getExpDrop(@NotNull BlockState state, @NotNull LevelAccessor level, @NotNull BlockPos pos,
                           @Nullable BlockEntity blockEntity, @Nullable Entity breaker, @NotNull ItemStack tool) {
         return Mth.nextInt(level.getRandom(), ore.getMinExp(), ore.getMaxExp());
-    }
+    }*/
 }

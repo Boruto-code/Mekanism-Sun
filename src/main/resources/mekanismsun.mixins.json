@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_21",
   "refmap": "mekanismsun.refmap.json",
   "mixins": [
-    "MekanismRecipeTypeMixin"
+    "MekanismRecipeTypeMixin",
+    "OreTypeMixin"
   ]
 }

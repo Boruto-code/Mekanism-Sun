@@ -17,8 +17,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.BitSet;
 import java.util.function.Function;
 
-public class MSResizableOreFeature extends Feature<MSResizableOreFeatureConfig> {
-    public MSResizableOreFeature() {
+public class MSResizableOreFeature/* extends Feature<MSResizableOreFeatureConfig>*/ {
+    /*public MSResizableOreFeature() {
         super(MSResizableOreFeatureConfig.CODEC);
     }
 
@@ -177,5 +177,5 @@ public class MSResizableOreFeature extends Feature<MSResizableOreFeatureConfig> 
             return false;
         }
         return random.nextFloat() >= discardChanceOnAirExposure;
-    }
+    }*/
 }

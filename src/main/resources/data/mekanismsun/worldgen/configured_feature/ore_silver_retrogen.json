@@ -1,5 +1,5 @@
 {
-  "type": "mekanismsun:ore",
+  "type": "mekanism:ore_retrogen",
   "config": {
     "ore_type": {
       "type": "silver",
@@ -11,8 +11,8 @@
           "Name": "mekanismsun:silver_ore"
         },
         "target": {
-          "predicate_type": "minecraft:block_match",
-          "block": "minecraft:stone"
+          "predicate_type": "minecraft:tag_match",
+          "tag": "minecraft:stone_ore_replaceables"
         }
       },
       {
@@ -20,8 +20,8 @@
           "Name": "mekanismsun:deepslate_silver_ore"
         },
         "target": {
-          "predicate_type": "minecraft:block_match",
-          "block": "minecraft:deepslate"
+          "predicate_type": "minecraft:tag_match",
+          "tag": "minecraft:deepslate_ore_replaceables"
         }
       }
     ]

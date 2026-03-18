@@ -15,6 +15,7 @@ import mekanism.common.attachments.component.AttachedEjector;
 import mekanism.common.attachments.containers.ContainerType;
 import mekanism.common.attachments.containers.chemical.ChemicalTanksBuilder;
 import mekanism.common.attachments.containers.item.ItemSlotsBuilder;
+import mekanism.common.block.BlockOre;
 import mekanism.common.block.interfaces.IHasDescription;
 import mekanism.common.block.prefab.BlockBasicMultiblock;
 import mekanism.common.block.prefab.BlockTile;
@@ -26,6 +27,9 @@ import mekanism.common.registration.impl.BlockDeferredRegister;
 import mekanism.common.registration.impl.BlockRegistryObject;
 import mekanism.common.registries.MekanismDataComponents;
 import mekanism.common.resource.BlockResourceInfo;
+import mekanism.common.resource.ore.OreBlockType;
+import mekanism.common.resource.ore.OreType;
+import mekanism.common.util.EnumUtils;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -39,11 +43,13 @@ import java.util.function.Supplier;
 public class MSBlocks {
     public static final BlockDeferredRegister BLOCKS = new BlockDeferredRegister(MekanismSun.MODID);
 
-    public static final Map<MSOreType, MSOreBlockType> ORES = new LinkedHashMap<>();
+    public static final Map<OreType, OreBlockType> ORES = new LinkedHashMap<>();
 
     static {
-        for (MSOreType ore : MSOreType.values()) {
-            ORES.put(ore, registerOre(ore));
+        for (OreType ore : EnumUtils.ORE_TYPES) {
+            if (ore == MSOreType.SILVER) {
+                ORES.put(ore, registerOre(ore));
+            }
         }
     }
 
@@ -52,13 +58,13 @@ public class MSBlocks {
         return BLOCKS.register(name, blockSupplier, ItemBlockTooltip::new);
     }
 
-    private static MSOreBlockType registerOre(MSOreType ore) {
+    private static OreBlockType registerOre(OreType ore) {
         String name = ore.getResource().getRegistrySuffix() + "_ore";
-        BlockRegistryObject<MSBlockOre, ItemBlockTooltip<MSBlockOre>> stoneOre = registerBlock(name, () -> new MSBlockOre(ore));
-        BlockRegistryObject<MSBlockOre, ItemBlockTooltip<MSBlockOre>> deepslateOre = BLOCKS.register("deepslate_" + name,
-                () -> new MSBlockOre(ore, BlockBehaviour.Properties.ofLegacyCopy(stoneOre.value()).mapColor(MapColor.DEEPSLATE)
+        BlockRegistryObject<BlockOre, ItemBlockTooltip<BlockOre>> stoneOre = registerBlock(name, () -> new BlockOre(ore));
+        BlockRegistryObject<BlockOre, ItemBlockTooltip<BlockOre>> deepslateOre = BLOCKS.register("deepslate_" + name,
+                () -> new BlockOre(ore, BlockBehaviour.Properties.ofLegacyCopy(stoneOre.value()).mapColor(MapColor.DEEPSLATE)
                         .strength(4.5F, 3).sound(SoundType.DEEPSLATE)), ItemBlockTooltip::new);
-        return new MSOreBlockType(stoneOre, deepslateOre);
+        return new OreBlockType(stoneOre, deepslateOre);
     }
 
     public static final BlockRegistryObject<BlockTileModel<TileEntityAlloyer, Machine<TileEntityAlloyer>>,

@@ -10,15 +10,14 @@ import mekanism.common.config.WorldConfig;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration.TargetBlockState;
-import com.hamburger0abcde.mekanismsun.world.MSOreType.OreVeinType;
 
 import java.util.List;
 import java.util.function.IntSupplier;
 
-public record MSResizableOreFeatureConfig(List<TargetBlockState> targetStates, OreVeinType oreVeinType, IntSupplier size,
+public record MSResizableOreFeatureConfig(List<TargetBlockState> targetStates, /*OreVeinType oreVeinType,*/ IntSupplier size,
                                           FloatSupplier discardChanceOnAirExposure) implements FeatureConfiguration {
 
-    public static final Codec<MSResizableOreFeatureConfig> CODEC = RecordCodecBuilder.create(
+    /*public static final Codec<MSResizableOreFeatureConfig> CODEC = RecordCodecBuilder.create(
             builder -> builder.group(
                     Codec.list(TargetBlockState.CODEC).fieldOf(SerializationConstants.TARGET)
                             .forGetter(config -> config.targetStates),
@@ -29,5 +28,5 @@ public record MSResizableOreFeatureConfig(List<TargetBlockState> targetStates, O
                 return new MSResizableOreFeatureConfig(targetBlockStates, oreVeinType,
                         veinConfig.maxVeinSize(), veinConfig.discardChanceOnAirExposure());
             }))
-    );
+    );*/
 }

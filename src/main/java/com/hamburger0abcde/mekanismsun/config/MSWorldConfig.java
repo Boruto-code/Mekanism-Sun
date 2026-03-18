@@ -12,6 +12,7 @@ import mekanism.common.config.value.CachedBooleanValue;
 import mekanism.common.config.value.CachedFloatValue;
 import mekanism.common.config.value.CachedIntValue;
 import mekanism.common.resource.ore.BaseOreConfig;
+import mekanism.common.resource.ore.OreType;
 import mekanism.common.world.height.ConfigurableHeightRange;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.common.ModConfigSpec;
@@ -25,12 +26,9 @@ import java.util.function.IntSupplier;
 public class MSWorldConfig extends BaseMekanismConfig {
     @Getter
     private final ModConfigSpec configSpec;
-    private final Map<MSOreType, OreConfig> ores = new EnumMap(MSOreType.class);
+    //private final Map<OreType, OreConfig> ores = new EnumMap(MSOreType.class);
     MSWorldConfig() {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
-        for(MSOreType ore : MSOreType.values()) {
-            this.ores.put(ore, new OreConfig(this, builder, ore));
-        }
         this.configSpec = builder.build();
     }
 
@@ -46,14 +44,14 @@ public class MSWorldConfig extends BaseMekanismConfig {
         return ModConfig.Type.SERVER;
     }
 
-    public OreVeinConfig getVeinConfig(MSOreType.OreVeinType oreVeinType) {
+    /*public OreVeinConfig getVeinConfig(MSOreType.OreVeinType oreVeinType) {
         return ((OreConfig) this.ores.get(oreVeinType.type())).veinConfigs.get(oreVeinType.index());
-    }
+    }*/
 
     public static record OreVeinConfig(BooleanSupplier shouldGenerate, CachedIntValue perChunk, IntSupplier maxVeinSize,
                                        FloatSupplier discardChanceOnAirExposure, ConfigurableHeightRange range) {}
 
-    private static class OreConfig {
+    /*private static class OreConfig {
         private final CachedBooleanValue shouldGenerate;
         private final List<OreVeinConfig> veinConfigs;
 
@@ -85,5 +83,5 @@ public class MSWorldConfig extends BaseMekanismConfig {
             this.veinConfigs = veinBuilder.build();
             builder.pop();
         }
-    }
+    }*/
 }
