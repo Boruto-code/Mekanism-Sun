@@ -1,0 +1,29 @@
+{
+  "type": "mekanismsun:ore",
+  "config": {
+    "ore_type": {
+      "type": "silver",
+      "index": 0
+    },
+    "targets": [
+      {
+        "state": {
+          "Name": "mekanismsun:silver_ore"
+        },
+        "target": {
+          "predicate_type": "minecraft:block_match",
+          "block": "minecraft:stone"
+        }
+      },
+      {
+        "state": {
+          "Name": "mekanismsun:deepslate_silver_ore"
+        },
+        "target": {
+          "predicate_type": "minecraft:block_match",
+          "block": "minecraft:deepslate"
+        }
+      }
+    ]
+  }
+}
