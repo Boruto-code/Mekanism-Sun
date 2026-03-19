@@ -11,6 +11,7 @@
     "chemical": "mekanismsun:helium"
   },
   "output": {
+    "count": 2,
     "id": "mekanismsun:electrum_ingot"
   }
 }

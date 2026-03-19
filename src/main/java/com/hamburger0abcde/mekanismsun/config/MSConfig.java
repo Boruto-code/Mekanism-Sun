@@ -17,7 +17,6 @@ public class MSConfig {
 
     private static final Map<IConfigSpec, IMekanismConfig> KNOWN_CONFIGS = new HashMap<>();
     public static final MSGeneralConfig GENERAL = new MSGeneralConfig();
-    //public static final MSWorldConfig WORLD = new MSWorldConfig();
 
     public static void registerConfigs(ModContainer container) {
         MSConfigHelper.registerConfig(KNOWN_CONFIGS, container, GENERAL);

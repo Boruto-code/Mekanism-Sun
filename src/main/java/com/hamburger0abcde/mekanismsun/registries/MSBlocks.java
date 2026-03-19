@@ -1,15 +1,14 @@
 package com.hamburger0abcde.mekanismsun.registries;
 
 import com.hamburger0abcde.mekanismsun.MekanismSun;
-import com.hamburger0abcde.mekanismsun.block.ore.MSBlockOre;
 import com.hamburger0abcde.mekanismsun.recipes.MSInputRecipeCache;
 import com.hamburger0abcde.mekanismsun.recipes.MSRecipeType;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunPort;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityAlloyer;
+import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityTransmutator;
 import com.hamburger0abcde.mekanismsun.utils.MSAttachedSideConfig;
-import com.hamburger0abcde.mekanismsun.world.MSOreBlockType;
 import com.hamburger0abcde.mekanismsun.world.MSOreType;
 import mekanism.common.attachments.component.AttachedEjector;
 import mekanism.common.attachments.containers.ContainerType;
@@ -18,7 +17,6 @@ import mekanism.common.attachments.containers.item.ItemSlotsBuilder;
 import mekanism.common.block.BlockOre;
 import mekanism.common.block.interfaces.IHasDescription;
 import mekanism.common.block.prefab.BlockBasicMultiblock;
-import mekanism.common.block.prefab.BlockTile;
 import mekanism.common.block.prefab.BlockTile.BlockTileModel;
 import mekanism.common.content.blocktype.Machine;
 import mekanism.common.item.block.ItemBlockTooltip;
@@ -34,7 +32,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
-import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -97,7 +94,11 @@ public class MSBlocks {
                             .addInput(MSRecipeType.TRANSMUTATION, InputRecipeCache.SingleItem::containsInput)
                             .addOutput().addEnergy().build()));
 
-    //TODO: Electric Neutron Activator
+    public static final BlockRegistryObject<
+                BlockTileModel<TileEntityElectricNeutronActivator, Machine<TileEntityElectricNeutronActivator>>,
+                ItemBlockTooltip<BlockTileModel<TileEntityElectricNeutronActivator, Machine<TileEntityElectricNeutronActivator>>>
+            > ELECTRIC_NEUTRON_ACTIVATOR = BLOCKS.register();
+
     //TODO: Copy mods to modpack
 
     public static final BlockRegistryObject<BlockBasicMultiblock<TileEntityArtificialSunCasing>,
