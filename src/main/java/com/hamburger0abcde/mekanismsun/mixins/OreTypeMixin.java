@@ -40,14 +40,15 @@ public class OreTypeMixin {
     }
 
     @Invoker("<init>")
-    public static OreType oreType$initInvoker(String internalName, int internalId, IResource resource, int minExp, int maxExp, BaseOreConfig... configs) {
+    public static OreType oreType$initInvoker(String internalName, int internalId, IResource resource, int minExp, int maxExp,
+                                              BaseOreConfig... configs) {
         throw new AssertionError();
     }
 
     @Inject(method = "<clinit>",at = @At("TAIL"))
     private static void oreTypeClinit(CallbackInfo ci) {
         MSOreType.SILVER = mekanismsun$addVariant("SILVER", MSResources.SILVER,
-                new BaseOreConfig("normal", 6, 0.1F,
+                new BaseOreConfig("normal", 8, 0,
                         4, HeightShape.TRAPEZOID, OreAnchor.absolute(-48), OreAnchor.absolute(32)));
 
         mekanismsun$reinitializeByIdMap();
