@@ -32,6 +32,8 @@ import mekanism.common.integration.computer.SpecialComputerMethodWrapper.*;
 import mekanism.common.integration.computer.annotation.ComputerMethod;
 import mekanism.common.integration.computer.annotation.WrappingComputerMethod;
 import mekanism.common.integration.computer.computercraft.ComputerConstants;
+import mekanism.common.inventory.container.MekanismContainer;
+import mekanism.common.inventory.container.sync.SyncableLong;
 import mekanism.common.inventory.slot.EnergyInventorySlot;
 import mekanism.common.inventory.slot.InputInventorySlot;
 import mekanism.common.inventory.slot.OutputInventorySlot;
@@ -76,6 +78,8 @@ public class TileEntityAlloyer extends TileEntityProgressMachine<AlloyingRecipe>
     private final IInputHandler<@NotNull ItemStack> itemInputHandler;
     private final IInputHandler<@NotNull ItemStack> extraInputHandler;
     private final IInputHandler<@NotNull ChemicalStack> chemicalInputHandler;
+
+    private long clientEnergyUsed = 0L;
 
     @Getter
     private MachineEnergyContainer<TileEntityAlloyer> energyContainer;
@@ -127,7 +131,6 @@ public class TileEntityAlloyer extends TileEntityProgressMachine<AlloyingRecipe>
                                                                 IContentsListener unpause) {
         EnergyContainerHelper builder = EnergyContainerHelper.forSideWithConfig(this);
         energyContainer = MachineEnergyContainer.input(this, listener);
-        energyContainer.setEnergyPerTick(80);
         builder.addContainer(energyContainer);
 
         return builder.build();
@@ -157,7 +160,7 @@ public class TileEntityAlloyer extends TileEntityProgressMachine<AlloyingRecipe>
     protected boolean onUpdateServer() {
         boolean sendUpdatePacket = super.onUpdateServer();
         energySlot.fillContainerOrConvert();
-        recipeCacheLookupMonitor.updateAndProcess();
+        clientEnergyUsed = recipeCacheLookupMonitor.updateAndProcess(energyContainer);
         return sendUpdatePacket;
     }
 
@@ -188,14 +191,19 @@ public class TileEntityAlloyer extends TileEntityProgressMachine<AlloyingRecipe>
                 .setOperatingTicksChanged(this::setOperatingTicks);
     }
 
-    @ComputerMethod(methodDescription = ComputerConstants.DESCRIPTION_GET_ENERGY_USAGE)
-    long getEnergyUsage() {
-        return getActive() ? energyContainer.getEnergyPerTick() : 0;
+    @ComputerMethod(nameOverride = "getEnergyUsage", methodDescription = ComputerConstants.DESCRIPTION_GET_ENERGY_USAGE)
+    long getEnergyUsed() {
+        return clientEnergyUsed;
     }
-
 
     @Override
     public @Nullable IRecipeViewerRecipeType<AlloyingRecipe> recipeViewerType() {
         return MSRecipeViewerRecipeTypes.ALLOYING;
+    }
+
+    @Override
+    public void addContainerTrackers(MekanismContainer container) {
+        super.addContainerTrackers(container);
+        container.track(SyncableLong.create(this::getEnergyUsed, value -> clientEnergyUsed = value));
     }
 }

@@ -31,9 +31,13 @@ import mekanism.common.capabilities.holder.energy.IEnergyContainerHolder;
 import mekanism.common.capabilities.holder.slot.IInventorySlotHolder;
 import mekanism.common.capabilities.holder.slot.InventorySlotHelper;
 import mekanism.common.integration.computer.SpecialComputerMethodWrapper.*;
+import mekanism.common.integration.computer.annotation.ComputerMethod;
 import mekanism.common.integration.computer.annotation.WrappingComputerMethod;
+import mekanism.common.integration.computer.computercraft.ComputerConstants;
+import mekanism.common.inventory.container.MekanismContainer;
 import mekanism.common.inventory.container.slot.ContainerSlotType;
 import mekanism.common.inventory.container.slot.SlotOverlay;
+import mekanism.common.inventory.container.sync.SyncableLong;
 import mekanism.common.inventory.slot.EnergyInventorySlot;
 import mekanism.common.inventory.slot.InputInventorySlot;
 import mekanism.common.inventory.slot.OutputInventorySlot;
@@ -144,7 +148,7 @@ public class TileEntityElectricNeutronActivator extends TileEntityRecipeMachine<
         energySlot.fillContainerOrConvert();
         inputSlot.fillTank();
         outputSlot.drainTank();
-        recipeCacheLookupMonitor.updateAndProcess();
+        clientEnergyUsed = recipeCacheLookupMonitor.updateAndProcess(energyContainer);
         return sendUpdatePacket;
     }
 
@@ -175,5 +179,16 @@ public class TileEntityElectricNeutronActivator extends TileEntityRecipeMachine<
                 .setActive(this::setActive)
                 .setEnergyRequirements(energyContainer::getEnergyPerTick, energyContainer)
                 .setOnFinish(this::markForSave);
+    }
+
+    @ComputerMethod(nameOverride = "getEnergyUsage", methodDescription = ComputerConstants.DESCRIPTION_GET_ENERGY_USAGE)
+    long getEnergyUsed() {
+        return clientEnergyUsed;
+    }
+
+    @Override
+    public void addContainerTrackers(MekanismContainer container) {
+        super.addContainerTrackers(container);
+        container.track(SyncableLong.create(this::getEnergyUsed, value -> clientEnergyUsed = value));
     }
 }

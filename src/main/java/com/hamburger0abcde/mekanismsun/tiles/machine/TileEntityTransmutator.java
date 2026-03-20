@@ -1,8 +1,11 @@
 package com.hamburger0abcde.mekanismsun.tiles.machine;
 
+import com.hamburger0abcde.mekanismsun.client.recipe_viewer.type.MSRecipeViewerRecipeTypes;
 import com.hamburger0abcde.mekanismsun.recipes.MSRecipeType;
+import com.hamburger0abcde.mekanismsun.recipes.alloying.AlloyingRecipe;
 import com.hamburger0abcde.mekanismsun.registries.MSBlocks;
 import mekanism.api.recipes.ItemStackToItemStackRecipe;
+import mekanism.client.recipe_viewer.type.IRecipeViewerRecipeType;
 import mekanism.common.recipe.IMekanismRecipeTypeProvider;
 import mekanism.common.recipe.lookup.cache.InputRecipeCache;
 import mekanism.common.registration.impl.RecipeTypeRegistryObject;
@@ -11,6 +14,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class TileEntityTransmutator extends TileEntityElectricMachine {
     public TileEntityTransmutator(BlockPos pos, BlockState state) {
@@ -24,5 +28,8 @@ public class TileEntityTransmutator extends TileEntityElectricMachine {
         return MSRecipeType.TRANSMUTATION;
     }
 
-    //TODO: recipeViewerType()
+    @Override
+    public @Nullable IRecipeViewerRecipeType<ItemStackToItemStackRecipe> recipeViewerType() {
+        return MSRecipeViewerRecipeTypes.TRANSMUTATION;
+    }
 }

@@ -4,6 +4,7 @@ import com.hamburger0abcde.mekanismsun.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunPort;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityAlloyer;
+import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityTransmutator;
 import mekanism.api.Upgrade;
 import mekanism.common.block.attribute.Attributes;
@@ -33,6 +34,15 @@ public class MSBlockTypes {
             .withSupportedUpgrades(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING)
             .withComputerSupport("transmutator")
             .withSideConfig(TransmissionType.ITEM, TransmissionType.ENERGY)
+            .build();
+
+    public static final Machine<TileEntityElectricNeutronActivator> ELECTRIC_NEUTRON_ACTIVATOR = Machine.MachineBuilder
+            .createMachine(() -> MSTileEntityTypes.ELECTRIC_NEUTRON_ACTIVATOR, MekanismSunLang.DESCRIPTION_ELECTRIC_NEUTRON_ACTIVATOR)
+            .withGui(() -> MSContainerTypes.ELECTRIC_NEUTRON_ACTIVATOR)
+            .withEnergyConfig(MekanismConfig.usage.combiner, MekanismConfig.storage.combiner)
+            .withSupportedUpgrades(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING)
+            .withComputerSupport("electric_neutron_activator")
+            .withSideConfig(TransmissionType.CHEMICAL, TransmissionType.ENERGY)
             .build();
 
     public static final BlockTypeTile<TileEntityArtificialSunCasing> ARTIFICIAL_SUN_CASING = BlockTypeTile.BlockTileBuilder

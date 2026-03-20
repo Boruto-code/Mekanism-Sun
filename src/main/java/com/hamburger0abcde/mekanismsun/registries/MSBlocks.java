@@ -11,6 +11,7 @@ import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityTransmutator;
 import com.hamburger0abcde.mekanismsun.utils.MSAttachedSideConfig;
 import com.hamburger0abcde.mekanismsun.world.MSOreType;
 import mekanism.common.attachments.component.AttachedEjector;
+import mekanism.common.attachments.component.AttachedSideConfig;
 import mekanism.common.attachments.containers.ContainerType;
 import mekanism.common.attachments.containers.chemical.ChemicalTanksBuilder;
 import mekanism.common.attachments.containers.item.ItemSlotsBuilder;
@@ -88,7 +89,7 @@ public class MSBlocks {
                     (block, properties) -> new ItemBlockTooltip<>(
                             block, true, properties
                                 .component(MekanismDataComponents.EJECTOR, AttachedEjector.DEFAULT)
-                                .component(MekanismDataComponents.SIDE_CONFIG, MSAttachedSideConfig.ALLOYER_MACHINE)
+                                .component(MekanismDataComponents.SIDE_CONFIG, MSAttachedSideConfig.TRANSMUTATOR_MACHINE)
                     )).forItemHolder(holder -> holder
                     .addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
                             .addInput(MSRecipeType.TRANSMUTATION, InputRecipeCache.SingleItem::containsInput)
@@ -97,9 +98,14 @@ public class MSBlocks {
     public static final BlockRegistryObject<
                 BlockTileModel<TileEntityElectricNeutronActivator, Machine<TileEntityElectricNeutronActivator>>,
                 ItemBlockTooltip<BlockTileModel<TileEntityElectricNeutronActivator, Machine<TileEntityElectricNeutronActivator>>>
-            > ELECTRIC_NEUTRON_ACTIVATOR = BLOCKS.register();
-
-    //TODO: Copy mods to modpack
+            > ELECTRIC_NEUTRON_ACTIVATOR = BLOCKS.register("electric_neutron_activator",
+                    () -> new BlockTileModel<>(MSBlockTypes.ELECTRIC_NEUTRON_ACTIVATOR,
+                            properties -> properties.mapColor(BlockResourceInfo.STEEL.getMapColor())),
+                    (block, properties) -> new ItemBlockTooltip<>(
+                            block, true, properties
+                                .component(MekanismDataComponents.EJECTOR, AttachedEjector.DEFAULT)
+                                .component(MekanismDataComponents.SIDE_CONFIG, AttachedSideConfig.CENTRIFUGE)
+                    ));
 
     public static final BlockRegistryObject<BlockBasicMultiblock<TileEntityArtificialSunCasing>,
             ItemBlockTooltip<BlockBasicMultiblock<TileEntityArtificialSunCasing>>> ARTIFICIAL_SUN_CASING = registerBlock(

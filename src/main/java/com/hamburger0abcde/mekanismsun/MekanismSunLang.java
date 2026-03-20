@@ -10,6 +10,7 @@ public enum MekanismSunLang implements ILangEntry {
     DESCRIPTION_ARTIFICIAL_SUN_PORT("description", "artificial_sun_port"),
     DESCRIPTION_ALLOYER("description", "alloyer"),
     DESCRIPTION_TRANSMUTATOR("description", "transmutator"),
+    DESCRIPTION_ELECTRIC_NEUTRON_ACTIVATOR("description", "electric_neutron_activator"),
 
     ARTIFICIAL_SUN("artificial_sun", "artificial_sun"),
     ARTIFICIAL_SUN_PORT_MODE("artificial_sun", "port_mode"),
