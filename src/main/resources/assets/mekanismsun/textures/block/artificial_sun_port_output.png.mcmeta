@@ -1,0 +1,14 @@
+{
+  "ctm": {
+    "ctm_version": 1,
+    "type": "CTM",
+    "layer": "SOLID",
+    "textures": ["mekanismsun:ctm/artificial_sun_port_output"],
+    "extra": {
+      "connect_to": [
+        {"block":"mekanismsun:artificial_sun_casing"},
+        {"block":"mekanismsun:artificial_sun_port"}
+      ]
+    }
+  }
+}

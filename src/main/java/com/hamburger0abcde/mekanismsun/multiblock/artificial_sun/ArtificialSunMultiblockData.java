@@ -1,5 +1,6 @@
 package com.hamburger0abcde.mekanismsun.multiblock.artificial_sun;
 
+import com.hamburger0abcde.mekanismsun.MekanismSun;
 import com.hamburger0abcde.mekanismsun.config.MSConfig;
 import com.hamburger0abcde.mekanismsun.registries.MSChemicals;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunCasing;
@@ -54,9 +55,6 @@ public class ArtificialSunMultiblockData extends MultiblockData {
     public int defaultRecipeProgress = -1;
 
     @ContainerSync
-    private boolean burning = false;
-
-    @ContainerSync
     public IEnergyContainer energyContainer;
 
     public RecipeHolder<ChemicalToChemicalRecipe> currentRecipe;
@@ -91,18 +89,21 @@ public class ArtificialSunMultiblockData extends MultiblockData {
         boolean needsPacket = super.tick(world);
 
         long stored = fuelTank.getStored();
-        if (lastBurnRate == 0) {
-            lastBurnRate = MathUtils.clampToLong(Math.min(Math.max(stored, lastBurnRate), rateLimit));
-        }
+        lastBurnRate = MathUtils.clampToLong(Math.min(Math.max(stored, lastBurnRate), rateLimit));
 
         long energyNeeded = energyContainer.getNeeded();
         if (stored > 0 && energyNeeded > 0L) {
             long energyPerHydrogen = MSConfig.GENERAL.energyPerHydrogen.get();
             energyContainer.insert(MathUtils.clampToLong(Math.min(stored, lastBurnRate) * energyPerHydrogen),
                     Action.EXECUTE, AutomationType.INTERNAL);
-            //MekanismSun.LOGGER.info("Energy: {}", MathUtils.clampToLong(Math.min(stored, lastBurnRate) * energyPerHydrogen));
             fuelTank.shrinkStack(lastBurnRate, Action.EXECUTE);
-            wasteTank.insert(MSChemicals.HELIUM.asStack(1), Action.EXECUTE, AutomationType.INTERNAL);
+            partialWaste += lastBurnRate;
+            long newWaste = Mth.lfloor(partialWaste);
+            if (newWaste > 0) {
+                partialWaste %= 1;
+                MekanismSun.LOGGER.debug("Burn Rate = {}", lastBurnRate);
+                wasteTank.insert(MSChemicals.HELIUM.asStack(newWaste), Action.EXECUTE, AutomationType.INTERNAL);
+            }
         }
 
         if (!chemicalOutputTargets.isEmpty() && !wasteTank.isEmpty()) {
@@ -112,10 +113,12 @@ public class ArtificialSunMultiblockData extends MultiblockData {
             CableUtils.emit(getActiveOutputs(energyOutputTargets), energyContainer);
         }
 
-        float scale = MekanismUtils.getScale(preFuelScale, fuelTank);
-        if (MekanismUtils.scaleChanged(scale, preFuelScale)) {
+        float fuelScale = MekanismUtils.getScale(preFuelScale, fuelTank);
+        float wasteScale = MekanismUtils.getScale(preWasteScale, wasteTank);
+        if (MekanismUtils.scaleChanged(fuelScale, preFuelScale) || MekanismUtils.scaleChanged(wasteScale, preWasteScale)) {
             needsPacket = true;
-            preFuelScale = scale;
+            preFuelScale = fuelScale;
+            preWasteScale = wasteScale;
         }
         return needsPacket;
     }
