@@ -19,6 +19,7 @@
   "chemical.mekanismsun.electrum": "琥珀金",
   "container.mekanismsun.alloyer": "合金炉",
   "container.mekanismsun.transmutator": "嬗变机",
+  "container.mekanismsun.electric_neutron_activator": "电力中子活化器",
   "artificial_sun.mekanismsun.port_mode": "端口模式变更为：%1$s",
   "artificial_sun.mekanismsun.artificial_sun": "人造太阳",
   "artificial_sun.mekanismsun.burn_rate_limit": "燃烧速率：%1$d",

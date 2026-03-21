@@ -19,6 +19,7 @@
   "chemical.mekanismsun.electrum": "Electrum",
   "container.mekanismsun.alloyer": "Alloyer",
   "container.mekanismsun.transmutator": "Transmutator",
+  "container.mekanismsun.electric_neutron_activator": "Electric Neutron Activator",
   "artificial_sun.mekanismsun.port_mode": "Toggled Artificial Sun Port mode to: %1$s.",
   "artificial_sun.mekanismsun.artificial_sun": "Artificial Sun",
   "artificial_sun.mekanismsun.burn_rate_limit": "Burn Rate Limit: %1$d",

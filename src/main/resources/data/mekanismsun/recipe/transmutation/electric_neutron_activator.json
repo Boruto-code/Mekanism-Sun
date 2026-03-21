@@ -1,0 +1,11 @@
+{
+  "type": "mekanismsun:transmutation",
+  "input": {
+    "count": 1,
+    "item": "mekanism:solar_neutron_activator"
+  },
+  "output": {
+    "count": 1,
+    "id": "mekanismsun:electric_neutron_activator"
+  }
+}

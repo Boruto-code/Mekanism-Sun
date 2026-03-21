@@ -1,10 +1,7 @@
 package com.hamburger0abcde.mekanismsun.tiles.machine;
 
-import com.hamburger0abcde.mekanismsun.recipes.alloying.AlloyerCachedRecipe;
-import com.hamburger0abcde.mekanismsun.recipes.alloying.AlloyingRecipe;
 import com.hamburger0abcde.mekanismsun.registries.MSBlocks;
 import lombok.Getter;
-import mekanism.api.AutomationType;
 import mekanism.api.IContentsListener;
 import mekanism.api.RelativeSide;
 import mekanism.api.chemical.BasicChemicalTank;
@@ -39,16 +36,14 @@ import mekanism.common.inventory.container.slot.ContainerSlotType;
 import mekanism.common.inventory.container.slot.SlotOverlay;
 import mekanism.common.inventory.container.sync.SyncableLong;
 import mekanism.common.inventory.slot.EnergyInventorySlot;
-import mekanism.common.inventory.slot.InputInventorySlot;
-import mekanism.common.inventory.slot.OutputInventorySlot;
 import mekanism.common.inventory.slot.chemical.ChemicalInventorySlot;
-import mekanism.common.inventory.warning.WarningTracker;
 import mekanism.common.lib.transmitter.TransmissionType;
 import mekanism.common.recipe.IMekanismRecipeTypeProvider;
 import mekanism.common.recipe.MekanismRecipeType;
 import mekanism.common.recipe.lookup.ISingleRecipeLookupHandler;
 import mekanism.common.recipe.lookup.cache.InputRecipeCache;
 import mekanism.common.tile.component.TileComponentEjector;
+import mekanism.common.tile.prefab.TileEntityProgressMachine;
 import mekanism.common.tile.prefab.TileEntityRecipeMachine;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
@@ -57,7 +52,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class TileEntityElectricNeutronActivator extends TileEntityRecipeMachine<ChemicalToChemicalRecipe>
+public class TileEntityElectricNeutronActivator extends TileEntityProgressMachine<ChemicalToChemicalRecipe>
         implements ISingleRecipeLookupHandler.ChemicalRecipeLookupHandler<ChemicalToChemicalRecipe> {
     private static final List<RecipeError> TRACKED_ERROR_TYPES = List.of(
             RecipeError.NOT_ENOUGH_ENERGY,
@@ -92,7 +87,7 @@ public class TileEntityElectricNeutronActivator extends TileEntityRecipeMachine<
     EnergyInventorySlot energySlot;
 
     public TileEntityElectricNeutronActivator(BlockPos pos, BlockState state) {
-        super(MSBlocks.ELECTRIC_NEUTRON_ACTIVATOR, pos, state, TRACKED_ERROR_TYPES);
+        super(MSBlocks.ELECTRIC_NEUTRON_ACTIVATOR, pos, state, TRACKED_ERROR_TYPES, 20);
         configComponent.setupIOConfig(TransmissionType.ITEM, inputSlot, outputSlot, RelativeSide.FRONT);
         configComponent.setupIOConfig(TransmissionType.CHEMICAL, inputTank, outputTank, RelativeSide.FRONT);
         configComponent.setupInputConfig(TransmissionType.ENERGY, energyContainer);
@@ -112,6 +107,7 @@ public class TileEntityElectricNeutronActivator extends TileEntityRecipeMachine<
         ChemicalTankHelper builder = ChemicalTankHelper.forSideWithConfig(this);
         builder.addTank(inputTank = BasicChemicalTank.createModern(MAX_GAS, ChemicalTankHelper.radioactiveInputTankPredicate(() -> outputTank),
                 ConstantPredicates.alwaysTrueBi(), this::containsRecipe, ChemicalAttributeValidator.ALWAYS_ALLOW, recipeCacheListener));
+        builder.addTank(outputTank = BasicChemicalTank.output(MAX_GAS, unpause));
         return builder.build();
     }
 
@@ -121,7 +117,6 @@ public class TileEntityElectricNeutronActivator extends TileEntityRecipeMachine<
                                                                 IContentsListener unpause) {
         EnergyContainerHelper builder = EnergyContainerHelper.forSideWithConfig(this);
         energyContainer = MachineEnergyContainer.input(this, listener);
-        energyContainer.setEnergyPerTick(160);
         builder.addContainer(energyContainer);
 
         return builder.build();
@@ -134,7 +129,7 @@ public class TileEntityElectricNeutronActivator extends TileEntityRecipeMachine<
         InventorySlotHelper builder = InventorySlotHelper.forSideWithConfig(this);
         builder.addSlot(inputSlot = ChemicalInventorySlot.fill(inputTank, listener, 5, 56));
         builder.addSlot(outputSlot = ChemicalInventorySlot.drain(outputTank, listener, 155, 56));
-        builder.addSlot(energySlot = EnergyInventorySlot.fillOrConvert(energyContainer, this::getLevel, listener, 145, 70));
+        builder.addSlot(energySlot = EnergyInventorySlot.fillOrConvert(energyContainer, this::getLevel, listener, 110, 60));
         inputSlot.setSlotType(ContainerSlotType.INPUT);
         inputSlot.setSlotOverlay(SlotOverlay.MINUS);
         outputSlot.setSlotType(ContainerSlotType.OUTPUT);

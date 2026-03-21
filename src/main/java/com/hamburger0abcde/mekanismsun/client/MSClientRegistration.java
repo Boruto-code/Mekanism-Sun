@@ -3,6 +3,7 @@ package com.hamburger0abcde.mekanismsun.client;
 import com.hamburger0abcde.mekanismsun.MekanismSun;
 import com.hamburger0abcde.mekanismsun.client.gui.GuiAlloyer;
 import com.hamburger0abcde.mekanismsun.client.gui.GuiArtificialSun;
+import com.hamburger0abcde.mekanismsun.client.gui.GuiElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.registries.MSContainerTypes;
 import mekanism.client.ClientRegistrationUtil;
 import net.neoforged.api.distmarker.Dist;
@@ -18,5 +19,6 @@ public class MSClientRegistration {
         ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ARTIFICIAL_SUN, GuiArtificialSun::new);
         ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ALLOYER, GuiAlloyer::new);
         ClientRegistrationUtil.registerElectricScreen(event, MSContainerTypes.TRANSMUTATOR);
+        ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ELECTRIC_NEUTRON_ACTIVATOR, GuiElectricNeutronActivator::new);
     }
 }

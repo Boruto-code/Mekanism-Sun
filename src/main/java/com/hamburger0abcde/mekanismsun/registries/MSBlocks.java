@@ -21,6 +21,7 @@ import mekanism.common.block.prefab.BlockBasicMultiblock;
 import mekanism.common.block.prefab.BlockTile.BlockTileModel;
 import mekanism.common.content.blocktype.Machine;
 import mekanism.common.item.block.ItemBlockTooltip;
+import mekanism.common.recipe.MekanismRecipeType;
 import mekanism.common.recipe.lookup.cache.InputRecipeCache;
 import mekanism.common.registration.impl.BlockDeferredRegister;
 import mekanism.common.registration.impl.BlockRegistryObject;
@@ -91,9 +92,10 @@ public class MSBlocks {
                                 .component(MekanismDataComponents.EJECTOR, AttachedEjector.DEFAULT)
                                 .component(MekanismDataComponents.SIDE_CONFIG, MSAttachedSideConfig.TRANSMUTATOR_MACHINE)
                     )).forItemHolder(holder -> holder
-                    .addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
-                            .addInput(MSRecipeType.TRANSMUTATION, InputRecipeCache.SingleItem::containsInput)
-                            .addOutput().addEnergy().build()));
+                            .addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
+                                    .addInput(MSRecipeType.TRANSMUTATION, InputRecipeCache.SingleItem::containsInput)
+                                    .addOutput().addEnergy().build())
+                    );
 
     public static final BlockRegistryObject<
                 BlockTileModel<TileEntityElectricNeutronActivator, Machine<TileEntityElectricNeutronActivator>>,
@@ -105,7 +107,18 @@ public class MSBlocks {
                             block, true, properties
                                 .component(MekanismDataComponents.EJECTOR, AttachedEjector.DEFAULT)
                                 .component(MekanismDataComponents.SIDE_CONFIG, AttachedSideConfig.CENTRIFUGE)
-                    ));
+                    )).forItemHolder(holder -> holder
+                            .addAttachmentOnlyContainers(ContainerType.CHEMICAL, () -> ChemicalTanksBuilder.builder()
+                                    .addBasic(TileEntityElectricNeutronActivator.MAX_GAS, MekanismRecipeType.ACTIVATING,
+                                            InputRecipeCache.SingleChemical::containsInput)
+                                    .addBasic(TileEntityElectricNeutronActivator.MAX_GAS)
+                                    .build()
+                            ).addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
+                                    .addChemicalFillSlot(0)
+                                    .addChemicalDrainSlot(1)
+                                    .build()
+                            )
+                    );
 
     public static final BlockRegistryObject<BlockBasicMultiblock<TileEntityArtificialSunCasing>,
             ItemBlockTooltip<BlockBasicMultiblock<TileEntityArtificialSunCasing>>> ARTIFICIAL_SUN_CASING = registerBlock(
