@@ -29,11 +29,13 @@ ordering = "AFTER"
 side = "BOTH"
 [[dependencies.mekanismsun]]
 modId = "projecte"
+type = "optional"
 versionRange = "${projecte_version_range}"
 ordering = "AFTER"
 side = "BOTH"
 [[dependencies.mekanismsun]]
 modId = "projectexpansion"
+type = "optional"
 versionRange = "${projectexpansion_version_range}"
 ordering = "AFTER"
 side = "BOTH"

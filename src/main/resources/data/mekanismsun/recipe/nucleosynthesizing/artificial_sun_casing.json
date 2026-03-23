@@ -13,5 +13,11 @@
     "count": 1,
     "id": "mekanismsun:artificial_sun_casing"
   },
-  "per_tick_usage": false
+  "per_tick_usage": false,
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "projectexpansion"
+    }
+  ]
 }

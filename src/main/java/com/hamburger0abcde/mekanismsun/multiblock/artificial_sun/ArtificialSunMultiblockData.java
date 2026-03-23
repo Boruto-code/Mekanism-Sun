@@ -25,11 +25,14 @@ import mekanism.common.lib.multiblock.IValveHandler;
 import mekanism.common.lib.multiblock.MultiblockData;
 import mekanism.common.registries.MekanismChemicals;
 import mekanism.common.util.*;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.CommandBlock;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -91,6 +94,15 @@ public class ArtificialSunMultiblockData extends MultiblockData {
         long stored = fuelTank.getStored();
         lastBurnRate = MathUtils.clampToLong(Math.min(Math.max(stored, lastBurnRate), rateLimit));
 
+        if (world.isClientSide) {
+            ClientLevel clientLevel = (ClientLevel) world;
+            clientLevel.setDayTime(1000);
+        } else {
+            ServerLevel serverLevel = (ServerLevel) world;
+            serverLevel.setDayTime(1000);
+        }
+        world.getLevelData().setRaining(false);
+
         long energyNeeded = energyContainer.getNeeded();
         if (stored > 0 && energyNeeded > 0L) {
             long energyPerHydrogen = MSConfig.GENERAL.energyPerHydrogen.get();
@@ -101,7 +113,6 @@ public class ArtificialSunMultiblockData extends MultiblockData {
             long newWaste = Mth.lfloor(partialWaste);
             if (newWaste > 0) {
                 partialWaste %= 1;
-                MekanismSun.LOGGER.debug("Burn Rate = {}", lastBurnRate);
                 wasteTank.insert(MSChemicals.HELIUM.asStack(newWaste), Action.EXECUTE, AutomationType.INTERNAL);
             }
         }
