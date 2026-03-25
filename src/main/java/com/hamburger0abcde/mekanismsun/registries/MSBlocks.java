@@ -10,16 +10,21 @@ import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityElectricNeutronAc
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityTransmutator;
 import com.hamburger0abcde.mekanismsun.utils.MSAttachedSideConfig;
 import com.hamburger0abcde.mekanismsun.world.MSOreType;
+import mekanism.api.tier.ITier;
 import mekanism.common.attachments.component.AttachedEjector;
 import mekanism.common.attachments.component.AttachedSideConfig;
 import mekanism.common.attachments.containers.ContainerType;
 import mekanism.common.attachments.containers.chemical.ChemicalTanksBuilder;
+import mekanism.common.attachments.containers.chemical.ComponentBackedChemicalTankTank;
 import mekanism.common.attachments.containers.item.ItemSlotsBuilder;
 import mekanism.common.block.BlockOre;
+import mekanism.common.block.attribute.AttributeTier;
 import mekanism.common.block.interfaces.IHasDescription;
 import mekanism.common.block.prefab.BlockBasicMultiblock;
 import mekanism.common.block.prefab.BlockTile.BlockTileModel;
+import mekanism.common.content.blocktype.BlockType;
 import mekanism.common.content.blocktype.Machine;
+import mekanism.common.item.block.ItemBlockChemicalTank;
 import mekanism.common.item.block.ItemBlockTooltip;
 import mekanism.common.recipe.MekanismRecipeType;
 import mekanism.common.recipe.lookup.cache.InputRecipeCache;
@@ -29,7 +34,10 @@ import mekanism.common.registries.MekanismDataComponents;
 import mekanism.common.resource.BlockResourceInfo;
 import mekanism.common.resource.ore.OreBlockType;
 import mekanism.common.resource.ore.OreType;
+import mekanism.common.tile.TileEntityChemicalTank;
 import mekanism.common.util.EnumUtils;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -37,6 +45,8 @@ import net.minecraft.world.level.material.MapColor;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class MSBlocks {
@@ -64,6 +74,43 @@ public class MSBlocks {
                 () -> new BlockOre(ore, BlockBehaviour.Properties.ofLegacyCopy(stoneOre.value()).mapColor(MapColor.DEEPSLATE)
                         .strength(4.5F, 3).sound(SoundType.DEEPSLATE)), ItemBlockTooltip::new);
         return new OreBlockType(stoneOre, deepslateOre);
+    }
+
+    private static <BLOCK extends Block, ITEM extends BlockItem>
+            BlockRegistryObject<BLOCK, ITEM> registerTieredBlock(BlockType type, String suffix,
+                                                                 Function<MapColor, ? extends BLOCK> blockSupplier,
+                                                                 BiFunction<BLOCK, Item.Properties, ITEM> itemCreator) {
+        ITier tier = type.get(AttributeTier.class).tier();
+        return registerTieredBlock(tier, suffix, () -> blockSupplier.apply(tier.getBaseTier().getMapColor()), itemCreator);
+    }
+
+    private static <BLOCK extends Block, ITEM extends BlockItem>
+            BlockRegistryObject<BLOCK, ITEM> registerTieredBlock(BlockType type, String suffix,
+                                                                 Supplier<? extends BLOCK> blockSupplier,
+                                                                 BiFunction<BLOCK, Item.Properties, ITEM> itemCreator) {
+        return registerTieredBlock(type.get(AttributeTier.class).tier(), suffix, blockSupplier, itemCreator);
+    }
+
+    private static <BLOCK extends Block, ITEM extends BlockItem>
+            BlockRegistryObject<BLOCK, ITEM> registerTieredBlock(ITier tier, String suffix,
+                                                                 Supplier<? extends BLOCK> blockSupplier,
+                                                                 BiFunction<BLOCK, Item.Properties, ITEM> itemCreator) {
+        return BLOCKS.register(tier.getBaseTier().getLowerName() + suffix, blockSupplier, itemCreator);
+    }
+
+    private static BlockRegistryObject<BlockTileModel<TileEntityChemicalTank, Machine<TileEntityChemicalTank>>,
+            ItemBlockChemicalTank> registerChemicalTank(Machine<TileEntityChemicalTank> type) {
+        return registerTieredBlock(type, "_chemical_tank", color -> new BlockTileModel<>(type,
+                properties -> properties.mapColor(color)), ItemBlockChemicalTank::new)
+                .forItemHolder(holder -> holder
+                        .addAttachedContainerCapabilities(ContainerType.CHEMICAL, () -> ChemicalTanksBuilder.builder()
+                                .addTank(ComponentBackedChemicalTankTank::create).build()
+                        ).addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
+                                .addChemicalDrainSlot(0)
+                                .addChemicalFillSlot(0)
+                                .build()
+                        )
+                );
     }
 
     public static final BlockRegistryObject<BlockTileModel<TileEntityAlloyer, Machine<TileEntityAlloyer>>,
@@ -133,4 +180,7 @@ public class MSBlocks {
             () -> new BlockBasicMultiblock<>(MSBlockTypes.ARTIFICIAL_SUN_PORT,
                     properties -> properties.mapColor(MapColor.COLOR_YELLOW))
     );
+
+    public static final BlockRegistryObject<BlockTileModel<TileEntityChemicalTank, Machine<TileEntityChemicalTank>>,
+            ItemBlockChemicalTank> SUPERNOVA_TANK = registerChemicalTank();
 }

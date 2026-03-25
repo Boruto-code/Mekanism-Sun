@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "mekanismsun:block/chemical_tank/supernova"
+    },
+    "facing=south": {
+      "model": "mekanismsun:block/chemical_tank/supernova",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "mekanismsun:block/chemical_tank/supernova",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "mekanismsun:block/chemical_tank/supernova",
+      "y": -90
+    }
+  }
+}

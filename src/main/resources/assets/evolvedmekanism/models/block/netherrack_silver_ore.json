@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "evolvedmekanism:block/netherrack_silver_ore"
+  }
+}

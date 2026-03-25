@@ -1,0 +1,6 @@
+{
+  "parent": "mekanism:block/chemical_tank/base",
+  "textures": {
+    "valve": "mekanismsun:block/models/supernova_chemical_tank_valve"
+  }
+}

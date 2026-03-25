@@ -7,12 +7,23 @@ import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityTransmutator;
 import mekanism.common.capabilities.Capabilities;
+import mekanism.common.item.block.ItemBlockChemicalTank;
+import mekanism.common.registration.impl.BlockRegistryObject;
 import mekanism.common.registration.impl.TileEntityTypeDeferredRegister;
 import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
+import mekanism.common.tile.TileEntityChemicalTank;
 import mekanism.common.tile.base.TileEntityMekanism;
 
 public class MSTileEntityTypes {
     public static final TileEntityTypeDeferredRegister TILE_ENTITY_TYPES = new TileEntityTypeDeferredRegister(MekanismSun.MODID);
+
+    private static TileEntityTypeRegistryObject<TileEntityChemicalTank> registerChemicalTank(
+            BlockRegistryObject<?, ItemBlockChemicalTank> block) {
+        return TILE_ENTITY_TYPES.mekBuilder(block, (pos, state) -> new TileEntityChemicalTank(block, pos, state))
+                .serverTicker(TileEntityMekanism::tickServer)
+                .withSimple(Capabilities.CONFIG_CARD)
+                .build();
+    }
 
     public static final TileEntityTypeRegistryObject<TileEntityAlloyer> ALLOYER =
             TILE_ENTITY_TYPES.mekBuilder(MSBlocks.ALLOYER, TileEntityAlloyer::new)
@@ -43,4 +54,7 @@ public class MSTileEntityTypes {
                     .clientTicker(TileEntityMekanism::tickClient)
                     .serverTicker(TileEntityMekanism::tickServer)
                     .withSimple(Capabilities.CONFIGURABLE).build();
+
+    public static final TileEntityTypeRegistryObject<TileEntityChemicalTank> SUPERNOVA_CHEMICAL_TANK =
+            registerChemicalTank(MSBlocks.SUPERNOVA_TANK);
 }
