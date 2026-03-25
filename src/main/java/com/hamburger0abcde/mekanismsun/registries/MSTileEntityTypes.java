@@ -1,6 +1,7 @@
 package com.hamburger0abcde.mekanismsun.registries;
 
 import com.hamburger0abcde.mekanismsun.MekanismSun;
+import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockChemicalTank;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunPort;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityAlloyer;
@@ -18,7 +19,7 @@ public class MSTileEntityTypes {
     public static final TileEntityTypeDeferredRegister TILE_ENTITY_TYPES = new TileEntityTypeDeferredRegister(MekanismSun.MODID);
 
     private static TileEntityTypeRegistryObject<TileEntityChemicalTank> registerChemicalTank(
-            BlockRegistryObject<?, ItemBlockChemicalTank> block) {
+            BlockRegistryObject<?, MSItemBlockChemicalTank> block) {
         return TILE_ENTITY_TYPES.mekBuilder(block, (pos, state) -> new TileEntityChemicalTank(block, pos, state))
                 .serverTicker(TileEntityMekanism::tickServer)
                 .withSimple(Capabilities.CONFIG_CARD)

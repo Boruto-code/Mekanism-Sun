@@ -1,8 +1,13 @@
 package com.hamburger0abcde.mekanismsun.registries;
 
 import com.hamburger0abcde.mekanismsun.MekanismSun;
+import com.hamburger0abcde.mekanismsun.attachments.containers.MSComponentBackedChemicalTankTank;
+import com.hamburger0abcde.mekanismsun.block.attribute.MSAttributeTier;
+import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockChemicalTank;
 import com.hamburger0abcde.mekanismsun.recipes.MSInputRecipeCache;
 import com.hamburger0abcde.mekanismsun.recipes.MSRecipeType;
+import com.hamburger0abcde.mekanismsun.tiers.IAdvancedTier;
+import com.hamburger0abcde.mekanismsun.tiers.storage.MSChemicalTankTier;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunPort;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityAlloyer;
@@ -45,6 +50,7 @@ import net.minecraft.world.level.material.MapColor;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -76,35 +82,31 @@ public class MSBlocks {
         return new OreBlockType(stoneOre, deepslateOre);
     }
 
-    private static <BLOCK extends Block, ITEM extends BlockItem>
-            BlockRegistryObject<BLOCK, ITEM> registerTieredBlock(BlockType type, String suffix,
-                                                                 Function<MapColor, ? extends BLOCK> blockSupplier,
-                                                                 BiFunction<BLOCK, Item.Properties, ITEM> itemCreator) {
-        ITier tier = type.get(AttributeTier.class).tier();
-        return registerTieredBlock(tier, suffix, () -> blockSupplier.apply(tier.getBaseTier().getMapColor()), itemCreator);
+    private static <BLOCK extends Block, ITEM extends BlockItem> BlockRegistryObject<BLOCK, ITEM> registerTieredBlock(
+            IAdvancedTier tier, String suffix, Function<MapColor, ? extends BLOCK> blockSupplier,
+            BiFunction<BLOCK, Item.Properties, ITEM> itemCreator) {
+        return registerTieredBlock(tier, suffix, () -> blockSupplier.apply(tier.getAdvanceTier().getMapColor()), itemCreator);
     }
 
-    private static <BLOCK extends Block, ITEM extends BlockItem>
-            BlockRegistryObject<BLOCK, ITEM> registerTieredBlock(BlockType type, String suffix,
-                                                                 Supplier<? extends BLOCK> blockSupplier,
-                                                                 BiFunction<BLOCK, Item.Properties, ITEM> itemCreator) {
-        return registerTieredBlock(type.get(AttributeTier.class).tier(), suffix, blockSupplier, itemCreator);
+    private static <BLOCK extends Block, ITEM extends BlockItem> BlockRegistryObject<BLOCK, ITEM> registerTieredBlock(
+            IAdvancedTier tier, String suffix, Supplier<? extends BLOCK> blockSupplier,
+            BiFunction<BLOCK, Item.Properties, ITEM> itemCreator) {
+        return BLOCKS.register(tier.getAdvanceTier().getLowerName() + suffix, blockSupplier, itemCreator);
     }
 
-    private static <BLOCK extends Block, ITEM extends BlockItem>
-            BlockRegistryObject<BLOCK, ITEM> registerTieredBlock(ITier tier, String suffix,
-                                                                 Supplier<? extends BLOCK> blockSupplier,
-                                                                 BiFunction<BLOCK, Item.Properties, ITEM> itemCreator) {
-        return BLOCKS.register(tier.getBaseTier().getLowerName() + suffix, blockSupplier, itemCreator);
+    private static <BLOCK extends Block, ITEM extends BlockItem> BlockRegistryObject<BLOCK, ITEM> registerTieredBlock(
+            String registerName, Supplier<? extends BLOCK> blockSupplier, BiFunction<BLOCK, Item.Properties, ITEM> itemCreator) {
+        return BLOCKS.register(registerName, blockSupplier, itemCreator);
     }
 
     private static BlockRegistryObject<BlockTileModel<TileEntityChemicalTank, Machine<TileEntityChemicalTank>>,
-            ItemBlockChemicalTank> registerChemicalTank(Machine<TileEntityChemicalTank> type) {
-        return registerTieredBlock(type, "_chemical_tank", color -> new BlockTileModel<>(type,
-                properties -> properties.mapColor(color)), ItemBlockChemicalTank::new)
+            MSItemBlockChemicalTank> registerChemicalTank(Machine<TileEntityChemicalTank> type) {
+        MSChemicalTankTier tier = (MSChemicalTankTier) Objects.requireNonNull(type.get(MSAttributeTier.class)).tier();
+        return registerTieredBlock(tier, "_chemical_tank", color -> new BlockTileModel<>(type,
+                properties -> properties.mapColor(color)), MSItemBlockChemicalTank::new)
                 .forItemHolder(holder -> holder
                         .addAttachedContainerCapabilities(ContainerType.CHEMICAL, () -> ChemicalTanksBuilder.builder()
-                                .addTank(ComponentBackedChemicalTankTank::create).build()
+                                .addTank(MSComponentBackedChemicalTankTank::create).build()
                         ).addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
                                 .addChemicalDrainSlot(0)
                                 .addChemicalFillSlot(0)
@@ -182,5 +184,5 @@ public class MSBlocks {
     );
 
     public static final BlockRegistryObject<BlockTileModel<TileEntityChemicalTank, Machine<TileEntityChemicalTank>>,
-            ItemBlockChemicalTank> SUPERNOVA_TANK = registerChemicalTank();
+            MSItemBlockChemicalTank> SUPERNOVA_TANK = registerChemicalTank(MSBlockTypes.SUPERNOVA_CHEMICAL_TANK);
 }

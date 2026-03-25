@@ -78,13 +78,13 @@ public class MSBlockTypes {
             .build();
 
     public static final BlockTypeTile<TileEntityArtificialSunPort> ARTIFICIAL_SUN_PORT = BlockTypeTile.BlockTileBuilder
-            .createBlock(() -> MSTileEntityTypes.ARTIFICIAL_SUN_PORT, MekanismSunLang.DESCRIPTION_ARTIFICIAL_SUN_CASING)
+            .createBlock(() -> MSTileEntityTypes.ARTIFICIAL_SUN_PORT, MekanismSunLang.DESCRIPTION_ARTIFICIAL_SUN_PORT)
             .withGui(() -> MSContainerTypes.ARTIFICIAL_SUN, MekanismSunLang.ARTIFICIAL_SUN)
             .withSound(MekanismSounds.SPS)
             .with(Attributes.ACTIVE, Attributes.COMPARATOR)
             .externalMultiblock()
             .build();
 
-    public static final BlockTypeTile<TileEntityChemicalTank> SUPERNOVA_CHEMICAL_TANK =
+    public static final Machine<TileEntityChemicalTank> SUPERNOVA_CHEMICAL_TANK =
             createChemicalTank(MSChemicalTankTier.SUPERNOVA, () -> MSTileEntityTypes.SUPERNOVA_CHEMICAL_TANK, () -> MSBlocks.SUPERNOVA_TANK);
 }

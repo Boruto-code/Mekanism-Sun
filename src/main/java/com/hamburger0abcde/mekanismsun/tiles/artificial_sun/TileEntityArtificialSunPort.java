@@ -1,5 +1,6 @@
 package com.hamburger0abcde.mekanismsun.tiles.artificial_sun;
 
+import com.hamburger0abcde.mekanismsun.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.registries.MSBlocks;
 import mekanism.api.IContentsListener;
 import mekanism.api.chemical.IChemicalHandler;
@@ -81,7 +82,7 @@ public class TileEntityArtificialSunPort extends TileEntityArtificialSunCasing {
         if (!isRemote()) {
             boolean oldMode = getActive();
             setActive(!oldMode);
-            player.displayClientMessage(GeneratorsLang.REACTOR_PORT_EJECT.translateColored(EnumColor.GRAY,
+            player.displayClientMessage(MekanismSunLang.ARTIFICIAL_SUN_PORT_MODE.translateColored(EnumColor.GRAY,
                     BooleanStateDisplay.InputOutput.of(oldMode, true)), true);
         }
         return InteractionResult.SUCCESS;
