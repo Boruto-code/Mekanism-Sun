@@ -1,7 +1,8 @@
 package com.hamburger0abcde.mekanismsun.item.block;
 
 import com.hamburger0abcde.mekanismsun.block.attribute.MSAttribute;
-import com.hamburger0abcde.mekanismsun.tiers.storage.MSChemicalTankTier;
+import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceChemicalTankTier;
+import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTank;
 import mekanism.api.text.EnumColor;
 import mekanism.common.MekanismLang;
 import mekanism.common.attachments.component.AttachedEjector;
@@ -25,8 +26,8 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
-public class MSItemBlockChemicalTank extends MSItemBlockTooltip<BlockTileModel<TileEntityChemicalTank,
-        Machine<TileEntityChemicalTank>>> {
+public class MSItemBlockChemicalTank extends MSItemBlockTooltip<BlockTileModel<TileEntityAdvanceChemicalTank,
+        Machine<TileEntityAdvanceChemicalTank>>> {
 
     private static final AttachedSideConfig SIDE_CONFIG = Util.make(() -> {
         Map<TransmissionType, AttachedSideConfig.LightConfigInfo> configInfo = new EnumMap<>(TransmissionType.class);
@@ -35,8 +36,8 @@ public class MSItemBlockChemicalTank extends MSItemBlockTooltip<BlockTileModel<T
         return new AttachedSideConfig(configInfo);
     });
 
-    public MSItemBlockChemicalTank(BlockTileModel<TileEntityChemicalTank, Machine<TileEntityChemicalTank>> block,
-                                   Properties properties) {
+    public MSItemBlockChemicalTank(BlockTileModel<TileEntityAdvanceChemicalTank,
+                                           Machine<TileEntityAdvanceChemicalTank>> block, Properties properties) {
         super(block, true, properties
                 .component(MekanismDataComponents.DUMP_MODE, TileEntityChemicalTank.GasMode.IDLE)
                 .component(MekanismDataComponents.EJECTOR, AttachedEjector.DEFAULT)
@@ -44,14 +45,14 @@ public class MSItemBlockChemicalTank extends MSItemBlockTooltip<BlockTileModel<T
     }
 
     @Override
-    public MSChemicalTankTier getAdvancedTier() {
-        return MSAttribute.getAdvanceTier(getBlock(), MSChemicalTankTier.class);
+    public AdvanceChemicalTankTier getAdvancedTier() {
+        return MSAttribute.getAdvanceTier(getBlock(), AdvanceChemicalTankTier.class);
     }
 
     @Override
     public void appendHoverText(@NotNull ItemStack stack, @Nullable TooltipContext context, @NotNull List<Component> tooltip,
                                 @NotNull TooltipFlag flag) {
-        MSChemicalTankTier tier = getAdvancedTier();
+        AdvanceChemicalTankTier tier = getAdvancedTier();
         StorageUtils.addStoredSubstance(stack, tooltip, false);
         tooltip.add(MekanismLang.CAPACITY_MB.translateColored(EnumColor.INDIGO, EnumColor.GRAY, TextUtils.format(tier.getStorage())));
         super.appendHoverText(stack, context, tooltip, flag);

@@ -7,6 +7,7 @@ import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificial
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityTransmutator;
+import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTank;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.item.block.ItemBlockChemicalTank;
 import mekanism.common.registration.impl.BlockRegistryObject;
@@ -18,9 +19,9 @@ import mekanism.common.tile.base.TileEntityMekanism;
 public class MSTileEntityTypes {
     public static final TileEntityTypeDeferredRegister TILE_ENTITY_TYPES = new TileEntityTypeDeferredRegister(MekanismSun.MODID);
 
-    private static TileEntityTypeRegistryObject<TileEntityChemicalTank> registerChemicalTank(
+    private static TileEntityTypeRegistryObject<TileEntityAdvanceChemicalTank> registerChemicalTank(
             BlockRegistryObject<?, MSItemBlockChemicalTank> block) {
-        return TILE_ENTITY_TYPES.mekBuilder(block, (pos, state) -> new TileEntityChemicalTank(block, pos, state))
+        return TILE_ENTITY_TYPES.mekBuilder(block, (pos, state) -> new TileEntityAdvanceChemicalTank(block, pos, state))
                 .serverTicker(TileEntityMekanism::tickServer)
                 .withSimple(Capabilities.CONFIG_CARD)
                 .build();
@@ -56,6 +57,6 @@ public class MSTileEntityTypes {
                     .serverTicker(TileEntityMekanism::tickServer)
                     .withSimple(Capabilities.CONFIGURABLE).build();
 
-    public static final TileEntityTypeRegistryObject<TileEntityChemicalTank> SUPERNOVA_CHEMICAL_TANK =
+    public static final TileEntityTypeRegistryObject<TileEntityAdvanceChemicalTank> SUPERNOVA_CHEMICAL_TANK =
             registerChemicalTank(MSBlocks.SUPERNOVA_TANK);
 }

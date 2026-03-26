@@ -12,7 +12,7 @@ import javax.annotation.Nullable;
 import java.util.Locale;
 
 @NothingNullByDefault
-public enum MSChemicalTankTier implements IAdvancedTier, StringRepresentable {
+public enum AdvanceChemicalTankTier implements IAdvancedTier, StringRepresentable {
     SUPERNOVA(AdvanceTier.SUPERNOVA, 32_768_000, 2_048_000)
     ;
 
@@ -26,7 +26,7 @@ public enum MSChemicalTankTier implements IAdvancedTier, StringRepresentable {
     @Nullable
     private CachedLongValue outputReference;
 
-    MSChemicalTankTier(AdvanceTier tier, long storage, long output) {
+    AdvanceChemicalTankTier(AdvanceTier tier, long storage, long output) {
         advanceStorage = storage;
         advanceOutput = output;
         advancedTier = tier;

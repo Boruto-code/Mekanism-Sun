@@ -1,6 +1,8 @@
 {
   "values": [
     "mekanismsun:silver_ore",
-    "mekanismsun:deepslate_silver_ore"
+    "mekanismsun:deepslate_silver_ore",
+    "evolvedmekanism:netherrack_silver_ore",
+    "evolvedmekanism:end_stone_silver_ore"
   ]
 }

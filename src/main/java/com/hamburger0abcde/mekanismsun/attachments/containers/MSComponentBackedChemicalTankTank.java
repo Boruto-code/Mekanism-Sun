@@ -1,7 +1,7 @@
 package com.hamburger0abcde.mekanismsun.attachments.containers;
 
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockChemicalTank;
-import com.hamburger0abcde.mekanismsun.tiers.storage.MSChemicalTankTier;
+import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceChemicalTankTier;
 import mekanism.api.Action;
 import mekanism.api.AutomationType;
 import mekanism.api.annotations.NothingNullByDefault;
@@ -23,7 +23,7 @@ public class MSComponentBackedChemicalTankTank extends ComponentBackedChemicalTa
         return new MSComponentBackedChemicalTankTank(attachedTo, tankIndex, item.getAdvancedTier());
     }
 
-    private MSComponentBackedChemicalTankTank(ItemStack attachedTo, int tankIndex, MSChemicalTankTier tier) {
+    private MSComponentBackedChemicalTankTank(ItemStack attachedTo, int tankIndex, AdvanceChemicalTankTier tier) {
         super(attachedTo, tankIndex, ConstantPredicates.alwaysTrueBi(), ConstantPredicates.alwaysTrueBi(), ConstantPredicates.alwaysTrue(),
                 tier::getOutput, tier::getStorage, null);
         isCreative = false;

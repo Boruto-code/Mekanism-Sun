@@ -6,6 +6,8 @@
     "mekanismsun:artificial_sun_casing",
     "mekanismsun:artificial_sun_port",
     "mekanismsun:silver_ore",
-    "mekanismsun:deepslate_silver_ore"
+    "mekanismsun:deepslate_silver_ore",
+    "evolvedmekanism:netherrack_silver_ore",
+    "evolvedmekanism:end_stone_silver_ore"
   ]
 }

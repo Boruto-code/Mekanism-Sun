@@ -7,29 +7,25 @@ import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockChemicalTank;
 import com.hamburger0abcde.mekanismsun.recipes.MSInputRecipeCache;
 import com.hamburger0abcde.mekanismsun.recipes.MSRecipeType;
 import com.hamburger0abcde.mekanismsun.tiers.IAdvancedTier;
-import com.hamburger0abcde.mekanismsun.tiers.storage.MSChemicalTankTier;
+import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceChemicalTankTier;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunPort;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityTransmutator;
+import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTank;
 import com.hamburger0abcde.mekanismsun.utils.MSAttachedSideConfig;
 import com.hamburger0abcde.mekanismsun.world.MSOreType;
-import mekanism.api.tier.ITier;
 import mekanism.common.attachments.component.AttachedEjector;
 import mekanism.common.attachments.component.AttachedSideConfig;
 import mekanism.common.attachments.containers.ContainerType;
 import mekanism.common.attachments.containers.chemical.ChemicalTanksBuilder;
-import mekanism.common.attachments.containers.chemical.ComponentBackedChemicalTankTank;
 import mekanism.common.attachments.containers.item.ItemSlotsBuilder;
 import mekanism.common.block.BlockOre;
-import mekanism.common.block.attribute.AttributeTier;
 import mekanism.common.block.interfaces.IHasDescription;
 import mekanism.common.block.prefab.BlockBasicMultiblock;
 import mekanism.common.block.prefab.BlockTile.BlockTileModel;
-import mekanism.common.content.blocktype.BlockType;
 import mekanism.common.content.blocktype.Machine;
-import mekanism.common.item.block.ItemBlockChemicalTank;
 import mekanism.common.item.block.ItemBlockTooltip;
 import mekanism.common.recipe.MekanismRecipeType;
 import mekanism.common.recipe.lookup.cache.InputRecipeCache;
@@ -99,11 +95,11 @@ public class MSBlocks {
         return BLOCKS.register(registerName, blockSupplier, itemCreator);
     }
 
-    private static BlockRegistryObject<BlockTileModel<TileEntityChemicalTank, Machine<TileEntityChemicalTank>>,
-            MSItemBlockChemicalTank> registerChemicalTank(Machine<TileEntityChemicalTank> type) {
-        MSChemicalTankTier tier = (MSChemicalTankTier) Objects.requireNonNull(type.get(MSAttributeTier.class)).tier();
-        return registerTieredBlock(tier, "_chemical_tank", color -> new BlockTileModel<>(type,
-                properties -> properties.mapColor(color)), MSItemBlockChemicalTank::new)
+    private static BlockRegistryObject<BlockTileModel<TileEntityAdvanceChemicalTank, Machine<TileEntityAdvanceChemicalTank>>,
+            MSItemBlockChemicalTank> registerChemicalTank(Machine<TileEntityAdvanceChemicalTank> type) {
+        AdvanceChemicalTankTier tier = (AdvanceChemicalTankTier) Objects.requireNonNull(type.get(MSAttributeTier.class)).tier();
+        return registerTieredBlock(tier, "_chemical_tank", color ->
+                new BlockTileModel<>(type, properties -> properties.mapColor(color)), MSItemBlockChemicalTank::new)
                 .forItemHolder(holder -> holder
                         .addAttachedContainerCapabilities(ContainerType.CHEMICAL, () -> ChemicalTanksBuilder.builder()
                                 .addTank(MSComponentBackedChemicalTankTank::create).build()
@@ -114,6 +110,8 @@ public class MSBlocks {
                         )
                 );
     }
+
+    //TODO: recipe of tanks
 
     public static final BlockRegistryObject<BlockTileModel<TileEntityAlloyer, Machine<TileEntityAlloyer>>,
             ItemBlockTooltip<BlockTileModel<TileEntityAlloyer, Machine<TileEntityAlloyer>>>> ALLOYER = BLOCKS.register(
@@ -183,6 +181,6 @@ public class MSBlocks {
                     properties -> properties.mapColor(MapColor.COLOR_YELLOW))
     );
 
-    public static final BlockRegistryObject<BlockTileModel<TileEntityChemicalTank, Machine<TileEntityChemicalTank>>,
+    public static final BlockRegistryObject<BlockTileModel<TileEntityAdvanceChemicalTank, Machine<TileEntityAdvanceChemicalTank>>,
             MSItemBlockChemicalTank> SUPERNOVA_TANK = registerChemicalTank(MSBlockTypes.SUPERNOVA_CHEMICAL_TANK);
 }

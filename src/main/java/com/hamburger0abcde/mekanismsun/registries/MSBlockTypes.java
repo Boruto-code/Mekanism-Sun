@@ -2,12 +2,13 @@ package com.hamburger0abcde.mekanismsun.registries;
 
 import com.hamburger0abcde.mekanismsun.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.block.attribute.MSAttributeTier;
-import com.hamburger0abcde.mekanismsun.tiers.storage.MSChemicalTankTier;
+import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceChemicalTankTier;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunPort;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityTransmutator;
+import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTank;
 import mekanism.api.Upgrade;
 import mekanism.common.MekanismLang;
 import mekanism.common.block.attribute.*;
@@ -18,20 +19,17 @@ import mekanism.common.content.blocktype.Machine;
 import mekanism.common.lib.transmitter.TransmissionType;
 import mekanism.common.registration.impl.BlockRegistryObject;
 import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
-import mekanism.common.registries.MekanismContainerTypes;
 import mekanism.common.registries.MekanismSounds;
-import mekanism.common.tier.ChemicalTankTier;
-import mekanism.common.tile.TileEntityChemicalTank;
-import net.minecraft.world.level.Level;
 
 import java.util.function.Supplier;
 
 public class MSBlockTypes {
-    private static <TILE extends TileEntityChemicalTank> Machine<TILE> createChemicalTank(MSChemicalTankTier tier,
-                                                                                          Supplier<TileEntityTypeRegistryObject<TILE>> tile,
-                                                                                          Supplier<BlockRegistryObject<?, ?>> upgradeBlock) {
+    private static <TILE extends TileEntityAdvanceChemicalTank> Machine<TILE> createChemicalTank(
+            AdvanceChemicalTankTier tier, Supplier<TileEntityTypeRegistryObject<TILE>> tile,
+            Supplier<BlockRegistryObject<?, ?>> upgradeBlock
+    ) {
         return Machine.MachineBuilder.createMachine(tile, MekanismLang.DESCRIPTION_CHEMICAL_TANK)
-                .withGui(() -> MekanismContainerTypes.CHEMICAL_TANK)
+                .withGui(() -> MSContainerTypes.ADVANCE_CHEMICAL_TANK)
                 .withCustomShape(BlockShapes.CHEMICAL_TANK)
                 .with(new MSAttributeTier<>(tier), new AttributeUpgradeable(upgradeBlock))
                 .withSideConfig(TransmissionType.CHEMICAL, TransmissionType.ITEM)
@@ -85,6 +83,7 @@ public class MSBlockTypes {
             .externalMultiblock()
             .build();
 
-    public static final Machine<TileEntityChemicalTank> SUPERNOVA_CHEMICAL_TANK =
-            createChemicalTank(MSChemicalTankTier.SUPERNOVA, () -> MSTileEntityTypes.SUPERNOVA_CHEMICAL_TANK, () -> MSBlocks.SUPERNOVA_TANK);
+    public static final Machine<TileEntityAdvanceChemicalTank> SUPERNOVA_CHEMICAL_TANK =
+            createChemicalTank(AdvanceChemicalTankTier.SUPERNOVA, () -> MSTileEntityTypes.SUPERNOVA_CHEMICAL_TANK,
+                    () -> MSBlocks.SUPERNOVA_TANK);
 }
