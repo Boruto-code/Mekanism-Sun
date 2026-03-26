@@ -6,6 +6,7 @@ import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityTransmutator;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTank;
+import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceFluidTank;
 import mekanism.common.inventory.container.tile.MekanismTileContainer;
 import mekanism.common.registration.impl.ContainerTypeDeferredRegister;
 import mekanism.common.registration.impl.ContainerTypeRegistryObject;
@@ -26,4 +27,6 @@ public class MSContainerTypes {
 
     public static final ContainerTypeRegistryObject<MekanismTileContainer<TileEntityAdvanceChemicalTank>> ADVANCE_CHEMICAL_TANK =
             CONTAINER_TYPES.custom("advance_chemical_tank", TileEntityAdvanceChemicalTank.class).armorSideBar().build();
+    public static final ContainerTypeRegistryObject<MekanismTileContainer<TileEntityAdvanceFluidTank>> ADVANCE_FLUID_TANK =
+            CONTAINER_TYPES.custom("advance_fluid_tank", TileEntityAdvanceFluidTank.class).armorSideBar().build();
 }

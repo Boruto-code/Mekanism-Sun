@@ -2,24 +2,30 @@ package com.hamburger0abcde.mekanismsun.registries;
 
 import com.hamburger0abcde.mekanismsun.MekanismSun;
 import com.hamburger0abcde.mekanismsun.attachments.containers.MSComponentBackedChemicalTankTank;
+import com.hamburger0abcde.mekanismsun.attachments.containers.MSComponentBackedFluidTankFluidTank;
 import com.hamburger0abcde.mekanismsun.block.attribute.MSAttributeTier;
+import com.hamburger0abcde.mekanismsun.block.basic.BlockAdvanceFluidTank;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockChemicalTank;
+import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockFluidTank;
 import com.hamburger0abcde.mekanismsun.recipes.MSInputRecipeCache;
 import com.hamburger0abcde.mekanismsun.recipes.MSRecipeType;
 import com.hamburger0abcde.mekanismsun.tiers.IAdvancedTier;
 import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceChemicalTankTier;
+import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceFluidTankTier;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunPort;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityTransmutator;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTank;
+import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceFluidTank;
 import com.hamburger0abcde.mekanismsun.utils.MSAttachedSideConfig;
 import com.hamburger0abcde.mekanismsun.world.MSOreType;
 import mekanism.common.attachments.component.AttachedEjector;
 import mekanism.common.attachments.component.AttachedSideConfig;
 import mekanism.common.attachments.containers.ContainerType;
 import mekanism.common.attachments.containers.chemical.ChemicalTanksBuilder;
+import mekanism.common.attachments.containers.fluid.FluidTanksBuilder;
 import mekanism.common.attachments.containers.item.ItemSlotsBuilder;
 import mekanism.common.block.BlockOre;
 import mekanism.common.block.interfaces.IHasDescription;
@@ -35,7 +41,6 @@ import mekanism.common.registries.MekanismDataComponents;
 import mekanism.common.resource.BlockResourceInfo;
 import mekanism.common.resource.ore.OreBlockType;
 import mekanism.common.resource.ore.OreType;
-import mekanism.common.tile.TileEntityChemicalTank;
 import mekanism.common.util.EnumUtils;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -106,6 +111,22 @@ public class MSBlocks {
                         ).addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
                                 .addChemicalDrainSlot(0)
                                 .addChemicalFillSlot(0)
+                                .build()
+                        )
+                );
+    }
+
+    private static BlockRegistryObject<BlockAdvanceFluidTank, MSItemBlockFluidTank> registerFluidTank(
+            Machine<TileEntityAdvanceFluidTank> type) {
+        AdvanceFluidTankTier tier = (AdvanceFluidTankTier) Objects.requireNonNull(type.get(MSAttributeTier.class)).tier();
+        return registerTieredBlock(tier, "_fluid_tank", () -> new BlockAdvanceFluidTank(type), MSItemBlockFluidTank::new)
+                .forItemHolder(holder -> holder
+                        .addAttachedContainerCapabilities(ContainerType.FLUID, () -> FluidTanksBuilder.builder()
+                                .addTank(MSComponentBackedFluidTankFluidTank::create)
+                                .build()
+                        ).addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
+                                .addFluidInputSlot(0)
+                                .addOutput()
                                 .build()
                         )
                 );
@@ -182,5 +203,8 @@ public class MSBlocks {
     );
 
     public static final BlockRegistryObject<BlockTileModel<TileEntityAdvanceChemicalTank, Machine<TileEntityAdvanceChemicalTank>>,
-            MSItemBlockChemicalTank> SUPERNOVA_TANK = registerChemicalTank(MSBlockTypes.SUPERNOVA_CHEMICAL_TANK);
+            MSItemBlockChemicalTank> SUPERNOVA_CHEMICAL_TANK = registerChemicalTank(MSBlockTypes.SUPERNOVA_CHEMICAL_TANK);
+
+    public static final BlockRegistryObject<BlockAdvanceFluidTank, MSItemBlockFluidTank> SUPERNOVA_FLUID_TANK =
+            registerFluidTank(MSBlockTypes.SUPERNOVA_FLUID_TANK);
 }

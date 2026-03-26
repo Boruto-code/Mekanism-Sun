@@ -3,12 +3,14 @@ package com.hamburger0abcde.mekanismsun.registries;
 import com.hamburger0abcde.mekanismsun.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.block.attribute.MSAttributeTier;
 import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceChemicalTankTier;
+import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceFluidTankTier;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunPort;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityTransmutator;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTank;
+import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceFluidTank;
 import mekanism.api.Upgrade;
 import mekanism.common.MekanismLang;
 import mekanism.common.block.attribute.*;
@@ -35,6 +37,20 @@ public class MSBlockTypes {
                 .withSideConfig(TransmissionType.CHEMICAL, TransmissionType.ITEM)
                 .without(AttributeParticleFX.class, AttributeStateActive.class, AttributeUpgradeSupport.class)
                 .withComputerSupport(tier.getAdvanceTier().getLowerName() + "ChemicalTank")
+                .build();
+    }
+
+    private static <TILE extends TileEntityAdvanceFluidTank> Machine<TILE> createFluidTank(
+            AdvanceFluidTankTier tier, Supplier<TileEntityTypeRegistryObject<TILE>> tile,
+            Supplier<BlockRegistryObject<?, ?>> upgradeBlock
+    ) {
+        return Machine.MachineBuilder.createMachine(tile, MekanismLang.DESCRIPTION_FLUID_TANK)
+                .withGui(() -> MSContainerTypes.ADVANCE_FLUID_TANK)
+                .withCustomShape(BlockShapes.FLUID_TANK)
+                .with(new MSAttributeTier<>(tier), new AttributeUpgradeable(upgradeBlock))
+                .without(AttributeParticleFX.class, AttributeStateFacing.class,
+                        Attributes.AttributeRedstone.class, AttributeUpgradeSupport.class)
+                .withComputerSupport(tier.getAdvanceTier().getLowerName() + "FluidTank")
                 .build();
     }
 
@@ -85,5 +101,8 @@ public class MSBlockTypes {
 
     public static final Machine<TileEntityAdvanceChemicalTank> SUPERNOVA_CHEMICAL_TANK =
             createChemicalTank(AdvanceChemicalTankTier.SUPERNOVA, () -> MSTileEntityTypes.SUPERNOVA_CHEMICAL_TANK,
-                    () -> MSBlocks.SUPERNOVA_TANK);
+                    () -> MSBlocks.SUPERNOVA_CHEMICAL_TANK);
+    public static final Machine<TileEntityAdvanceFluidTank> SUPERNOVA_FLUID_TANK =
+            createFluidTank(AdvanceFluidTankTier.SUPERNOVA, () -> MSTileEntityTypes.SUPERNOVA_FLUID_TANK,
+                    () -> MSBlocks.SUPERNOVA_FLUID_TANK);
 }

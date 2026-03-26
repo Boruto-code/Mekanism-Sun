@@ -13,7 +13,7 @@ import java.util.Locale;
 
 @NothingNullByDefault
 public enum AdvanceChemicalTankTier implements IAdvancedTier, StringRepresentable {
-    SUPERNOVA(AdvanceTier.SUPERNOVA, 32_768_000, 2_048_000)
+    SUPERNOVA(AdvanceTier.SUPERNOVA, 65_536_000, 32_768_000)
     ;
 
     @Getter

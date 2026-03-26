@@ -46,7 +46,7 @@ public class MSItemBlockChemicalTank extends MSItemBlockTooltip<BlockTileModel<T
 
     @Override
     public AdvanceChemicalTankTier getAdvancedTier() {
-        return MSAttribute.getAdvanceTier(getBlock(), AdvanceChemicalTankTier.class);
+        return MSAttribute.getAdvancedTier(getBlock(), AdvanceChemicalTankTier.class);
     }
 
     @Override

@@ -77,7 +77,7 @@ public class TileEntityAdvanceChemicalTank extends TileEntityConfigurableMachine
     @Override
     protected void presetVariables() {
         super.presetVariables();
-        tier = MSAttribute.getAdvanceTier(getBlockHolder(), AdvanceChemicalTankTier.class);
+        tier = MSAttribute.getAdvancedTier(getBlockHolder(), AdvanceChemicalTankTier.class);
     }
 
     @Override

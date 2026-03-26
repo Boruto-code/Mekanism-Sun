@@ -104,7 +104,7 @@ public class TileEntityAdvanceFluidTank extends TileEntityMekanism implements IC
     @Override
     protected void presetVariables() {
         super.presetVariables();
-        tier = MSAttribute.getAdvanceTier(getBlockHolder(), AdvanceFluidTankTier.class);
+        tier = MSAttribute.getAdvancedTier(getBlockHolder(), AdvanceFluidTankTier.class);
     }
 
     @NotNull

@@ -1,10 +1,7 @@
 package com.hamburger0abcde.mekanismsun.client;
 
 import com.hamburger0abcde.mekanismsun.MekanismSun;
-import com.hamburger0abcde.mekanismsun.client.gui.GuiAdvanceChemicalTank;
-import com.hamburger0abcde.mekanismsun.client.gui.GuiAlloyer;
-import com.hamburger0abcde.mekanismsun.client.gui.GuiArtificialSun;
-import com.hamburger0abcde.mekanismsun.client.gui.GuiElectricNeutronActivator;
+import com.hamburger0abcde.mekanismsun.client.gui.*;
 import com.hamburger0abcde.mekanismsun.registries.MSContainerTypes;
 import mekanism.client.ClientRegistrationUtil;
 import net.neoforged.api.distmarker.Dist;
@@ -24,5 +21,6 @@ public class MSClientRegistration {
         ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ELECTRIC_NEUTRON_ACTIVATOR, GuiElectricNeutronActivator::new);
 
         ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ADVANCE_CHEMICAL_TANK, GuiAdvanceChemicalTank::new);
+        ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ADVANCE_FLUID_TANK, GuiAdvanceFluidTank::new);
     }
 }
