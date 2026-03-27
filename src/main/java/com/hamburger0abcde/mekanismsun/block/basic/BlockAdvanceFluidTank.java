@@ -20,7 +20,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 
-public class BlockAdvanceFluidTank extends BlockTileModel<TileEntityAdvanceFluidTank, Machine<TileEntityAdvanceFluidTank>> {
+public class BlockAdvanceFluidTank extends BlockTileModel<TileEntityAdvanceFluidTank,
+        Machine<TileEntityAdvanceFluidTank>> {
     public BlockAdvanceFluidTank(Machine<TileEntityAdvanceFluidTank> type) {
         super(type, properties -> properties.mapColor(BlockResourceInfo.STEEL.getMapColor()));
     }

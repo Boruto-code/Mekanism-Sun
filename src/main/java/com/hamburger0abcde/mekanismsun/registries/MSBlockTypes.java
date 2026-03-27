@@ -2,6 +2,7 @@ package com.hamburger0abcde.mekanismsun.registries;
 
 import com.hamburger0abcde.mekanismsun.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.block.attribute.MSAttributeTier;
+import com.hamburger0abcde.mekanismsun.block.attribute.MSAttributeUpgradeable;
 import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceChemicalTankTier;
 import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceFluidTankTier;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunCasing;
@@ -33,7 +34,7 @@ public class MSBlockTypes {
         return Machine.MachineBuilder.createMachine(tile, MekanismLang.DESCRIPTION_CHEMICAL_TANK)
                 .withGui(() -> MSContainerTypes.ADVANCE_CHEMICAL_TANK)
                 .withCustomShape(BlockShapes.CHEMICAL_TANK)
-                .with(new MSAttributeTier<>(tier), new AttributeUpgradeable(upgradeBlock))
+                .with(new MSAttributeTier<>(tier), new MSAttributeUpgradeable(upgradeBlock))
                 .withSideConfig(TransmissionType.CHEMICAL, TransmissionType.ITEM)
                 .without(AttributeParticleFX.class, AttributeStateActive.class, AttributeUpgradeSupport.class)
                 .withComputerSupport(tier.getAdvanceTier().getLowerName() + "ChemicalTank")
@@ -47,7 +48,7 @@ public class MSBlockTypes {
         return Machine.MachineBuilder.createMachine(tile, MekanismLang.DESCRIPTION_FLUID_TANK)
                 .withGui(() -> MSContainerTypes.ADVANCE_FLUID_TANK)
                 .withCustomShape(BlockShapes.FLUID_TANK)
-                .with(new MSAttributeTier<>(tier), new AttributeUpgradeable(upgradeBlock))
+                .with(new MSAttributeTier<>(tier), new MSAttributeUpgradeable(upgradeBlock))
                 .without(AttributeParticleFX.class, AttributeStateFacing.class,
                         Attributes.AttributeRedstone.class, AttributeUpgradeSupport.class)
                 .withComputerSupport(tier.getAdvanceTier().getLowerName() + "FluidTank")

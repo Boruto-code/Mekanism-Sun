@@ -26,7 +26,7 @@
                   }
                 }
               ],
-              "name": "mekanismsun:netherrack_silver_ore"
+              "name": "evolvedmekanism:netherrack_silver_ore"
             },
             {
               "type": "minecraft:item",
@@ -49,5 +49,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "mekanismsun:blocks/netherrack_silver_ore"
+  "random_sequence": "evolvedmekanism:blocks/netherrack_silver_ore"
 }

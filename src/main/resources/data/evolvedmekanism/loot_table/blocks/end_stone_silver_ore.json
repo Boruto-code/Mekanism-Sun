@@ -26,7 +26,7 @@
                   }
                 }
               ],
-              "name": "mekanismsun:end_stone_silver_ore"
+              "name": "evolvedmekanism:end_stone_silver_ore"
             },
             {
               "type": "minecraft:item",
@@ -49,5 +49,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "mekanismsun:blocks/end_stone_silver_ore"
+  "random_sequence": "evolvedmekanism:blocks/end_stone_silver_ore"
 }
