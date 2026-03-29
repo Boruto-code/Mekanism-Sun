@@ -3,6 +3,7 @@ package com.hamburger0abcde.mekanismsun.registries;
 import com.hamburger0abcde.mekanismsun.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.block.attribute.MSAttributeTier;
 import com.hamburger0abcde.mekanismsun.block.attribute.MSAttributeUpgradeable;
+import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceBinTier;
 import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceChemicalTankTier;
 import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceEnergyCubeTier;
 import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceFluidTankTier;
@@ -11,6 +12,7 @@ import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificial
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityTransmutator;
+import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceBin;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTank;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceFluidTank;
@@ -72,6 +74,17 @@ public class MSBlockTypes {
                 .build();
     }
 
+    private static <TILE extends TileEntityAdvanceBin> Machine<TILE> createBin(
+            AdvanceBinTier tier, Supplier<TileEntityTypeRegistryObject<TILE>> tile, Supplier<BlockRegistryObject<?, ?>> upgradeBlock
+    ) {
+        return Machine.MachineBuilder.createMachine(tile, MekanismLang.DESCRIPTION_BIN)
+                .with(new MSAttributeTier<>(tier), new MSAttributeUpgradeable(upgradeBlock))
+                .without(AttributeParticleFX.class, Attributes.AttributeSecurity.class, AttributeUpgradeSupport.class,
+                        Attributes.AttributeRedstone.class)
+                .withComputerSupport(tier.getAdvanceTier().getLowerName() + "Bin")
+                .build();
+    }
+
     public static final Machine<TileEntityAlloyer> ALLOYER = Machine.MachineBuilder
             .createMachine(() -> MSTileEntityTypes.ALLOYER, MekanismSunLang.DESCRIPTION_ALLOYER)
             .withGui(() -> MSContainerTypes.ALLOYER)
@@ -120,10 +133,15 @@ public class MSBlockTypes {
     public static final Machine<TileEntityAdvanceChemicalTank> SUPERNOVA_CHEMICAL_TANK =
             createChemicalTank(AdvanceChemicalTankTier.SUPERNOVA, () -> MSTileEntityTypes.SUPERNOVA_CHEMICAL_TANK,
                     () -> MSBlocks.SUPERNOVA_CHEMICAL_TANK);
+
     public static final Machine<TileEntityAdvanceFluidTank> SUPERNOVA_FLUID_TANK =
             createFluidTank(AdvanceFluidTankTier.SUPERNOVA, () -> MSTileEntityTypes.SUPERNOVA_FLUID_TANK,
                     () -> MSBlocks.SUPERNOVA_FLUID_TANK);
+
     public static final Machine<TileEntityAdvanceEnergyCube> SUPERNOVA_ENERGY_CUBE =
             createEnergyCube(AdvanceEnergyCubeTier.SUPERNOVA, () -> MSTileEntityTypes.SUPERNOVA_ENERGY_CUBE,
                     () -> MSBlocks.SUPERNOVA_ENERGY_CUBE);
+
+    public static final Machine<TileEntityAdvanceBin> SUPERNOVA_BIN =
+            createBin(AdvanceBinTier.SUPERNOVA, () -> MSTileEntityTypes.SUPERNOVA_BIN, () -> MSBlocks.SUPERNOVA_BIN);
 }

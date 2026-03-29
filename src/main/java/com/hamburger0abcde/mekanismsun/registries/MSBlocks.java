@@ -1,17 +1,21 @@
 package com.hamburger0abcde.mekanismsun.registries;
 
 import com.hamburger0abcde.mekanismsun.MekanismSun;
+import com.hamburger0abcde.mekanismsun.attachments.containers.MSComponentBackedBinInventorySlot;
 import com.hamburger0abcde.mekanismsun.attachments.containers.MSComponentBackedChemicalTankTank;
 import com.hamburger0abcde.mekanismsun.attachments.containers.MSComponentBackedFluidTankFluidTank;
 import com.hamburger0abcde.mekanismsun.block.attribute.MSAttributeTier;
+import com.hamburger0abcde.mekanismsun.block.basic.BlockAdvanceBin;
 import com.hamburger0abcde.mekanismsun.block.basic.BlockAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.block.basic.BlockAdvanceFluidTank;
+import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockBin;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockChemicalTank;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockEnergyCube;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockFluidTank;
 import com.hamburger0abcde.mekanismsun.recipes.MSInputRecipeCache;
 import com.hamburger0abcde.mekanismsun.recipes.MSRecipeType;
 import com.hamburger0abcde.mekanismsun.tiers.IAdvancedTier;
+import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceBinTier;
 import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceChemicalTankTier;
 import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceEnergyCubeTier;
 import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceFluidTankTier;
@@ -20,6 +24,7 @@ import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificial
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityTransmutator;
+import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceBin;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTank;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceFluidTank;
@@ -150,6 +155,18 @@ public class MSBlocks {
                 );
     }
 
+    private static BlockRegistryObject<BlockAdvanceBin, MSItemBlockBin> registerBin(Machine<TileEntityAdvanceBin> type) {
+        AdvanceBinTier tier = (AdvanceBinTier) Objects.requireNonNull(type.get(MSAttributeTier.class)).tier();
+        return registerTieredBlock(tier, "_bin", color ->
+                new BlockAdvanceBin(type, properties -> properties.mapColor(color)), MSItemBlockBin::new)
+                .forItemHolder(holder -> holder
+                        .addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
+                                .addSlot(MSComponentBackedBinInventorySlot::create)
+                                .build()
+                        )
+                );
+    }
+
     //TODO: recipes
 
     public static final BlockRegistryObject<BlockTileModel<TileEntityAlloyer, Machine<TileEntityAlloyer>>,
@@ -228,4 +245,7 @@ public class MSBlocks {
 
     public static final BlockRegistryObject<BlockAdvanceEnergyCube, MSItemBlockEnergyCube> SUPERNOVA_ENERGY_CUBE =
             registerEnergyCube(MSBlockTypes.SUPERNOVA_ENERGY_CUBE);
+
+    public static final BlockRegistryObject<BlockAdvanceBin, MSItemBlockBin> SUPERNOVA_BIN =
+            registerBin(MSBlockTypes.SUPERNOVA_BIN);
 }

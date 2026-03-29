@@ -1,6 +1,7 @@
 package com.hamburger0abcde.mekanismsun.registries;
 
 import com.hamburger0abcde.mekanismsun.MekanismSun;
+import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockBin;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockChemicalTank;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockEnergyCube;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockFluidTank;
@@ -9,6 +10,7 @@ import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificial
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityTransmutator;
+import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceBin;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTank;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceFluidTank;
@@ -42,6 +44,13 @@ public class MSTileEntityTypes {
         return TILE_ENTITY_TYPES.mekBuilder(block, (pos, state) -> new TileEntityAdvanceEnergyCube(block, pos, state))
                 .serverTicker(TileEntityMekanism::tickServer)
                 .withSimple(Capabilities.CONFIG_CARD)
+                .build();
+    }
+
+    private static TileEntityTypeRegistryObject<TileEntityAdvanceBin> registerBin(BlockRegistryObject<?, MSItemBlockBin> block) {
+        return TILE_ENTITY_TYPES.mekBuilder(block, (pos, state) -> new TileEntityAdvanceBin(block, pos, state))
+                .serverTicker(TileEntityMekanism::tickServer)
+                .withSimple(Capabilities.CONFIGURABLE)
                 .build();
     }
 
@@ -81,5 +90,6 @@ public class MSTileEntityTypes {
             registerFluidTank(MSBlocks.SUPERNOVA_FLUID_TANK);
     public static final TileEntityTypeRegistryObject<TileEntityAdvanceEnergyCube> SUPERNOVA_ENERGY_CUBE =
             registerEnergyCube(MSBlocks.SUPERNOVA_ENERGY_CUBE);
-
+    public static final TileEntityTypeRegistryObject<TileEntityAdvanceBin> SUPERNOVA_BIN =
+            registerBin(MSBlocks.SUPERNOVA_BIN);
 }
