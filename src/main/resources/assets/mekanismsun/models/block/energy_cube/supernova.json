@@ -1,0 +1,6 @@
+{
+  "parent": "mekanismsun:block/energy_cube/base",
+  "textures": {
+    "corner": "mekanismsun:block/models/supernova_energy_cube_corner"
+  }
+}

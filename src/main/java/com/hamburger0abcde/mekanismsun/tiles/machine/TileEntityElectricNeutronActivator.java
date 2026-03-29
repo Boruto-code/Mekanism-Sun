@@ -4,6 +4,7 @@ import com.hamburger0abcde.mekanismsun.registries.MSBlocks;
 import lombok.Getter;
 import mekanism.api.IContentsListener;
 import mekanism.api.RelativeSide;
+import mekanism.api.Upgrade;
 import mekanism.api.chemical.BasicChemicalTank;
 import mekanism.api.chemical.ChemicalStack;
 import mekanism.api.chemical.IChemicalTank;
@@ -72,6 +73,7 @@ public class TileEntityElectricNeutronActivator extends TileEntityProgressMachin
     private MachineEnergyContainer<TileEntityElectricNeutronActivator> energyContainer;
 
     private long clientEnergyUsed = 0L;
+    private int baselineMaxOperations = 1;
 
     private final IInputHandler<@NotNull ChemicalStack> inputHandler;
     private final IOutputHandler<@NotNull ChemicalStack> outputHandler;
@@ -173,7 +175,15 @@ public class TileEntityElectricNeutronActivator extends TileEntityProgressMachin
                 .setCanHolderFunction(this::canFunction)
                 .setActive(this::setActive)
                 .setEnergyRequirements(energyContainer::getEnergyPerTick, energyContainer)
-                .setOnFinish(this::markForSave);
+                .setBaselineMaxOperations(() -> baselineMaxOperations);
+    }
+
+    @Override
+    public void recalculateUpgrades(Upgrade upgrade) {
+        super.recalculateUpgrades(upgrade);
+        if (upgrade == Upgrade.SPEED) {
+            baselineMaxOperations = (int) Math.pow(2, upgradeComponent.getUpgrades(Upgrade.SPEED));
+        }
     }
 
     @ComputerMethod(nameOverride = "getEnergyUsage", methodDescription = ComputerConstants.DESCRIPTION_GET_ENERGY_USAGE)

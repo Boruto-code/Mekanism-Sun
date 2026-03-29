@@ -7,6 +7,10 @@
     "mekanismsun:artificial_sun_port",
     "mekanismsun:silver_ore",
     "mekanismsun:deepslate_silver_ore",
+    "mekanismsun:supernova_chemical_tank",
+    "mekanismsun:supernova_fluid_tank",
+    "mekanismsun:supernova_energy_cube",
+    "mekanismsun:supernova_bin",
     "evolvedmekanism:netherrack_silver_ore",
     "evolvedmekanism:end_stone_silver_ore"
   ]

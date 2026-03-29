@@ -1,4 +1,4 @@
-package com.hamburger0abcde.mekanismsun.capabilities.chemical;
+package com.hamburger0abcde.mekanismsun.capabilities;
 
 import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceChemicalTankTier;
 import mekanism.api.Action;
@@ -6,10 +6,8 @@ import mekanism.api.AutomationType;
 import mekanism.api.IContentsListener;
 import mekanism.api.annotations.NothingNullByDefault;
 import mekanism.api.chemical.BasicChemicalTank;
-import mekanism.api.chemical.Chemical;
 import mekanism.api.chemical.ChemicalStack;
 import mekanism.api.functions.ConstantPredicates;
-import mekanism.common.attachments.containers.chemical.merged.MergedTankCreator;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;

@@ -1,7 +1,7 @@
 package com.hamburger0abcde.mekanismsun.tiles.storage;
 
 import com.hamburger0abcde.mekanismsun.block.attribute.MSAttribute;
-import com.hamburger0abcde.mekanismsun.capabilities.chemical.AdvanceChemicalTankChemicalTank;
+import com.hamburger0abcde.mekanismsun.capabilities.AdvanceChemicalTankChemicalTank;
 import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceChemicalTankTier;
 import lombok.Getter;
 import mekanism.api.Action;

@@ -4,13 +4,16 @@ import com.hamburger0abcde.mekanismsun.MekanismSun;
 import com.hamburger0abcde.mekanismsun.attachments.containers.MSComponentBackedChemicalTankTank;
 import com.hamburger0abcde.mekanismsun.attachments.containers.MSComponentBackedFluidTankFluidTank;
 import com.hamburger0abcde.mekanismsun.block.attribute.MSAttributeTier;
+import com.hamburger0abcde.mekanismsun.block.basic.BlockAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.block.basic.BlockAdvanceFluidTank;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockChemicalTank;
+import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockEnergyCube;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockFluidTank;
 import com.hamburger0abcde.mekanismsun.recipes.MSInputRecipeCache;
 import com.hamburger0abcde.mekanismsun.recipes.MSRecipeType;
 import com.hamburger0abcde.mekanismsun.tiers.IAdvancedTier;
 import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceChemicalTankTier;
+import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceEnergyCubeTier;
 import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceFluidTankTier;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunPort;
@@ -18,6 +21,7 @@ import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityTransmutator;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTank;
+import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceFluidTank;
 import com.hamburger0abcde.mekanismsun.utils.MSAttachedSideConfig;
 import com.hamburger0abcde.mekanismsun.world.MSOreType;
@@ -27,6 +31,7 @@ import mekanism.common.attachments.containers.ContainerType;
 import mekanism.common.attachments.containers.chemical.ChemicalTanksBuilder;
 import mekanism.common.attachments.containers.fluid.FluidTanksBuilder;
 import mekanism.common.attachments.containers.item.ItemSlotsBuilder;
+import mekanism.common.block.BlockEnergyCube;
 import mekanism.common.block.BlockOre;
 import mekanism.common.block.interfaces.IHasDescription;
 import mekanism.common.block.prefab.BlockBasicMultiblock;
@@ -132,7 +137,20 @@ public class MSBlocks {
                 );
     }
 
-    //TODO: recipe of tanks
+    private static BlockRegistryObject<BlockAdvanceEnergyCube, MSItemBlockEnergyCube> registerEnergyCube(
+            Machine<TileEntityAdvanceEnergyCube> type) {
+        AdvanceEnergyCubeTier tier = (AdvanceEnergyCubeTier) Objects.requireNonNull(type.get(MSAttributeTier.class)).tier();
+        return registerTieredBlock(tier, "_energy_cube", () -> new BlockAdvanceEnergyCube(type), MSItemBlockEnergyCube::new)
+                .forItemHolder(holder -> holder
+                        .addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
+                                .addEnergy()
+                                .addDrainEnergy()
+                                .build()
+                        )
+                );
+    }
+
+    //TODO: recipes
 
     public static final BlockRegistryObject<BlockTileModel<TileEntityAlloyer, Machine<TileEntityAlloyer>>,
             ItemBlockTooltip<BlockTileModel<TileEntityAlloyer, Machine<TileEntityAlloyer>>>> ALLOYER = BLOCKS.register(
@@ -207,4 +225,7 @@ public class MSBlocks {
 
     public static final BlockRegistryObject<BlockAdvanceFluidTank, MSItemBlockFluidTank> SUPERNOVA_FLUID_TANK =
             registerFluidTank(MSBlockTypes.SUPERNOVA_FLUID_TANK);
+
+    public static final BlockRegistryObject<BlockAdvanceEnergyCube, MSItemBlockEnergyCube> SUPERNOVA_ENERGY_CUBE =
+            registerEnergyCube(MSBlockTypes.SUPERNOVA_ENERGY_CUBE);
 }

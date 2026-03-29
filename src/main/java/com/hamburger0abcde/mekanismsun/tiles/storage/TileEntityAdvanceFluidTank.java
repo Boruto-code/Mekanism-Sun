@@ -1,7 +1,7 @@
 package com.hamburger0abcde.mekanismsun.tiles.storage;
 
 import com.hamburger0abcde.mekanismsun.block.attribute.MSAttribute;
-import com.hamburger0abcde.mekanismsun.capabilities.fluid.AdvanceFluidTankFluidTank;
+import com.hamburger0abcde.mekanismsun.capabilities.AdvanceFluidTankFluidTank;
 import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceFluidTankTier;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.DataResult;

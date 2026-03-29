@@ -6,10 +6,12 @@ import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityTransmutator;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTank;
+import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceFluidTank;
 import mekanism.common.inventory.container.tile.MekanismTileContainer;
 import mekanism.common.registration.impl.ContainerTypeDeferredRegister;
 import mekanism.common.registration.impl.ContainerTypeRegistryObject;
+import mekanism.common.tile.TileEntityEnergyCube;
 
 public class MSContainerTypes {
     public static final ContainerTypeDeferredRegister CONTAINER_TYPES = new ContainerTypeDeferredRegister(MekanismSun.MODID);
@@ -29,4 +31,7 @@ public class MSContainerTypes {
             CONTAINER_TYPES.custom("advance_chemical_tank", TileEntityAdvanceChemicalTank.class).armorSideBar().build();
     public static final ContainerTypeRegistryObject<MekanismTileContainer<TileEntityAdvanceFluidTank>> ADVANCE_FLUID_TANK =
             CONTAINER_TYPES.custom("advance_fluid_tank", TileEntityAdvanceFluidTank.class).armorSideBar().build();
+    public static final ContainerTypeRegistryObject<MekanismTileContainer<TileEntityAdvanceEnergyCube>> ADVANCE_ENERGY_CUBE =
+            CONTAINER_TYPES.custom("advance_energy_cube", TileEntityAdvanceEnergyCube.class)
+                    .armorSideBar(180, 41, 0).build();
 }

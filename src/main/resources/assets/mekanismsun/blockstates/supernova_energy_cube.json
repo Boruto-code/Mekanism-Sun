@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=up": {
+      "model": "mekanismsun:block/energy_cube/supernova",
+      "x": -90
+    },
+    "facing=down": {
+      "model": "mekanismsun:block/energy_cube/supernova",
+      "x": 90
+    },
+    "facing=north": {
+      "model": "mekanismsun:block/energy_cube/supernova"
+    },
+    "facing=south": {
+      "model": "mekanismsun:block/energy_cube/supernova",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "mekanismsun:block/energy_cube/supernova",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "mekanismsun:block/energy_cube/supernova",
+      "y": -90
+    }
+  }
+}

@@ -4,6 +4,7 @@ import com.hamburger0abcde.mekanismsun.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.block.attribute.MSAttributeTier;
 import com.hamburger0abcde.mekanismsun.block.attribute.MSAttributeUpgradeable;
 import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceChemicalTankTier;
+import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceEnergyCubeTier;
 import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceFluidTankTier;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunPort;
@@ -11,6 +12,7 @@ import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityTransmutator;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTank;
+import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceFluidTank;
 import mekanism.api.Upgrade;
 import mekanism.common.MekanismLang;
@@ -23,6 +25,7 @@ import mekanism.common.lib.transmitter.TransmissionType;
 import mekanism.common.registration.impl.BlockRegistryObject;
 import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
 import mekanism.common.registries.MekanismSounds;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 import java.util.function.Supplier;
 
@@ -52,6 +55,20 @@ public class MSBlockTypes {
                 .without(AttributeParticleFX.class, AttributeStateFacing.class,
                         Attributes.AttributeRedstone.class, AttributeUpgradeSupport.class)
                 .withComputerSupport(tier.getAdvanceTier().getLowerName() + "FluidTank")
+                .build();
+    }
+
+    private static <TILE extends TileEntityAdvanceEnergyCube> Machine<TILE> createEnergyCube(
+            AdvanceEnergyCubeTier tier, Supplier<TileEntityTypeRegistryObject<TILE>> tile, Supplier<BlockRegistryObject<?, ?>> upgradeBlock
+    ) {
+        return Machine.MachineBuilder.createMachine(tile, MekanismLang.DESCRIPTION_ENERGY_CUBE)
+                .withGui(() -> MSContainerTypes.ADVANCE_ENERGY_CUBE)
+                .withEnergyConfig(tier::getMaxEnergy)
+                .with(new MSAttributeTier<>(tier), new MSAttributeUpgradeable(upgradeBlock),
+                        new AttributeStateFacing(BlockStateProperties.FACING))
+                .withSideConfig(TransmissionType.ENERGY, TransmissionType.ITEM)
+                .without(AttributeParticleFX.class, AttributeStateActive.class, AttributeUpgradeSupport.class)
+                .withComputerSupport(tier.getAdvanceTier().getLowerName() + "EnergyCube")
                 .build();
     }
 
@@ -106,4 +123,7 @@ public class MSBlockTypes {
     public static final Machine<TileEntityAdvanceFluidTank> SUPERNOVA_FLUID_TANK =
             createFluidTank(AdvanceFluidTankTier.SUPERNOVA, () -> MSTileEntityTypes.SUPERNOVA_FLUID_TANK,
                     () -> MSBlocks.SUPERNOVA_FLUID_TANK);
+    public static final Machine<TileEntityAdvanceEnergyCube> SUPERNOVA_ENERGY_CUBE =
+            createEnergyCube(AdvanceEnergyCubeTier.SUPERNOVA, () -> MSTileEntityTypes.SUPERNOVA_ENERGY_CUBE,
+                    () -> MSBlocks.SUPERNOVA_ENERGY_CUBE);
 }

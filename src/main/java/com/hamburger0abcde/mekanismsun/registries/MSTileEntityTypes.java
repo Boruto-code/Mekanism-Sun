@@ -2,6 +2,7 @@ package com.hamburger0abcde.mekanismsun.registries;
 
 import com.hamburger0abcde.mekanismsun.MekanismSun;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockChemicalTank;
+import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockEnergyCube;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockFluidTank;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunPort;
@@ -9,6 +10,7 @@ import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityTransmutator;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTank;
+import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceFluidTank;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.registration.impl.BlockRegistryObject;
@@ -27,9 +29,17 @@ public class MSTileEntityTypes {
                 .build();
     }
 
-    private static TileEntityTypeRegistryObject<TileEntityAdvanceFluidTank> registryFluidTank(
+    private static TileEntityTypeRegistryObject<TileEntityAdvanceFluidTank> registerFluidTank(
             BlockRegistryObject<?, MSItemBlockFluidTank> block) {
         return TILE_ENTITY_TYPES.mekBuilder(block, (pos, state) -> new TileEntityAdvanceFluidTank(block, pos, state))
+                .serverTicker(TileEntityMekanism::tickServer)
+                .withSimple(Capabilities.CONFIG_CARD)
+                .build();
+    }
+
+    private static TileEntityTypeRegistryObject<TileEntityAdvanceEnergyCube> registerEnergyCube(
+            BlockRegistryObject<?, MSItemBlockEnergyCube> block) {
+        return TILE_ENTITY_TYPES.mekBuilder(block, (pos, state) -> new TileEntityAdvanceEnergyCube(block, pos, state))
                 .serverTicker(TileEntityMekanism::tickServer)
                 .withSimple(Capabilities.CONFIG_CARD)
                 .build();
@@ -68,5 +78,8 @@ public class MSTileEntityTypes {
     public static final TileEntityTypeRegistryObject<TileEntityAdvanceChemicalTank> SUPERNOVA_CHEMICAL_TANK =
             registerChemicalTank(MSBlocks.SUPERNOVA_CHEMICAL_TANK);
     public static final TileEntityTypeRegistryObject<TileEntityAdvanceFluidTank> SUPERNOVA_FLUID_TANK =
-            registryFluidTank(MSBlocks.SUPERNOVA_FLUID_TANK);
+            registerFluidTank(MSBlocks.SUPERNOVA_FLUID_TANK);
+    public static final TileEntityTypeRegistryObject<TileEntityAdvanceEnergyCube> SUPERNOVA_ENERGY_CUBE =
+            registerEnergyCube(MSBlocks.SUPERNOVA_ENERGY_CUBE);
+
 }

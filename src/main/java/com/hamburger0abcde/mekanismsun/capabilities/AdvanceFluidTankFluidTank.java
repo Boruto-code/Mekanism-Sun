@@ -1,4 +1,4 @@
-package com.hamburger0abcde.mekanismsun.capabilities.fluid;
+package com.hamburger0abcde.mekanismsun.capabilities;
 
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceFluidTank;
 import mekanism.api.Action;
