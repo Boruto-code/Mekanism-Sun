@@ -1,15 +1,32 @@
 package com.hamburger0abcde.mekanismsun.tiles.transmitter;
 
+import com.hamburger0abcde.mekanismsun.content.network.transmitter.AdvanceUniversalCable;
+import com.hamburger0abcde.mekanismsun.registries.MSBlocks;
+import com.hamburger0abcde.mekanismsun.tiers.AdvancedTier;
+import mekanism.api.SerializationConstants;
+import mekanism.api.energy.IEnergyContainer;
+import mekanism.api.math.MathUtils;
+import mekanism.common.block.states.BlockStateHelper;
+import mekanism.common.block.states.TransmitterType;
 import mekanism.common.capabilities.energy.DynamicStrictEnergyHandler;
 import mekanism.common.capabilities.resolver.manager.EnergyHandlerManager;
+import mekanism.common.content.network.EnergyNetwork;
 import mekanism.common.integration.computer.IComputerTile;
+import mekanism.common.integration.computer.annotation.ComputerMethod;
+import mekanism.common.integration.energy.EnergyCompatUtils;
 import mekanism.common.lib.transmitter.ConnectionType;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
+import java.util.List;
 
 public class TileEntityAdvanceUniversalCable extends TileEntityAdvanceTransmitter implements IComputerTile {
     private final EnergyHandlerManager energyHandlerManager;
@@ -22,7 +39,7 @@ public class TileEntityAdvanceUniversalCable extends TileEntityAdvanceTransmitte
                 return Collections.emptyList();
             }
             return cable.getEnergyContainers(direction);
-        }, new DynamicStrictEnergyHandler(this::getEnergyContainers, getAdvancectPredicate(), getInsertPredicate(), null)));
+        }, new DynamicStrictEnergyHandler(this::getEnergyContainers, getExtractPredicate(), getInsertPredicate(), null)));
     }
 
     @Override
@@ -50,10 +67,7 @@ public class TileEntityAdvanceUniversalCable extends TileEntityAdvanceTransmitte
     @Override
     protected BlockState upgradeResult(@NotNull BlockState current, @NotNull AdvancedTier tier) {
         return BlockStateHelper.copyStateData(current, switch (tier) {
-            case ABSOLUTE -> AdvanceBlocks.ABSOLUTE_UNIVERSAL_CABLE;
-            case SUPREME -> AdvanceBlocks.SUPREME_UNIVERSAL_CABLE;
-            case COSMIC -> AdvanceBlocks.COSMIC_UNIVERSAL_CABLE;
-            case INFINITE -> AdvanceBlocks.INFINITE_UNIVERSAL_CABLE;
+            case SUPERNOVA -> MSBlocks.SUPERNOVA_UNIVERSAL_CABLE;
         });
     }
 

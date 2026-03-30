@@ -3,6 +3,7 @@ package com.hamburger0abcde.mekanismsun.config;
 import com.hamburger0abcde.mekanismsun.tiers.storage.*;
 import com.hamburger0abcde.mekanismsun.utils.MSEnumUtils;
 import com.hamburger0abcde.mekanismsun.config.MSConfigTranslations.AdvancedTierTranslations;
+import mekanism.api.heat.HeatAPI;
 import mekanism.common.config.BaseMekanismConfig;
 import mekanism.common.config.MekanismConfigTranslations;
 import mekanism.common.config.value.CachedIntValue;
@@ -18,7 +19,7 @@ public class MSTierConfig extends BaseMekanismConfig {
     public final CachedLongValue supernovaUniversalCableCapacity;
 
     public final CachedLongValue supernovaMechanicalPipeCapacity;
-    public final CachedLongValue supernovaeMechanicalPipePullAmount;
+    public final CachedLongValue supernovaMechanicalPipePullAmount;
 
     public final CachedLongValue supernovaPressurizedTubeCapacity;
     public final CachedLongValue supernovaPressurizedTubePullAmount;
@@ -28,9 +29,62 @@ public class MSTierConfig extends BaseMekanismConfig {
 
     public final CachedLongValue supernovaThermodynamicConductorConduction;
     public final CachedLongValue supernovaThermodynamicConductorCapacity;
+    public final CachedLongValue supernovaThermodynamicConductorInsulation;
 
     MSTierConfig() {
+        ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
 
+        // Blocks
+        addStoragesCategory(builder);
+        // Transmitters
+        MekanismConfigTranslations.TIER_TRANSMITTERS.applyToBuilder(builder).push("transmitters");
+        MekanismConfigTranslations.TIER_TRANSMITTERS_ENERGY.applyToBuilder(builder).push("energy");
+        this.supernovaUniversalCableCapacity = CachedLongValue.define(this, builder,
+                MSConfigTranslations.SUPERNOVA_UNIVERSAL_CABLE_CAPACITY, "absoluteCapacity",
+                65536000L, 1, Long.MAX_VALUE);
+        builder.pop();
+
+        MekanismConfigTranslations.TIER_TRANSMITTERS_FLUID.applyToBuilder(builder).push("fluid");
+        this.supernovaMechanicalPipeCapacity = CachedLongValue.define(this, builder,
+                MSConfigTranslations.SUPERNOVA_MECHANICAL_PIPE_CAPACITY, "absoluteCapacity",
+                1_024_000L, 1, Long.MAX_VALUE);
+        this.supernovaMechanicalPipePullAmount = CachedLongValue.define(this, builder,
+                MSConfigTranslations.SUPERNOVA_MECHANICAL_PIPE_PULL_AMOUNT, "absolutePullAmount",
+                256_000, 1, Integer.MAX_VALUE);
+        builder.pop();
+
+        MekanismConfigTranslations.TIER_TRANSMITTERS_CHEMICAL.applyToBuilder(builder).push("chemical");
+        this.supernovaPressurizedTubeCapacity = CachedLongValue.define(this, builder,
+                MSConfigTranslations.SUPERNOVA_PRESSURIZED_TUBE_CAPACITY, "absoluteCapacity",
+                8_192_000L, 1, Long.MAX_VALUE);
+        this.supernovaPressurizedTubePullAmount = CachedLongValue.define(this, builder,
+                MSConfigTranslations.SUPERNOVA_PRESSURIZED_TUBE_PULL_AMOUNT, "absolutePullAmount",
+                2_048_000L, 1, Long.MAX_VALUE);
+        builder.pop();
+
+        MekanismConfigTranslations.TIER_TRANSMITTERS_ITEM.applyToBuilder(builder).push("item");
+        this.supernovaLogisticalTransporterSpeed = CachedLongValue.define(this, builder,
+                MSConfigTranslations.SUPERNOVA_LOGISTICAL_TRANSPORTER_SPEED, "absoluteSpeed",
+                55, 1, Integer.MAX_VALUE);
+        this.supernovaLogisticalTransporterPullAmount = CachedLongValue.define(this, builder,
+                MSConfigTranslations.SUPERNOVA_LOGISTICAL_TRANSPORTER_PULL_AMOUNT, "absolutePullAmount",
+                128, 1, Integer.MAX_VALUE);
+        builder.pop();
+
+        MekanismConfigTranslations.TIER_TRANSMITTERS_HEAT.applyToBuilder(builder).push("heat");
+        this.supernovaThermodynamicConductorConduction = CachedLongValue.define(this, builder,
+                MSConfigTranslations.SUPERNOVA_THERMODYNAMIC_CONDUCTOR_CONDUCTION, "absoluteConduction",
+                10L, 1, Long.MAX_VALUE);
+        this.supernovaThermodynamicConductorCapacity = CachedLongValue.define(this, builder,
+                MSConfigTranslations.SUPERNOVA_THERMODYNAMIC_CONDUCTOR_CAPACITY, "absoluteCapacity",
+                (long) HeatAPI.DEFAULT_HEAT_CAPACITY, 1, Long.MAX_VALUE);
+        this.supernovaThermodynamicConductorInsulation = CachedLongValue.define(this, builder,
+                MSConfigTranslations.SUPERNOVA_THERMODYNAMIC_CONDUCTOR_INSULATION, "absoluteInsulation",
+                400000L, 1, Long.MAX_VALUE);
+        builder.pop();
+        builder.pop();
+
+        configSpec = builder.build();
     }
 
     private void addStoragesCategory(ModConfigSpec.Builder builder) {

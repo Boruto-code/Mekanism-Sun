@@ -25,7 +25,32 @@ public enum MSConfigTranslations implements IConfigTranslation {
     SERVER_SUN_DEFAULT_BURN_RATE("server.sun.default_burn_rate", "Default Burn Rate",
             "The default burn rate of the artificial sun."),
     SERVER_SUN_MAX_BURN_RATE("server.sun.max_burn_rate", "Max Burn Rate",
-            "The max burn rate of the artificial sun.")
+            "The max burn rate of the artificial sun."),
+
+    SUPERNOVA_UNIVERSAL_CABLE_CAPACITY("tier.cable.supernova.capacity", "Supernova",
+            "Internal buffer in Joules of Supernova Universal Cable."),
+
+    SUPERNOVA_MECHANICAL_PIPE_CAPACITY("tier.pipe.supernova.capacity", "Supernova",
+            "Capacity of Supernova Mechanical Pipe in mb."),
+    SUPERNOVA_MECHANICAL_PIPE_PULL_AMOUNT("tier.pipe.supernova.pull_amount", "Supernova",
+            "Pump rate of Supernova Mechanical Pipe in mb."),
+
+    SUPERNOVA_PRESSURIZED_TUBE_CAPACITY("tier.tube.supernova.capacity", "Supernova",
+            "Capacity of Supernova Pressurized Tube in mb."),
+    SUPERNOVA_PRESSURIZED_TUBE_PULL_AMOUNT("tier.tube.supernova.pull_amount", "Supernova",
+            "Pump rate of Supernova Pressurized Tube in mb."),
+
+    SUPERNOVA_LOGISTICAL_TRANSPORTER_SPEED("tier.transporter.supernova.speed", "Supernova",
+            "Five times the travel speed in m/s of Supernova Logistical Transporter."),
+    SUPERNOVA_LOGISTICAL_TRANSPORTER_PULL_AMOUNT("tier.transporter.supernova.pull_amount", "Supernova",
+            "Item throughput rate of Supernova Logistical Transporter in items/half second."),
+
+    SUPERNOVA_THERMODYNAMIC_CONDUCTOR_CONDUCTION("tier.conductor.supernova.conduction", "Supernova",
+            "Conduction value of Supernova Thermodynamic Conductor."),
+    SUPERNOVA_THERMODYNAMIC_CONDUCTOR_CAPACITY("tier.conductor.supernova.capacity", "Supernova",
+            "Heat capacity of Supernova Thermodynamic Conductor."),
+    SUPERNOVA_THERMODYNAMIC_CONDUCTOR_INSULATION("tier.conductor.supernova.insulation", "Supernova",
+            "Insulation value of Supernova Thermodynamic Conductor."),
     ;
 
     private final String key;
@@ -119,12 +144,14 @@ public enum MSConfigTranslations implements IConfigTranslation {
             return Util.makeDescriptionId("configuration", MekanismSun.rl("tier." + type + "." + tier + "." + path));
         }
 
-        public static AdvancedTierTranslations create(IAdvancedTier tier, String type, @Nullable UnaryOperator<String> storageTooltip,
+        public static AdvancedTierTranslations create(IAdvancedTier tier, String type,
+                                                      @Nullable UnaryOperator<String> storageTooltip,
                                                       @Nullable UnaryOperator<String> outputTooltip) {
             return create(tier, type, storageTooltip, outputTooltip, " Output Rate");
         }
 
-        public static AdvancedTierTranslations create(IAdvancedTier tier, String type, @Nullable UnaryOperator<String> storageTooltip,
+        public static AdvancedTierTranslations create(IAdvancedTier tier, String type,
+                                                      @Nullable UnaryOperator<String> storageTooltip,
                                                       @Nullable UnaryOperator<String> outputTooltip,
                                                       String rateSuffix) {
             String tierName = tier.getAdvanceTier().getSimpleName();

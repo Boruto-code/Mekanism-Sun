@@ -16,7 +16,11 @@ import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceBin;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTank;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceFluidTank;
+import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceTransmitter;
+import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceUniversalCable;
 import mekanism.api.Upgrade;
+import mekanism.api.text.ILangEntry;
+import mekanism.api.tier.ITier;
 import mekanism.common.MekanismLang;
 import mekanism.common.block.attribute.*;
 import mekanism.common.config.MekanismConfig;
@@ -27,6 +31,7 @@ import mekanism.common.lib.transmitter.TransmissionType;
 import mekanism.common.registration.impl.BlockRegistryObject;
 import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
 import mekanism.common.registries.MekanismSounds;
+import mekanism.common.tier.CableTier;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 import java.util.function.Supplier;
@@ -83,6 +88,20 @@ public class MSBlockTypes {
                         Attributes.AttributeRedstone.class)
                 .withComputerSupport(tier.getAdvanceTier().getLowerName() + "Bin")
                 .build();
+    }
+
+    private static <TILE extends TileEntityAdvanceTransmitter> BlockTypeTile<TILE> createTransmitter(
+            ITier tier, Supplier<TileEntityTypeRegistryObject<TILE>> tile, ILangEntry description
+    ) {
+        return BlockTypeTile.BlockTileBuilder.createBlock(tile, description)
+                .with(new AttributeTier<>(tier))
+                .build();
+    }
+
+    private static BlockTypeTile<TileEntityAdvanceUniversalCable> createCable(
+            CableTier tier, Supplier<TileEntityTypeRegistryObject<TileEntityAdvanceUniversalCable>> tile
+    ) {
+        return createTransmitter(tier, tile, MekanismLang.DESCRIPTION_CABLE);
     }
 
     public static final Machine<TileEntityAlloyer> ALLOYER = Machine.MachineBuilder
@@ -144,4 +163,7 @@ public class MSBlockTypes {
 
     public static final Machine<TileEntityAdvanceBin> SUPERNOVA_BIN =
             createBin(AdvanceBinTier.SUPERNOVA, () -> MSTileEntityTypes.SUPERNOVA_BIN, () -> MSBlocks.SUPERNOVA_BIN);
+
+    public static final BlockTypeTile<TileEntityAdvanceUniversalCable> SUPERNOVA_UNIVERSAL_CABLE =
+            createCable(CableTier.BASIC, () -> MSTileEntityTypes.SUPERNOVA_UNIVERSAL_CABLE);
 }

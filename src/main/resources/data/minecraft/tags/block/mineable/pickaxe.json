@@ -11,6 +11,13 @@
     "mekanismsun:supernova_fluid_tank",
     "mekanismsun:supernova_energy_cube",
     "mekanismsun:supernova_bin",
+    "mekanismsun:supernova_universal_cable",
+    "mekanismsun:supernova_mechanical_pipe",
+    "mekanismsun:supernova_pressurized_tube",
+    "mekanismsun:supernova_logistical_transporter",
+    "mekanismsun:supernova_thermodynamic_conductor",
+    "mekanismsun:supernova_induction_cell",
+    "mekanismsun:supernova_induction_provider",
     "evolvedmekanism:netherrack_silver_ore",
     "evolvedmekanism:end_stone_silver_ore"
   ]

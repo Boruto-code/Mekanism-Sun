@@ -12,6 +12,7 @@ import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockBin;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockChemicalTank;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockEnergyCube;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockFluidTank;
+import com.hamburger0abcde.mekanismsun.item.block.transmitter.MSItemBlockUniversalCable;
 import com.hamburger0abcde.mekanismsun.recipes.MSInputRecipeCache;
 import com.hamburger0abcde.mekanismsun.recipes.MSRecipeType;
 import com.hamburger0abcde.mekanismsun.tiers.IAdvancedTier;
@@ -28,6 +29,7 @@ import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceBin;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTank;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceFluidTank;
+import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceUniversalCable;
 import com.hamburger0abcde.mekanismsun.utils.MSAttachedSideConfig;
 import com.hamburger0abcde.mekanismsun.world.MSOreType;
 import mekanism.common.attachments.component.AttachedEjector;
@@ -41,6 +43,8 @@ import mekanism.common.block.BlockOre;
 import mekanism.common.block.interfaces.IHasDescription;
 import mekanism.common.block.prefab.BlockBasicMultiblock;
 import mekanism.common.block.prefab.BlockTile.BlockTileModel;
+import mekanism.common.block.transmitter.BlockSmallTransmitter;
+import mekanism.common.content.blocktype.BlockTypeTile;
 import mekanism.common.content.blocktype.Machine;
 import mekanism.common.item.block.ItemBlockTooltip;
 import mekanism.common.recipe.MekanismRecipeType;
@@ -167,6 +171,12 @@ public class MSBlocks {
                 );
     }
 
+    private static BlockRegistryObject<BlockSmallTransmitter<TileEntityAdvanceUniversalCable>,
+            MSItemBlockUniversalCable> registerUniversalCable(String nameTier, BlockTypeTile<TileEntityAdvanceUniversalCable> type) {
+        return registerTieredBlock(nameTier + "_universal_cable", () -> new BlockSmallTransmitter<>(type),
+                MSItemBlockUniversalCable::new);
+    }
+
     //TODO: recipes
 
     public static final BlockRegistryObject<BlockTileModel<TileEntityAlloyer, Machine<TileEntityAlloyer>>,
@@ -248,4 +258,7 @@ public class MSBlocks {
 
     public static final BlockRegistryObject<BlockAdvanceBin, MSItemBlockBin> SUPERNOVA_BIN =
             registerBin(MSBlockTypes.SUPERNOVA_BIN);
+
+    public static final BlockRegistryObject<BlockSmallTransmitter<TileEntityAdvanceUniversalCable>, MSItemBlockUniversalCable>
+            SUPERNOVA_UNIVERSAL_CABLE = registerUniversalCable("supernova", MSBlockTypes.SUPERNOVA_UNIVERSAL_CABLE);
 }

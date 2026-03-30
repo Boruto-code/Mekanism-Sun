@@ -1,6 +1,7 @@
 package com.hamburger0abcde.mekanismsun.registries;
 
 import com.hamburger0abcde.mekanismsun.MekanismSun;
+import com.hamburger0abcde.mekanismsun.capabilities.AdvanceCapabilities;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockBin;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockChemicalTank;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockEnergyCube;
@@ -14,11 +15,22 @@ import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceBin;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTank;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceFluidTank;
+import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceTransmitter;
+import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceUniversalCable;
+import mekanism.api.functions.ConstantPredicates;
+import mekanism.common.Mekanism;
 import mekanism.common.capabilities.Capabilities;
+import mekanism.common.integration.computer.ComputerCapabilityHelper;
+import mekanism.common.integration.energy.EnergyCompatUtils;
 import mekanism.common.registration.impl.BlockRegistryObject;
 import mekanism.common.registration.impl.TileEntityTypeDeferredRegister;
 import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
 import mekanism.common.tile.base.TileEntityMekanism;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class MSTileEntityTypes {
     public static final TileEntityTypeDeferredRegister TILE_ENTITY_TYPES = new TileEntityTypeDeferredRegister(MekanismSun.MODID);
@@ -54,6 +66,25 @@ public class MSTileEntityTypes {
                 .build();
     }
 
+    private static <BE extends TileEntityAdvanceTransmitter> TileEntityTypeDeferredRegister.BlockEntityTypeBuilder<BE> transmitterBuilder(
+            BlockRegistryObject<?, ?> block, BlockEntityFactory<BE> factory
+    ) {
+        return TILE_ENTITY_TYPES.builder(block, (pos, state) -> factory.create(block, pos, state))
+                .serverTicker(TileEntityAdvanceTransmitter::tickServer)
+                .withSimple(AdvanceCapabilities.ADVANCE_ALLOY_INTERACTION)
+                .with(Capabilities.CONFIGURABLE, TileEntityAdvanceTransmitter.CONFIGURABLE_PROVIDER);
+    }
+
+    private static TileEntityTypeRegistryObject<TileEntityAdvanceUniversalCable> registerCable(BlockRegistryObject<?, ?> block) {
+        TileEntityTypeDeferredRegister.BlockEntityTypeBuilder<TileEntityAdvanceUniversalCable> builder =
+                transmitterBuilder(block, TileEntityAdvanceUniversalCable::new);
+        EnergyCompatUtils.addBlockCapabilities(builder);
+        if (Mekanism.hooks.computerCompatEnabled()) {
+            ComputerCapabilityHelper.addComputerCapabilities(builder, ConstantPredicates.ALWAYS_TRUE);
+        }
+        return builder.build();
+    }
+
     public static final TileEntityTypeRegistryObject<TileEntityAlloyer> ALLOYER =
             TILE_ENTITY_TYPES.mekBuilder(MSBlocks.ALLOYER, TileEntityAlloyer::new)
                     .clientTicker(TileEntityMekanism::tickClient)
@@ -86,10 +117,22 @@ public class MSTileEntityTypes {
 
     public static final TileEntityTypeRegistryObject<TileEntityAdvanceChemicalTank> SUPERNOVA_CHEMICAL_TANK =
             registerChemicalTank(MSBlocks.SUPERNOVA_CHEMICAL_TANK);
+
     public static final TileEntityTypeRegistryObject<TileEntityAdvanceFluidTank> SUPERNOVA_FLUID_TANK =
             registerFluidTank(MSBlocks.SUPERNOVA_FLUID_TANK);
+
     public static final TileEntityTypeRegistryObject<TileEntityAdvanceEnergyCube> SUPERNOVA_ENERGY_CUBE =
             registerEnergyCube(MSBlocks.SUPERNOVA_ENERGY_CUBE);
+
     public static final TileEntityTypeRegistryObject<TileEntityAdvanceBin> SUPERNOVA_BIN =
             registerBin(MSBlocks.SUPERNOVA_BIN);
+
+    public static final TileEntityTypeRegistryObject<TileEntityAdvanceUniversalCable> SUPERNOVA_UNIVERSAL_CABLE =
+            registerCable(MSBlocks.SUPERNOVA_UNIVERSAL_CABLE);
+
+    @FunctionalInterface
+    private interface BlockEntityFactory<BE extends BlockEntity> {
+
+        BE create(Holder<Block> block, BlockPos pos, BlockState state);
+    }
 }

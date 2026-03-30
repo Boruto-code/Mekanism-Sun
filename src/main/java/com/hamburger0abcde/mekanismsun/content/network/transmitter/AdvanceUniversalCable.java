@@ -1,20 +1,28 @@
 package com.hamburger0abcde.mekanismsun.content.network.transmitter;
 
+import com.hamburger0abcde.mekanismsun.tiers.transmitter.AdvanceCableTier;
 import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceTransmitter;
 import com.hamburger0abcde.mekanismsun.utils.IAdvanceUpgradeableTransmitter;
 import mekanism.api.Action;
 import mekanism.api.AutomationType;
+import mekanism.api.SerializationConstants;
 import mekanism.api.energy.IMekanismStrictEnergyHandler;
 import mekanism.api.energy.IStrictEnergyHandler;
+import mekanism.common.content.network.EnergyNetwork;
 import mekanism.common.content.network.transmitter.UniversalCable;
 import mekanism.common.lib.transmitter.ConnectionType;
 import mekanism.common.lib.transmitter.acceptor.EnergyAcceptorCache;
+import mekanism.common.upgrade.transmitter.TransmitterUpgradeData;
 import mekanism.common.upgrade.transmitter.UniversalCableUpgradeData;
 import mekanism.common.util.EnumUtils;
+import mekanism.common.util.NBTUtils;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class AdvanceUniversalCable extends UniversalCable implements IMekanismStrictEnergyHandler,
         IAdvanceUpgradeableTransmitter<UniversalCableUpgradeData> {
@@ -54,12 +62,12 @@ public class AdvanceUniversalCable extends UniversalCable implements IMekanismSt
 
     @NotNull
     public long getCapacityAsFloatingLong() {
-        return CTier.getCapacityAsLong(tier);
+        return AdvanceCableTier.getCapacityAsLong(tier);
     }
 
     @Override
     public long getCapacity() {
-        return CTier.getCapacityAsLong(tier);
+        return AdvanceCableTier.getCapacityAsLong(tier);
     }
 
     private long takeEnergy(long amount, Action action) {
@@ -70,7 +78,8 @@ public class AdvanceUniversalCable extends UniversalCable implements IMekanismSt
     }
 
     @Override
-    protected void handleContentsUpdateTag(@NotNull EnergyNetwork network, @NotNull CompoundTag tag, @NotNull HolderLookup.Provider provider) {
+    protected void handleContentsUpdateTag(@NotNull EnergyNetwork network, @NotNull CompoundTag tag,
+                                           @NotNull HolderLookup.Provider provider) {
         super.handleContentsUpdateTag(network, tag, provider);
         NBTUtils.setLegacyEnergyIfPresent(tag, SerializationConstants.ENERGY, network.energyContainer::setEnergy);
         NBTUtils.setFloatIfPresent(tag, SerializationConstants.SCALE, scale -> network.currentScale = scale);
