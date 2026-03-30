@@ -1,6 +1,6 @@
 package com.hamburger0abcde.mekanismsun.block.attribute;
 
-import com.hamburger0abcde.mekanismsun.tiers.AdvanceTier;
+import com.hamburger0abcde.mekanismsun.tiers.AdvancedTier;
 import mekanism.common.block.states.BlockStateHelper;
 import mekanism.common.registration.impl.BlockRegistryObject;
 import net.minecraft.world.level.block.state.BlockState;
@@ -16,7 +16,7 @@ public class MSAttributeUpgradeable implements MSAttribute {
     }
 
     @NotNull
-    public BlockState upgradeResult(@NotNull BlockState current, @NotNull AdvanceTier tier) {
+    public BlockState upgradeResult(@NotNull BlockState current, @NotNull AdvancedTier tier) {
         return BlockStateHelper.copyStateData(current, upgradeBlock.get());
     }
 }

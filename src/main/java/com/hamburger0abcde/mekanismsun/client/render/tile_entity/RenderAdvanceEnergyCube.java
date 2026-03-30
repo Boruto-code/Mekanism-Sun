@@ -1,7 +1,7 @@
 package com.hamburger0abcde.mekanismsun.client.render.tile_entity;
 
 import com.hamburger0abcde.mekanismsun.client.model.ColorModelEnergyCore;
-import com.hamburger0abcde.mekanismsun.tiers.AdvanceTier;
+import com.hamburger0abcde.mekanismsun.tiers.AdvancedTier;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceEnergyCube;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -35,7 +35,7 @@ public class RenderAdvanceEnergyCube extends ModelTileEntityRenderer<TileEntityA
                           @NotNull PoseStack matrix, MultiBufferSource renderer, int light, int overlayLight, ProfilerFiller profiler) {
         float energyScale = tile.getEnergyScale();
         Vec3 renderPos = tile.getBlockPos().getCenter();
-        AdvanceTier advancedTier = tile.getAdvanceTier().getAdvanceTier();
+        AdvancedTier advancedTier = tile.getAdvanceTier().getAdvanceTier();
         RenderTickHandler.addTransparentRenderer(new RenderTickHandler.LazyRender() {
             @Override
             public void render(Camera camera, VertexConsumer buffer, PoseStack poseStack,

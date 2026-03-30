@@ -1,30 +1,30 @@
 package com.hamburger0abcde.mekanismsun.tiers.storage;
 
-import com.hamburger0abcde.mekanismsun.tiers.AdvanceTier;
+import com.hamburger0abcde.mekanismsun.tiers.AdvancedTier;
 import com.hamburger0abcde.mekanismsun.tiers.IAdvancedTier;
 import lombok.Getter;
 import mekanism.common.config.value.CachedIntValue;
 
 public enum AdvanceFluidTankTier implements IAdvancedTier {
-    SUPERNOVA(AdvanceTier.SUPERNOVA, 4_096_000, 2_048_000)
+    SUPERNOVA(AdvancedTier.SUPERNOVA, 4_096_000, 2_048_000)
     ;
 
     @Getter
     private final int advanceStorage;
     @Getter
     private final int advanceOutput;
-    private final AdvanceTier advancedTier;
+    private final AdvancedTier advancedTier;
     private CachedIntValue storageReference;
     private CachedIntValue outputReference;
 
-    AdvanceFluidTankTier(AdvanceTier tier, int storage, int output) {
+    AdvanceFluidTankTier(AdvancedTier tier, int storage, int output) {
         advanceStorage = storage;
         advanceOutput = output;
         advancedTier = tier;
     }
 
     @Override
-    public AdvanceTier getAdvanceTier() {
+    public AdvancedTier getAdvanceTier() {
         return advancedTier;
     }
 

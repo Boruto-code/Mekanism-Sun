@@ -1,6 +1,6 @@
 package com.hamburger0abcde.mekanismsun.tiers.storage;
 
-import com.hamburger0abcde.mekanismsun.tiers.AdvanceTier;
+import com.hamburger0abcde.mekanismsun.tiers.AdvancedTier;
 import com.hamburger0abcde.mekanismsun.tiers.IAdvancedTier;
 import lombok.Getter;
 import mekanism.api.annotations.NothingNullByDefault;
@@ -13,27 +13,27 @@ import java.util.Locale;
 
 @NothingNullByDefault
 public enum AdvanceEnergyCubeTier implements IAdvancedTier, StringRepresentable {
-    SUPERNOVA(AdvanceTier.SUPERNOVA, 1_024_000_000, 1_024_000)
+    SUPERNOVA(AdvancedTier.SUPERNOVA, 1_024_000_000, 1_024_000)
     ;
 
     @Getter
     private final long advanceMaxEnergy;
     @Getter
     private final long advanceOutput;
-    private final AdvanceTier advancedTier;
+    private final AdvancedTier advancedTier;
     @Nullable
     private CachedLongValue storageReference;
     @Nullable
     private CachedLongValue outputReference;
 
-    AdvanceEnergyCubeTier(AdvanceTier tier, long max, long out) {
+    AdvanceEnergyCubeTier(AdvancedTier tier, long max, long out) {
         advanceMaxEnergy = max;
         advanceOutput = out;
         advancedTier = tier;
     }
 
     @Override
-    public AdvanceTier getAdvanceTier() {
+    public AdvancedTier getAdvanceTier() {
         return advancedTier;
     }
 

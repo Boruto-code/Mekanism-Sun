@@ -16,15 +16,15 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Locale;
 import java.util.function.IntFunction;
 
-public enum AdvanceTier implements StringRepresentable, SupportsColorMap {
+public enum AdvancedTier implements StringRepresentable, SupportsColorMap {
     SUPERNOVA("Supernova", new int[]{214, 163, 82}, MapColor.GOLD)
     ;
 
-    public static final IntFunction<AdvanceTier> BY_ID = ByIdMap.continuous(AdvanceTier::ordinal, values(),
+    public static final IntFunction<AdvancedTier> BY_ID = ByIdMap.continuous(AdvancedTier::ordinal, values(),
             ByIdMap.OutOfBoundsStrategy.WRAP);
-    public static final StreamCodec<ByteBuf, AdvanceTier> STREAM_CODEC = ByteBufCodecs.idMapper(BY_ID, AdvanceTier::ordinal);
+    public static final StreamCodec<ByteBuf, AdvancedTier> STREAM_CODEC = ByteBufCodecs.idMapper(BY_ID, AdvancedTier::ordinal);
 
-    private static final AdvanceTier[] TIERS = values();
+    private static final AdvancedTier[] TIERS = values();
 
     private final String name;
     @Getter
@@ -33,7 +33,7 @@ public enum AdvanceTier implements StringRepresentable, SupportsColorMap {
     private int[] rgbCode;
     private int argb;
 
-    AdvanceTier(String name, int[] rgbCode, MapColor mapColor) {
+    AdvancedTier(String name, int[] rgbCode, MapColor mapColor) {
         this.name = name;
         this.mapColor = mapColor;
         setColorFromAtlas(rgbCode);
@@ -74,7 +74,7 @@ public enum AdvanceTier implements StringRepresentable, SupportsColorMap {
         return name().toLowerCase(Locale.ROOT);
     }
 
-    public static AdvanceTier byIndexStatic(int index) {
+    public static AdvancedTier byIndexStatic(int index) {
         return MathUtils.getByIndexMod(TIERS, index);
     }
 }

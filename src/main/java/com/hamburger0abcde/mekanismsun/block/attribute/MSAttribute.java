@@ -1,6 +1,6 @@
 package com.hamburger0abcde.mekanismsun.block.attribute;
 
-import com.hamburger0abcde.mekanismsun.tiers.AdvanceTier;
+import com.hamburger0abcde.mekanismsun.tiers.AdvancedTier;
 import com.hamburger0abcde.mekanismsun.tiers.IAdvancedTier;
 import mekanism.common.block.attribute.Attribute;
 import net.minecraft.core.Holder;
@@ -21,7 +21,7 @@ public interface MSAttribute extends Attribute {
     }
 
     @Nullable
-    static AdvanceTier getAdvancedTier(Block block) {
+    static AdvancedTier getAdvancedTier(Block block) {
         MSAttributeTier<?> attribute = Attribute.get(block, MSAttributeTier.class);
         return attribute == null ? null : attribute.tier().getAdvanceTier();
     }

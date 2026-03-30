@@ -1,0 +1,8 @@
+{
+  "parent": "mekanism:block/bin/basic",
+  "textures": {
+    "led": "mekanismsun:block/bin/supernova_led",
+    "side": "mekanismsun:block/bin/supernova_side",
+    "back": "mekanismsun:block/bin/supernova_back"
+  }
+}

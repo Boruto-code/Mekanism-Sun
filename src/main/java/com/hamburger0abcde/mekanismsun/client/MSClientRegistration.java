@@ -7,6 +7,7 @@ import com.hamburger0abcde.mekanismsun.client.model.AdvanceEnergyCubeModelLoader
 import com.hamburger0abcde.mekanismsun.client.model.ColorModelEnergyCore;
 import com.hamburger0abcde.mekanismsun.client.render.item.block.RenderAdvanceEnergyCubeItem;
 import com.hamburger0abcde.mekanismsun.client.render.item.block.RenderAdvanceFluidTankItem;
+import com.hamburger0abcde.mekanismsun.client.render.tile_entity.RenderAdvanceBin;
 import com.hamburger0abcde.mekanismsun.client.render.tile_entity.RenderAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.client.render.tile_entity.RenderAdvanceFluidTank;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockEnergyCube;
@@ -14,11 +15,10 @@ import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockFluidTank;
 import com.hamburger0abcde.mekanismsun.registries.MSBlocks;
 import com.hamburger0abcde.mekanismsun.registries.MSContainerTypes;
 import com.hamburger0abcde.mekanismsun.registries.MSTileEntityTypes;
-import com.hamburger0abcde.mekanismsun.tiers.AdvanceTier;
+import com.hamburger0abcde.mekanismsun.tiers.AdvancedTier;
 import mekanism.client.ClientRegistrationUtil;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.client.render.RenderPropertiesProvider;
-import mekanism.client.render.tileentity.RenderEnergyCube;
 import net.minecraft.world.item.Item;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.EventPriority;
@@ -56,6 +56,7 @@ public class MSClientRegistration {
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         ClientRegistrationUtil.bindTileEntityRenderer(event, RenderAdvanceFluidTank::new, MSTileEntityTypes.SUPERNOVA_FLUID_TANK);
         ClientRegistrationUtil.bindTileEntityRenderer(event, RenderAdvanceEnergyCube::new, MSTileEntityTypes.SUPERNOVA_ENERGY_CUBE);
+        ClientRegistrationUtil.bindTileEntityRenderer(event, RenderAdvanceBin::new, MSTileEntityTypes.SUPERNOVA_BIN);
     }
 
     @SubscribeEvent
@@ -67,7 +68,7 @@ public class MSClientRegistration {
     public static void registerBlockColorHandlers(RegisterColorHandlersEvent.Block event) {
         ClientRegistrationUtil.registerBlockColorHandler(event, (state, world, pos, tintIndex) -> {
             if (tintIndex == 1) {
-                AdvanceTier tier = MSAttribute.getAdvancedTier(state.getBlockHolder().value());
+                AdvancedTier tier = MSAttribute.getAdvancedTier(state.getBlockHolder().value());
                 if (tier != null) {
                     return MekanismRenderer.getColorARGB(tier, 1);
                 }
@@ -77,7 +78,7 @@ public class MSClientRegistration {
 
         ClientRegistrationUtil.registerBlockColorHandler(event, (state, world, pos, index) -> {
             if (index == 1) {
-                AdvanceTier tier = MSAttribute.getAdvancedTier(state.getBlockHolder().value());
+                AdvancedTier tier = MSAttribute.getAdvancedTier(state.getBlockHolder().value());
                 if (tier != null) {
                     return MekanismRenderer.getColorARGB(tier, 1);
                 }

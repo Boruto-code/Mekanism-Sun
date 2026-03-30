@@ -1,6 +1,6 @@
 package com.hamburger0abcde.mekanismsun.tiers.storage;
 
-import com.hamburger0abcde.mekanismsun.tiers.AdvanceTier;
+import com.hamburger0abcde.mekanismsun.tiers.AdvancedTier;
 import com.hamburger0abcde.mekanismsun.tiers.IAdvancedTier;
 import lombok.Getter;
 import mekanism.api.annotations.NothingNullByDefault;
@@ -13,27 +13,27 @@ import java.util.Locale;
 
 @NothingNullByDefault
 public enum AdvanceChemicalTankTier implements IAdvancedTier, StringRepresentable {
-    SUPERNOVA(AdvanceTier.SUPERNOVA, 65_536_000, 32_768_000)
+    SUPERNOVA(AdvancedTier.SUPERNOVA, 65_536_000, 32_768_000)
     ;
 
     @Getter
     private final long advanceStorage;
     @Getter
     private final long advanceOutput;
-    private final AdvanceTier advancedTier;
+    private final AdvancedTier advancedTier;
     @Nullable
     private CachedLongValue storageReference;
     @Nullable
     private CachedLongValue outputReference;
 
-    AdvanceChemicalTankTier(AdvanceTier tier, long storage, long output) {
+    AdvanceChemicalTankTier(AdvancedTier tier, long storage, long output) {
         advanceStorage = storage;
         advanceOutput = output;
         advancedTier = tier;
     }
 
     @Override
-    public AdvanceTier getAdvanceTier() {
+    public AdvancedTier getAdvanceTier() {
         return advancedTier;
     }
 

@@ -1,6 +1,6 @@
 package com.hamburger0abcde.mekanismsun.client.model;
 
-import com.hamburger0abcde.mekanismsun.tiers.AdvanceTier;
+import com.hamburger0abcde.mekanismsun.tiers.AdvancedTier;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import mekanism.api.SupportsColorMap;
@@ -45,7 +45,7 @@ public class ColorModelEnergyCore extends MekanismJavaModel {
     }
 
     public void render(@NotNull PoseStack matrix, @NotNull MultiBufferSource renderer,
-                       int light, int overlayLight, AdvanceTier advancedTier, float energyPercentage) {
+                       int light, int overlayLight, AdvancedTier advancedTier, float energyPercentage) {
         render(matrix, renderer.getBuffer(RENDER_TYPE), light, overlayLight, advancedTier, energyPercentage);
     }
 
