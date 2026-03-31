@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "mekanism:ultimate_energy_cube"
+    },
+    "B": {
+      "tag": "c:ingots/refined_obsidian"
+    },
+    "C": {
+      "item": "mekanism:energy_tablet"
+    },
+    "D": {
+      "tag": "c:alloys/supernova"
+    }
+  },
+  "pattern": [
+    "DCD",
+    "BAB",
+    "DCD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mekanismsun:supernova_energy_cube"
+  }
+}

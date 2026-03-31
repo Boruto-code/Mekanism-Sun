@@ -17,6 +17,7 @@ import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTa
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceFluidTank;
 import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceMechanicalPipe;
+import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvancePressurizedTube;
 import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceTransmitter;
 import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceUniversalCable;
 import mekanism.api.Upgrade;
@@ -34,6 +35,7 @@ import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
 import mekanism.common.registries.MekanismSounds;
 import mekanism.common.tier.CableTier;
 import mekanism.common.tier.PipeTier;
+import mekanism.common.tier.TubeTier;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 import java.util.function.Supplier;
@@ -112,6 +114,12 @@ public class MSBlockTypes {
         return createTransmitter(tier, tile, MekanismLang.DESCRIPTION_PIPE);
     }
 
+    private static BlockTypeTile<TileEntityAdvancePressurizedTube> createTube(
+            TubeTier tier, Supplier<TileEntityTypeRegistryObject<TileEntityAdvancePressurizedTube>> tile
+    ) {
+        return createTransmitter(tier, tile, MekanismLang.DESCRIPTION_TUBE);
+    }
+
     public static final Machine<TileEntityAlloyer> ALLOYER = Machine.MachineBuilder
             .createMachine(() -> MSTileEntityTypes.ALLOYER, MekanismSunLang.DESCRIPTION_ALLOYER)
             .withGui(() -> MSContainerTypes.ALLOYER)
@@ -177,4 +185,7 @@ public class MSBlockTypes {
 
     public static final BlockTypeTile<TileEntityAdvanceMechanicalPipe> SUPERNOVA_MECHANICAL_PIPE =
             createPipe(PipeTier.BASIC, () -> MSTileEntityTypes.SUPERNOVA_MECHANICAL_PIPE);
+
+    public static final BlockTypeTile<TileEntityAdvancePressurizedTube> SUPERNOVA_PRESSURIZED_TUBE =
+            createTube(TubeTier.BASIC, () -> MSTileEntityTypes.SUPERNOVA_PRESSURIZED_TUBE);
 }

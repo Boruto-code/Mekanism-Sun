@@ -16,6 +16,7 @@ import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTa
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceFluidTank;
 import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceMechanicalPipe;
+import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvancePressurizedTube;
 import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceTransmitter;
 import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceUniversalCable;
 import mekanism.api.functions.ConstantPredicates;
@@ -90,7 +91,17 @@ public class MSTileEntityTypes {
     private static TileEntityTypeRegistryObject<TileEntityAdvanceMechanicalPipe> registerPipe(BlockRegistryObject<?, ?> block) {
         TileEntityTypeDeferredRegister.BlockEntityTypeBuilder<TileEntityAdvanceMechanicalPipe> builder =
                 transmitterBuilder(block, TileEntityAdvanceMechanicalPipe::new)
-                .with(Capabilities.FLUID.block(), CapabilityTileEntity.FLUID_HANDLER_PROVIDER);
+                        .with(Capabilities.FLUID.block(), CapabilityTileEntity.FLUID_HANDLER_PROVIDER);
+        if (Mekanism.hooks.computerCompatEnabled()) {
+            ComputerCapabilityHelper.addComputerCapabilities(builder, ConstantPredicates.ALWAYS_TRUE);
+        }
+        return builder.build();
+    }
+
+    private static TileEntityTypeRegistryObject<TileEntityAdvancePressurizedTube> registerTube(BlockRegistryObject<?, ?> block) {
+        TileEntityTypeDeferredRegister.BlockEntityTypeBuilder<TileEntityAdvancePressurizedTube> builder =
+                transmitterBuilder(block, TileEntityAdvancePressurizedTube::new)
+                        .with(Capabilities.CHEMICAL.block(), CapabilityTileEntity.CHEMICAL_HANDLER_PROVIDER);
         if (Mekanism.hooks.computerCompatEnabled()) {
             ComputerCapabilityHelper.addComputerCapabilities(builder, ConstantPredicates.ALWAYS_TRUE);
         }
@@ -144,6 +155,9 @@ public class MSTileEntityTypes {
 
     public static final TileEntityTypeRegistryObject<TileEntityAdvanceMechanicalPipe> SUPERNOVA_MECHANICAL_PIPE =
             registerPipe(MSBlocks.SUPERNOVA_MECHANICAL_PIPE);
+
+    public static final TileEntityTypeRegistryObject<TileEntityAdvancePressurizedTube> SUPERNOVA_PRESSURIZED_TUBE =
+            registerTube(MSBlocks.SUPERNOVA_PRESSURIZED_TUBE);
 
     @FunctionalInterface
     private interface BlockEntityFactory<BE extends BlockEntity> {

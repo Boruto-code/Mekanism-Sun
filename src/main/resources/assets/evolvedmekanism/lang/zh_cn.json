@@ -1,4 +1,7 @@
 {
   "block.evolvedmekanism.end_stone_silver_ore": "末地银矿石",
-  "block.evolvedmekanism.netherrack_silver_ore": "下界银矿石"
+  "block.evolvedmekanism.netherrack_silver_ore": "下界银矿石",
+  "block.evolvedmekanism.holystone_silver_ore": "圣银矿石",
+  "block.evolvedmekanism.depthrock_silver_ore": "渊邃银矿石",
+  "block.evolvedmekanism.shiverstone_silver_ore": "寒栗银矿石"
 }

@@ -1,0 +1,9 @@
+{
+  "parent": "mekanism:block/transmitter/small/small",
+  "textures": {
+    "side": "mekanismsun:block/models/multipart/supernova_pressurized_tube_vertical",
+    "center_down": "mekanismsun:block/models/multipart/supernova_pressurized_tube",
+    "side_opaque": "mekanismsun:block/models/multipart/opaque/supernova_pressurized_tube_vertical",
+    "center_opaque": "mekanismsun:block/models/multipart/supernova_pressurized_tube"
+  }
+}

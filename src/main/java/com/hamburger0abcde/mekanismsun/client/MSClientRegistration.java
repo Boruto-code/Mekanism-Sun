@@ -11,6 +11,7 @@ import com.hamburger0abcde.mekanismsun.client.render.tile_entity.RenderAdvanceBi
 import com.hamburger0abcde.mekanismsun.client.render.tile_entity.RenderAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.client.render.tile_entity.RenderAdvanceFluidTank;
 import com.hamburger0abcde.mekanismsun.client.render.transmitter.RenderAdvanceMechanicalPipe;
+import com.hamburger0abcde.mekanismsun.client.render.transmitter.RenderAdvancePressurizedTube;
 import com.hamburger0abcde.mekanismsun.client.render.transmitter.RenderAdvanceUniversalCable;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockEnergyCube;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockFluidTank;
@@ -63,6 +64,7 @@ public class MSClientRegistration {
 
         ClientRegistrationUtil.bindTileEntityRenderer(event, RenderAdvanceUniversalCable::new, MSTileEntityTypes.SUPERNOVA_UNIVERSAL_CABLE);
         ClientRegistrationUtil.bindTileEntityRenderer(event, RenderAdvanceMechanicalPipe::new, MSTileEntityTypes.SUPERNOVA_MECHANICAL_PIPE);
+        ClientRegistrationUtil.bindTileEntityRenderer(event, RenderAdvancePressurizedTube::new, MSTileEntityTypes.SUPERNOVA_PRESSURIZED_TUBE);
     }
 
     @SubscribeEvent
@@ -116,7 +118,8 @@ public class MSClientRegistration {
     public static void registerItemDecorations(RegisterItemDecorationsEvent event) {
         TransmitterTypeDecorator.registerDecorators(
                 event,
-                MSBlocks.SUPERNOVA_UNIVERSAL_CABLE
+                MSBlocks.SUPERNOVA_UNIVERSAL_CABLE,
+                MSBlocks.SUPERNOVA_PRESSURIZED_TUBE
         );
     }
 

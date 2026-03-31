@@ -1,5 +1,6 @@
 package com.hamburger0abcde.mekanismsun.item.block.transmitter;
 
+import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockTooltip;
 import com.hamburger0abcde.mekanismsun.tiers.transmitter.AdvancePipeTier;
 import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceMechanicalPipe;
 import mekanism.api.text.EnumColor;
@@ -10,6 +11,8 @@ import mekanism.common.item.block.ItemBlockTooltip;
 import mekanism.common.tier.PipeTier;
 import mekanism.common.util.text.TextUtils;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import org.jetbrains.annotations.NotNull;
@@ -19,8 +22,18 @@ import java.util.List;
 import java.util.Objects;
 
 public class MSItemBlockMechanicalPipe extends ItemBlockTooltip<BlockLargeTransmitter<TileEntityAdvanceMechanicalPipe>> {
+    private static final int COLOR = 0xD6A352;
+
     public MSItemBlockMechanicalPipe(BlockLargeTransmitter<TileEntityAdvanceMechanicalPipe> block, Properties properties) {
         super(block, true, properties);
+    }
+
+    @NotNull
+    @Override
+    public Component getName(@NotNull ItemStack stack) {
+        Component name = super.getName(stack);
+        Style coloredStyle = name.getStyle().withColor(TextColor.fromRgb(COLOR));
+        return name.copy().setStyle(coloredStyle);
     }
 
     @NotNull

@@ -13,6 +13,7 @@ import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockChemicalTank;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockEnergyCube;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockFluidTank;
 import com.hamburger0abcde.mekanismsun.item.block.transmitter.MSItemBlockMechanicalPipe;
+import com.hamburger0abcde.mekanismsun.item.block.transmitter.MSItemBlockPressurizedTube;
 import com.hamburger0abcde.mekanismsun.item.block.transmitter.MSItemBlockUniversalCable;
 import com.hamburger0abcde.mekanismsun.recipes.MSInputRecipeCache;
 import com.hamburger0abcde.mekanismsun.recipes.MSRecipeType;
@@ -32,6 +33,7 @@ import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTa
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceFluidTank;
 import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceMechanicalPipe;
+import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvancePressurizedTube;
 import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceUniversalCable;
 import com.hamburger0abcde.mekanismsun.utils.MSAttachedSideConfig;
 import com.hamburger0abcde.mekanismsun.world.MSOreType;
@@ -175,24 +177,22 @@ public class MSBlocks {
                 );
     }
 
-    private static <BLOCK extends Block, ITEM extends BlockItem> BlockRegistryObject<BLOCK, ITEM> registerTieredTransmitter(
-            IAdvancedTier tier, String suffix, Function<MapColor, ? extends BLOCK> blockSupplier,
-            BiFunction<BLOCK, Item.Properties, ITEM> itemCreator) {
-        return registerTieredBlock(tier, suffix, () -> blockSupplier.apply(tier.getAdvanceTier().getMapColor()), itemCreator);
-    }
-
     private static BlockRegistryObject<BlockSmallTransmitter<TileEntityAdvanceUniversalCable>,
-            MSItemBlockUniversalCable> registerUniversalCable(AdvancedTier tier, BlockTypeTile<TileEntityAdvanceUniversalCable> type) {
-        String nameTier = tier.getLowerName();
+            MSItemBlockUniversalCable> registerUniversalCable(String nameTier, BlockTypeTile<TileEntityAdvanceUniversalCable> type) {
         return registerTieredBlock(nameTier + "_universal_cable", () -> new BlockSmallTransmitter<>(type),
                 MSItemBlockUniversalCable::new);
     }
 
     private static BlockRegistryObject<BlockLargeTransmitter<TileEntityAdvanceMechanicalPipe>,
-            MSItemBlockMechanicalPipe> registerMechanicalPipe(AdvancedTier tier, BlockTypeTile<TileEntityAdvanceMechanicalPipe> type) {
-        String nameTier = tier.getLowerName();
+            MSItemBlockMechanicalPipe> registerMechanicalPipe(String nameTier, BlockTypeTile<TileEntityAdvanceMechanicalPipe> type) {
         return registerTieredBlock(nameTier + "_mechanical_pipe", () -> new BlockLargeTransmitter<>(type),
                 MSItemBlockMechanicalPipe::new);
+    }
+
+    private static BlockRegistryObject<BlockSmallTransmitter<TileEntityAdvancePressurizedTube>,
+            MSItemBlockPressurizedTube> registerPressurizedTube(String nameTier, BlockTypeTile<TileEntityAdvancePressurizedTube> type) {
+        return registerTieredBlock(nameTier + "_pressurized_tube", () -> new BlockSmallTransmitter<>(type),
+                MSItemBlockPressurizedTube::new);
     }
 
     //TODO: recipes
@@ -278,8 +278,11 @@ public class MSBlocks {
             registerBin(MSBlockTypes.SUPERNOVA_BIN);
 
     public static final BlockRegistryObject<BlockSmallTransmitter<TileEntityAdvanceUniversalCable>, MSItemBlockUniversalCable>
-            SUPERNOVA_UNIVERSAL_CABLE = registerUniversalCable(AdvancedTier.SUPERNOVA, MSBlockTypes.SUPERNOVA_UNIVERSAL_CABLE);
+            SUPERNOVA_UNIVERSAL_CABLE = registerUniversalCable("supernova", MSBlockTypes.SUPERNOVA_UNIVERSAL_CABLE);
 
     public static final BlockRegistryObject<BlockLargeTransmitter<TileEntityAdvanceMechanicalPipe>, MSItemBlockMechanicalPipe>
-            SUPERNOVA_MECHANICAL_PIPE = registerMechanicalPipe(AdvancedTier.SUPERNOVA, MSBlockTypes.SUPERNOVA_MECHANICAL_PIPE);
+            SUPERNOVA_MECHANICAL_PIPE = registerMechanicalPipe("supernova", MSBlockTypes.SUPERNOVA_MECHANICAL_PIPE);
+
+    public static final BlockRegistryObject<BlockSmallTransmitter<TileEntityAdvancePressurizedTube>, MSItemBlockPressurizedTube>
+            SUPERNOVA_PRESSURIZED_TUBE = registerPressurizedTube("supernova", MSBlockTypes.SUPERNOVA_PRESSURIZED_TUBE);
 }
