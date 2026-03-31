@@ -21,6 +21,7 @@ public class MSConfig {
 
     public static void registerConfigs(ModContainer container) {
         MSConfigHelper.registerConfig(KNOWN_CONFIGS, container, GENERAL);
+        MSConfigHelper.registerConfig(KNOWN_CONFIGS, container, TIER);
     }
 
     public static void onConfigLoad(ModConfigEvent configEvent) {

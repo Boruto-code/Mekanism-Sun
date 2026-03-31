@@ -10,6 +10,8 @@ import com.hamburger0abcde.mekanismsun.client.render.item.block.RenderAdvanceFlu
 import com.hamburger0abcde.mekanismsun.client.render.tile_entity.RenderAdvanceBin;
 import com.hamburger0abcde.mekanismsun.client.render.tile_entity.RenderAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.client.render.tile_entity.RenderAdvanceFluidTank;
+import com.hamburger0abcde.mekanismsun.client.render.transmitter.RenderAdvanceMechanicalPipe;
+import com.hamburger0abcde.mekanismsun.client.render.transmitter.RenderAdvanceUniversalCable;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockEnergyCube;
 import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockFluidTank;
 import com.hamburger0abcde.mekanismsun.registries.MSBlocks;
@@ -19,6 +21,7 @@ import com.hamburger0abcde.mekanismsun.tiers.AdvancedTier;
 import mekanism.client.ClientRegistrationUtil;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.client.render.RenderPropertiesProvider;
+import mekanism.client.render.item.TransmitterTypeDecorator;
 import net.minecraft.world.item.Item;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.EventPriority;
@@ -57,6 +60,9 @@ public class MSClientRegistration {
         ClientRegistrationUtil.bindTileEntityRenderer(event, RenderAdvanceFluidTank::new, MSTileEntityTypes.SUPERNOVA_FLUID_TANK);
         ClientRegistrationUtil.bindTileEntityRenderer(event, RenderAdvanceEnergyCube::new, MSTileEntityTypes.SUPERNOVA_ENERGY_CUBE);
         ClientRegistrationUtil.bindTileEntityRenderer(event, RenderAdvanceBin::new, MSTileEntityTypes.SUPERNOVA_BIN);
+
+        ClientRegistrationUtil.bindTileEntityRenderer(event, RenderAdvanceUniversalCable::new, MSTileEntityTypes.SUPERNOVA_UNIVERSAL_CABLE);
+        ClientRegistrationUtil.bindTileEntityRenderer(event, RenderAdvanceMechanicalPipe::new, MSTileEntityTypes.SUPERNOVA_MECHANICAL_PIPE);
     }
 
     @SubscribeEvent
@@ -104,6 +110,14 @@ public class MSClientRegistration {
             }
             return -1;
         }, MSBlocks.SUPERNOVA_ENERGY_CUBE);
+    }
+
+    @SubscribeEvent
+    public static void registerItemDecorations(RegisterItemDecorationsEvent event) {
+        TransmitterTypeDecorator.registerDecorators(
+                event,
+                MSBlocks.SUPERNOVA_UNIVERSAL_CABLE
+        );
     }
 
     @SubscribeEvent

@@ -16,6 +16,7 @@ import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceBin;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTank;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceFluidTank;
+import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceMechanicalPipe;
 import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceTransmitter;
 import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceUniversalCable;
 import mekanism.api.Upgrade;
@@ -32,6 +33,7 @@ import mekanism.common.registration.impl.BlockRegistryObject;
 import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
 import mekanism.common.registries.MekanismSounds;
 import mekanism.common.tier.CableTier;
+import mekanism.common.tier.PipeTier;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 import java.util.function.Supplier;
@@ -104,6 +106,12 @@ public class MSBlockTypes {
         return createTransmitter(tier, tile, MekanismLang.DESCRIPTION_CABLE);
     }
 
+    private static BlockTypeTile<TileEntityAdvanceMechanicalPipe> createPipe(
+            PipeTier tier, Supplier<TileEntityTypeRegistryObject<TileEntityAdvanceMechanicalPipe>> tile
+    ) {
+        return createTransmitter(tier, tile, MekanismLang.DESCRIPTION_PIPE);
+    }
+
     public static final Machine<TileEntityAlloyer> ALLOYER = Machine.MachineBuilder
             .createMachine(() -> MSTileEntityTypes.ALLOYER, MekanismSunLang.DESCRIPTION_ALLOYER)
             .withGui(() -> MSContainerTypes.ALLOYER)
@@ -166,4 +174,7 @@ public class MSBlockTypes {
 
     public static final BlockTypeTile<TileEntityAdvanceUniversalCable> SUPERNOVA_UNIVERSAL_CABLE =
             createCable(CableTier.BASIC, () -> MSTileEntityTypes.SUPERNOVA_UNIVERSAL_CABLE);
+
+    public static final BlockTypeTile<TileEntityAdvanceMechanicalPipe> SUPERNOVA_MECHANICAL_PIPE =
+            createPipe(PipeTier.BASIC, () -> MSTileEntityTypes.SUPERNOVA_MECHANICAL_PIPE);
 }

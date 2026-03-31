@@ -15,6 +15,7 @@ import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceBin;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTank;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceFluidTank;
+import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceMechanicalPipe;
 import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceTransmitter;
 import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceUniversalCable;
 import mekanism.api.functions.ConstantPredicates;
@@ -25,6 +26,7 @@ import mekanism.common.integration.energy.EnergyCompatUtils;
 import mekanism.common.registration.impl.BlockRegistryObject;
 import mekanism.common.registration.impl.TileEntityTypeDeferredRegister;
 import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
+import mekanism.common.tile.base.CapabilityTileEntity;
 import mekanism.common.tile.base.TileEntityMekanism;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -85,6 +87,16 @@ public class MSTileEntityTypes {
         return builder.build();
     }
 
+    private static TileEntityTypeRegistryObject<TileEntityAdvanceMechanicalPipe> registerPipe(BlockRegistryObject<?, ?> block) {
+        TileEntityTypeDeferredRegister.BlockEntityTypeBuilder<TileEntityAdvanceMechanicalPipe> builder =
+                transmitterBuilder(block, TileEntityAdvanceMechanicalPipe::new)
+                .with(Capabilities.FLUID.block(), CapabilityTileEntity.FLUID_HANDLER_PROVIDER);
+        if (Mekanism.hooks.computerCompatEnabled()) {
+            ComputerCapabilityHelper.addComputerCapabilities(builder, ConstantPredicates.ALWAYS_TRUE);
+        }
+        return builder.build();
+    }
+
     public static final TileEntityTypeRegistryObject<TileEntityAlloyer> ALLOYER =
             TILE_ENTITY_TYPES.mekBuilder(MSBlocks.ALLOYER, TileEntityAlloyer::new)
                     .clientTicker(TileEntityMekanism::tickClient)
@@ -129,6 +141,9 @@ public class MSTileEntityTypes {
 
     public static final TileEntityTypeRegistryObject<TileEntityAdvanceUniversalCable> SUPERNOVA_UNIVERSAL_CABLE =
             registerCable(MSBlocks.SUPERNOVA_UNIVERSAL_CABLE);
+
+    public static final TileEntityTypeRegistryObject<TileEntityAdvanceMechanicalPipe> SUPERNOVA_MECHANICAL_PIPE =
+            registerPipe(MSBlocks.SUPERNOVA_MECHANICAL_PIPE);
 
     @FunctionalInterface
     private interface BlockEntityFactory<BE extends BlockEntity> {

@@ -1,0 +1,9 @@
+{
+  "parent": "mekanism:block/transmitter/large/large",
+  "textures": {
+    "side": "mekanismsun:block/models/multipart/supernova_mechanical_pipe_vertical",
+    "center_down": "mekanismsun:block/models/multipart/supernova_mechanical_pipe",
+    "side_opaque": "mekanismsun:block/models/multipart/opaque/supernova_mechanical_pipe_vertical",
+    "center_opaque": "mekanismsun:block/models/multipart/opaque/supernova_mechanical_pipe"
+  }
+}
