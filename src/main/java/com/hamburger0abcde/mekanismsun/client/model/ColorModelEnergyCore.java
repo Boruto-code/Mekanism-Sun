@@ -1,6 +1,6 @@
 package com.hamburger0abcde.mekanismsun.client.model;
 
-import com.hamburger0abcde.mekanismsun.tiers.AdvancedTier;
+import com.hamburger0abcde.mekanismsun.common.tiers.AdvancedTier;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import mekanism.api.SupportsColorMap;

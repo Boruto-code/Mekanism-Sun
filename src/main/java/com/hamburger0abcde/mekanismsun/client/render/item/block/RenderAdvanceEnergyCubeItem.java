@@ -1,11 +1,10 @@
 package com.hamburger0abcde.mekanismsun.client.render.item.block;
 
-import com.hamburger0abcde.mekanismsun.MekanismSun;
 import com.hamburger0abcde.mekanismsun.client.model.ColorModelEnergyCore;
 import com.hamburger0abcde.mekanismsun.client.render.tile_entity.RenderAdvanceEnergyCube;
-import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockEnergyCube;
-import com.hamburger0abcde.mekanismsun.tiers.storage.AdvanceEnergyCubeTier;
-import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceEnergyCube;
+import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockEnergyCube;
+import com.hamburger0abcde.mekanismsun.common.tiers.storage.AdvanceEnergyCubeTier;
+import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceEnergyCube;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import mekanism.api.RelativeSide;

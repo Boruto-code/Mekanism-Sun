@@ -3,7 +3,7 @@ package com.hamburger0abcde.mekanismsun.client.model;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceEnergyCube;
+import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceEnergyCube;
 import mekanism.api.RelativeSide;
 import mekanism.client.model.baked.ExtensionBakedModel;
 import mekanism.client.render.lib.QuadTransformation;

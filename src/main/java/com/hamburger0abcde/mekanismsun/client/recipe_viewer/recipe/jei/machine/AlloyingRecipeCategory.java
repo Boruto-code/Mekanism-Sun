@@ -1,6 +1,6 @@
 package com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.jei.machine;
 
-import com.hamburger0abcde.mekanismsun.recipes.alloying.AlloyingRecipe;
+import com.hamburger0abcde.mekanismsun.common.recipes.alloying.AlloyingRecipe;
 import mekanism.client.gui.element.GuiUpArrow;
 import mekanism.client.gui.element.bar.GuiVerticalPowerBar;
 import mekanism.client.gui.element.gauge.GaugeType;

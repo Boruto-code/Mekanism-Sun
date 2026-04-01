@@ -1,7 +1,7 @@
 package com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe;
 
 import com.hamburger0abcde.mekanismsun.MekanismSun;
-import com.hamburger0abcde.mekanismsun.registries.MSChemicals;
+import com.hamburger0abcde.mekanismsun.common.registries.MSChemicals;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import mekanism.api.SerializationConstants;

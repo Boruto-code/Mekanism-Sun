@@ -1,12 +1,13 @@
 package com.hamburger0abcde.mekanismsun;
 
-import com.hamburger0abcde.mekanismsun.config.MSConfig;
-import com.hamburger0abcde.mekanismsun.multiblock.artificial_sun.ArtificialSunMultiblockData;
-import com.hamburger0abcde.mekanismsun.multiblock.MSBuilders;
-import com.hamburger0abcde.mekanismsun.multiblock.artificial_sun.ArtificialSunCache;
-import com.hamburger0abcde.mekanismsun.multiblock.artificial_sun.ArtificialSunValidator;
-import com.hamburger0abcde.mekanismsun.network.MSPacketHandler;
-import com.hamburger0abcde.mekanismsun.registries.*;
+import com.hamburger0abcde.mekanismsun.common.MekanismSunLang;
+import com.hamburger0abcde.mekanismsun.common.config.MSConfig;
+import com.hamburger0abcde.mekanismsun.common.multiblock.artificial_sun.ArtificialSunMultiblockData;
+import com.hamburger0abcde.mekanismsun.common.multiblock.MSBuilders;
+import com.hamburger0abcde.mekanismsun.common.multiblock.artificial_sun.ArtificialSunCache;
+import com.hamburger0abcde.mekanismsun.common.multiblock.artificial_sun.ArtificialSunValidator;
+import com.hamburger0abcde.mekanismsun.common.network.MSPacketHandler;
+import com.hamburger0abcde.mekanismsun.common.registries.*;
 import com.mojang.logging.LogUtils;
 import mekanism.common.command.builders.BuildCommand;
 import mekanism.common.lib.Version;

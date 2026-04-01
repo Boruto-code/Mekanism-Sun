@@ -1,16 +1,14 @@
 package com.hamburger0abcde.mekanismsun.client.recipe_viewer.type;
 
-import com.hamburger0abcde.mekanismsun.MekanismSunLang;
+import com.hamburger0abcde.mekanismsun.common.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.ArtificialSunRecipeViewerRecipe;
-import com.hamburger0abcde.mekanismsun.recipes.alloying.AlloyingRecipe;
-import com.hamburger0abcde.mekanismsun.registries.MSBlocks;
-import com.hamburger0abcde.mekanismsun.recipes.MSRecipeType;
+import com.hamburger0abcde.mekanismsun.common.recipes.alloying.AlloyingRecipe;
+import com.hamburger0abcde.mekanismsun.common.registries.MSBlocks;
+import com.hamburger0abcde.mekanismsun.common.recipes.MSRecipeType;
 import mekanism.api.annotations.NothingNullByDefault;
 import mekanism.api.recipes.ItemStackToItemStackRecipe;
 import mekanism.client.recipe_viewer.type.FakeRVRecipeType;
 import mekanism.client.recipe_viewer.type.RVRecipeTypeWrapper;
-import mekanism.common.recipe.lookup.cache.IInputRecipeCache;
-import net.minecraft.world.item.crafting.RecipeInput;
 
 @NothingNullByDefault
 public class MSRecipeViewerRecipeTypes {

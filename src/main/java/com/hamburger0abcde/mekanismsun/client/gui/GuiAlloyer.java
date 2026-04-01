@@ -1,6 +1,6 @@
 package com.hamburger0abcde.mekanismsun.client.gui;
 
-import com.hamburger0abcde.mekanismsun.tiles.machine.TileEntityAlloyer;
+import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityAlloyer;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import mekanism.client.gui.GuiConfigurableTile;
 import mekanism.client.gui.element.GuiUpArrow;
@@ -17,8 +17,6 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import org.jetbrains.annotations.NotNull;
-
-import java.awt.*;
 
 public class GuiAlloyer extends GuiConfigurableTile<TileEntityAlloyer, MekanismTileContainer<TileEntityAlloyer>> {
     public GuiAlloyer(MekanismTileContainer<TileEntityAlloyer> container, Inventory inv, Component tile) {

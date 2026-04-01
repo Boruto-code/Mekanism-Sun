@@ -1,11 +1,11 @@
 package com.hamburger0abcde.mekanismsun.client.gui;
 
-import com.hamburger0abcde.mekanismsun.MekanismSunLang;
+import com.hamburger0abcde.mekanismsun.common.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.type.MSRecipeViewerRecipeTypes;
-import com.hamburger0abcde.mekanismsun.config.MSConfig;
-import com.hamburger0abcde.mekanismsun.multiblock.artificial_sun.ArtificialSunMultiblockData;
-import com.hamburger0abcde.mekanismsun.network.to_server.PacketMSGuiInteract;
-import com.hamburger0abcde.mekanismsun.tiles.artificial_sun.TileEntityArtificialSunCasing;
+import com.hamburger0abcde.mekanismsun.common.config.MSConfig;
+import com.hamburger0abcde.mekanismsun.common.multiblock.artificial_sun.ArtificialSunMultiblockData;
+import com.hamburger0abcde.mekanismsun.common.network.to_server.PacketMSGuiInteract;
+import com.hamburger0abcde.mekanismsun.common.tiles.artificial_sun.TileEntityArtificialSunCasing;
 import mekanism.api.math.MathUtils;
 import mekanism.client.gui.GuiMekanismTile;
 import mekanism.client.gui.element.GuiInnerScreen;

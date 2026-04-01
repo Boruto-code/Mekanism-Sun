@@ -1,8 +1,7 @@
 package com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.jei.machine;
 
-import com.hamburger0abcde.mekanismsun.MekanismSunLang;
+import com.hamburger0abcde.mekanismsun.common.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.ArtificialSunRecipeViewerRecipe;
-import com.hamburger0abcde.mekanismsun.multiblock.artificial_sun.ArtificialSunMultiblockData;
 import com.mojang.serialization.Codec;
 import mekanism.client.gui.element.GuiInnerScreen;
 import mekanism.client.gui.element.gauge.GaugeType;

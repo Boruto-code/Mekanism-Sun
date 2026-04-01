@@ -1,0 +1,9 @@
+{
+  "parent": "mekanism:block/transmitter/large/logistical_transporter/transporter",
+  "textures": {
+    "side": "mekanismsun:block/models/multipart/supernova_logistical_transporter_vertical",
+    "center_down": "mekanismsun:block/models/multipart/supernova_logistical_transporter",
+    "side_opaque": "mekanismsun:block/models/multipart/opaque/supernova_logistical_transporter_vertical",
+    "center_opaque": "mekanismsun:block/models/multipart/opaque/supernova_logistical_transporter"
+  }
+}

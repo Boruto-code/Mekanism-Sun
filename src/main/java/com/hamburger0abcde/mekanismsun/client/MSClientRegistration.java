@@ -1,7 +1,7 @@
 package com.hamburger0abcde.mekanismsun.client;
 
 import com.hamburger0abcde.mekanismsun.MekanismSun;
-import com.hamburger0abcde.mekanismsun.block.attribute.MSAttribute;
+import com.hamburger0abcde.mekanismsun.common.block.attribute.MSAttribute;
 import com.hamburger0abcde.mekanismsun.client.gui.*;
 import com.hamburger0abcde.mekanismsun.client.model.AdvanceEnergyCubeModelLoader;
 import com.hamburger0abcde.mekanismsun.client.model.ColorModelEnergyCore;
@@ -13,12 +13,12 @@ import com.hamburger0abcde.mekanismsun.client.render.tile_entity.RenderAdvanceFl
 import com.hamburger0abcde.mekanismsun.client.render.transmitter.RenderAdvanceMechanicalPipe;
 import com.hamburger0abcde.mekanismsun.client.render.transmitter.RenderAdvancePressurizedTube;
 import com.hamburger0abcde.mekanismsun.client.render.transmitter.RenderAdvanceUniversalCable;
-import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockEnergyCube;
-import com.hamburger0abcde.mekanismsun.item.block.MSItemBlockFluidTank;
-import com.hamburger0abcde.mekanismsun.registries.MSBlocks;
-import com.hamburger0abcde.mekanismsun.registries.MSContainerTypes;
-import com.hamburger0abcde.mekanismsun.registries.MSTileEntityTypes;
-import com.hamburger0abcde.mekanismsun.tiers.AdvancedTier;
+import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockEnergyCube;
+import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockFluidTank;
+import com.hamburger0abcde.mekanismsun.common.registries.MSBlocks;
+import com.hamburger0abcde.mekanismsun.common.registries.MSContainerTypes;
+import com.hamburger0abcde.mekanismsun.common.registries.MSTileEntityTypes;
+import com.hamburger0abcde.mekanismsun.common.tiers.AdvancedTier;
 import mekanism.client.ClientRegistrationUtil;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.client.render.RenderPropertiesProvider;

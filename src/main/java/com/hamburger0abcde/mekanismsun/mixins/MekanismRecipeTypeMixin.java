@@ -1,8 +1,8 @@
 package com.hamburger0abcde.mekanismsun.mixins;
 
-import com.hamburger0abcde.mekanismsun.recipes.alloying.AlloyingRecipe;
-import com.hamburger0abcde.mekanismsun.recipes.MSInputRecipeCache;
-import com.hamburger0abcde.mekanismsun.recipes.MSRecipeType;
+import com.hamburger0abcde.mekanismsun.common.recipes.alloying.AlloyingRecipe;
+import com.hamburger0abcde.mekanismsun.common.recipes.MSInputRecipeCache;
+import com.hamburger0abcde.mekanismsun.common.recipes.MSRecipeType;
 import mekanism.api.recipes.ItemStackToItemStackRecipe;
 import mekanism.api.recipes.MekanismRecipe;
 import mekanism.common.Mekanism;

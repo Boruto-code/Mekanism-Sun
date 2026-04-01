@@ -1,6 +1,6 @@
 package com.hamburger0abcde.mekanismsun.client.render.transmitter;
 
-import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceUniversalCable;
+import com.hamburger0abcde.mekanismsun.common.tiles.transmitter.TileEntityAdvanceUniversalCable;
 import com.mojang.blaze3d.vertex.PoseStack;
 import mekanism.api.annotations.NothingNullByDefault;
 import mekanism.client.render.MekanismRenderer;

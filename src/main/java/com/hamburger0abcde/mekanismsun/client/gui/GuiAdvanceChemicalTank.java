@@ -1,6 +1,6 @@
 package com.hamburger0abcde.mekanismsun.client.gui;
 
-import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceChemicalTank;
+import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceChemicalTank;
 import mekanism.api.chemical.IChemicalTank;
 import mekanism.client.gui.GuiConfigurableTile;
 import mekanism.client.gui.element.GuiInnerScreen;

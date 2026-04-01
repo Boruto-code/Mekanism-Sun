@@ -1,7 +1,7 @@
 package com.hamburger0abcde.mekanismsun.client.render.tile_entity;
 
-import com.hamburger0abcde.mekanismsun.inventory.slot.AdvanceBinInventorySlot;
-import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceBin;
+import com.hamburger0abcde.mekanismsun.common.inventory.slot.AdvanceBinInventorySlot;
+import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceBin;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import mekanism.api.math.MathUtils;

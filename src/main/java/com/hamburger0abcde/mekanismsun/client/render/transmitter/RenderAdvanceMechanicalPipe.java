@@ -1,7 +1,7 @@
 package com.hamburger0abcde.mekanismsun.client.render.transmitter;
 
-import com.hamburger0abcde.mekanismsun.content.network.transmitter.AdvanceMechanicalPipe;
-import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvanceMechanicalPipe;
+import com.hamburger0abcde.mekanismsun.common.content.network.transmitter.AdvanceMechanicalPipe;
+import com.hamburger0abcde.mekanismsun.common.tiles.transmitter.TileEntityAdvanceMechanicalPipe;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;

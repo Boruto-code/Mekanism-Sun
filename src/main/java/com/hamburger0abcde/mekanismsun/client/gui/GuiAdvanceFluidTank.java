@@ -1,6 +1,6 @@
 package com.hamburger0abcde.mekanismsun.client.gui;
 
-import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceFluidTank;
+import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceFluidTank;
 import mekanism.client.gui.GuiMekanismTile;
 import mekanism.client.gui.element.GuiSideHolder;
 import mekanism.client.gui.element.gauge.GaugeType;

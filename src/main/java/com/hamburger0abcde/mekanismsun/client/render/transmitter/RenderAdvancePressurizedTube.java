@@ -1,7 +1,7 @@
 package com.hamburger0abcde.mekanismsun.client.render.transmitter;
 
-import com.hamburger0abcde.mekanismsun.content.network.transmitter.AdvancePressurizedTube;
-import com.hamburger0abcde.mekanismsun.tiles.transmitter.TileEntityAdvancePressurizedTube;
+import com.hamburger0abcde.mekanismsun.common.content.network.transmitter.AdvancePressurizedTube;
+import com.hamburger0abcde.mekanismsun.common.tiles.transmitter.TileEntityAdvancePressurizedTube;
 import com.mojang.blaze3d.vertex.PoseStack;
 import mekanism.api.MekanismAPI;
 import mekanism.api.annotations.NothingNullByDefault;

@@ -1,7 +1,7 @@
 package com.hamburger0abcde.mekanismsun.mixins;
 
-import com.hamburger0abcde.mekanismsun.MSResources;
-import com.hamburger0abcde.mekanismsun.world.MSOreType;
+import com.hamburger0abcde.mekanismsun.common.MSResources;
+import com.hamburger0abcde.mekanismsun.common.world.MSOreType;
 import com.mojang.serialization.Codec;
 import mekanism.common.resource.IResource;
 import mekanism.common.resource.ore.BaseOreConfig;

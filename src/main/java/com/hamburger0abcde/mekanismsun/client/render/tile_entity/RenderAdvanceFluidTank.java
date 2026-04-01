@@ -1,6 +1,6 @@
 package com.hamburger0abcde.mekanismsun.client.render.tile_entity;
 
-import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceFluidTank;
+import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceFluidTank;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;

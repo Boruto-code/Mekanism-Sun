@@ -1,7 +1,7 @@
 package com.hamburger0abcde.mekanismsun.mixins;
 
-import com.hamburger0abcde.mekanismsun.registries.MSBlocks;
-import com.hamburger0abcde.mekanismsun.world.MSOreType;
+import com.hamburger0abcde.mekanismsun.common.registries.MSBlocks;
+import com.hamburger0abcde.mekanismsun.common.world.MSOreType;
 import mekanism.common.registries.MekanismBlocks;
 import mekanism.common.resource.ore.OreBlockType;
 import mekanism.common.resource.ore.OreType;

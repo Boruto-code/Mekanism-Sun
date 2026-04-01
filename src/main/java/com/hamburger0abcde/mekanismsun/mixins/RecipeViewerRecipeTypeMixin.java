@@ -1,6 +1,6 @@
 package com.hamburger0abcde.mekanismsun.mixins;
 
-import com.hamburger0abcde.mekanismsun.registries.MSBlocks;
+import com.hamburger0abcde.mekanismsun.common.registries.MSBlocks;
 import mekanism.api.recipes.ChemicalToChemicalRecipe;
 import mekanism.client.recipe_viewer.type.RVRecipeTypeWrapper;
 import mekanism.client.recipe_viewer.type.RecipeViewerRecipeType;

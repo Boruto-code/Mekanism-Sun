@@ -5,7 +5,7 @@ import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.ArtificialSun
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.jei.machine.AlloyingRecipeCategory;
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.jei.machine.ArtificialSunRecipeCategory;
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.type.MSRecipeViewerRecipeTypes;
-import com.hamburger0abcde.mekanismsun.recipes.MSRecipeType;
+import com.hamburger0abcde.mekanismsun.common.recipes.MSRecipeType;
 import mekanism.client.recipe_viewer.jei.CatalystRegistryHelper;
 import mekanism.client.recipe_viewer.jei.RecipeRegistryHelper;
 import mekanism.client.recipe_viewer.jei.machine.ItemStackToItemStackRecipeCategory;

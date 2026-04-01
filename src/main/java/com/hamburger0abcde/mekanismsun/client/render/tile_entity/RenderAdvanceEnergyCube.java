@@ -1,8 +1,8 @@
 package com.hamburger0abcde.mekanismsun.client.render.tile_entity;
 
 import com.hamburger0abcde.mekanismsun.client.model.ColorModelEnergyCore;
-import com.hamburger0abcde.mekanismsun.tiers.AdvancedTier;
-import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceEnergyCube;
+import com.hamburger0abcde.mekanismsun.common.tiers.AdvancedTier;
+import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceEnergyCube;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;

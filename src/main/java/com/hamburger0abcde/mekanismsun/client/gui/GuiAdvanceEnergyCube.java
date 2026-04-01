@@ -1,6 +1,6 @@
 package com.hamburger0abcde.mekanismsun.client.gui;
 
-import com.hamburger0abcde.mekanismsun.tiles.storage.TileEntityAdvanceEnergyCube;
+import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceEnergyCube;
 import mekanism.client.SpecialColors;
 import mekanism.client.gui.GuiConfigurableTile;
 import mekanism.client.gui.element.GuiSideHolder;
