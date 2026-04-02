@@ -6,8 +6,9 @@ import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockBin;
 import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockChemicalTank;
 import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockEnergyCube;
 import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockFluidTank;
-import com.hamburger0abcde.mekanismsun.common.tiles.artificial_sun.TileEntityArtificialSunCasing;
-import com.hamburger0abcde.mekanismsun.common.tiles.artificial_sun.TileEntityArtificialSunPort;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.TileEntityAdvanceInductionCell;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunCasing;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunPort;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityTransmutator;
@@ -112,6 +113,12 @@ public class MSTileEntityTypes {
         return transporterBuilder(block, factory).build();
     }
 
+    private static TileEntityTypeRegistryObject<TileEntityAdvanceThermodynamicConductor> registerConductor(BlockRegistryObject<?, ?> block) {
+        return transmitterBuilder(block, TileEntityAdvanceThermodynamicConductor::new)
+                .with(Capabilities.HEAT, CapabilityTileEntity.HEAT_HANDLER_PROVIDER)
+                .build();
+    }
+
     private static <BE extends TileEntityAdvanceLogisticalTransporterBase> BlockEntityTypeBuilder<BE> transporterBuilder(
             BlockRegistryObject<?, ?> block, BlockEntityFactory<BE> factory
     ) {
@@ -173,6 +180,14 @@ public class MSTileEntityTypes {
 
     public static final TileEntityTypeRegistryObject<TileEntityAdvanceLogisticalTransporter> SUPERNOVA_LOGISTICAL_TRANSPORTER =
             registerTransporter(MSBlocks.SUPERNOVA_LOGISTICAL_TRANSPORTER, TileEntityAdvanceLogisticalTransporter::new);
+
+    public static final TileEntityTypeRegistryObject<TileEntityAdvanceThermodynamicConductor> SUPERNOVA_THERMODYNAMIC_CONDUCTOR =
+            registerConductor(MSBlocks.SUPERNOVA_THERMODYNAMIC_CONDUCTOR);
+
+    public static final TileEntityTypeRegistryObject<TileEntityAdvanceInductionCell> SUPERNOVA_INDUCTION_CELL =
+            TILE_ENTITY_TYPES.builder(MSBlocks.SUPERNOVA_INDUCTION_CELL,
+                    (pos, state) -> new TileEntityAdvanceInductionCell(MSBlocks.SUPERNOVA_INDUCTION_CELL, pos, state))
+                    .build();
 
     @FunctionalInterface
     private interface BlockEntityFactory<BE extends BlockEntity> {

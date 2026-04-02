@@ -2,8 +2,8 @@ package com.hamburger0abcde.mekanismsun.common.multiblock.artificial_sun;
 
 import com.hamburger0abcde.mekanismsun.common.config.MSConfig;
 import com.hamburger0abcde.mekanismsun.common.registries.MSChemicals;
-import com.hamburger0abcde.mekanismsun.common.tiles.artificial_sun.TileEntityArtificialSunCasing;
-import com.hamburger0abcde.mekanismsun.common.tiles.artificial_sun.TileEntityArtificialSunPort;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunCasing;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunPort;
 import mekanism.api.Action;
 import mekanism.api.AutomationType;
 import mekanism.api.SerializationConstants;

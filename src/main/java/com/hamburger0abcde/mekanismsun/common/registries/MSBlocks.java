@@ -8,23 +8,15 @@ import com.hamburger0abcde.mekanismsun.common.block.attribute.MSAttributeTier;
 import com.hamburger0abcde.mekanismsun.common.block.basic.BlockAdvanceBin;
 import com.hamburger0abcde.mekanismsun.common.block.basic.BlockAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.common.block.basic.BlockAdvanceFluidTank;
-import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockBin;
-import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockChemicalTank;
-import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockEnergyCube;
-import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockFluidTank;
-import com.hamburger0abcde.mekanismsun.common.item.block.transmitter.MSItemBlockLogisticalTransporter;
-import com.hamburger0abcde.mekanismsun.common.item.block.transmitter.MSItemBlockMechanicalPipe;
-import com.hamburger0abcde.mekanismsun.common.item.block.transmitter.MSItemBlockPressurizedTube;
-import com.hamburger0abcde.mekanismsun.common.item.block.transmitter.MSItemBlockUniversalCable;
+import com.hamburger0abcde.mekanismsun.common.item.block.*;
+import com.hamburger0abcde.mekanismsun.common.item.block.transmitter.*;
 import com.hamburger0abcde.mekanismsun.common.recipes.MSInputRecipeCache;
 import com.hamburger0abcde.mekanismsun.common.recipes.MSRecipeType;
 import com.hamburger0abcde.mekanismsun.common.tiers.IAdvancedTier;
-import com.hamburger0abcde.mekanismsun.common.tiers.storage.AdvanceBinTier;
-import com.hamburger0abcde.mekanismsun.common.tiers.storage.AdvanceChemicalTankTier;
-import com.hamburger0abcde.mekanismsun.common.tiers.storage.AdvanceEnergyCubeTier;
-import com.hamburger0abcde.mekanismsun.common.tiers.storage.AdvanceFluidTankTier;
-import com.hamburger0abcde.mekanismsun.common.tiles.artificial_sun.TileEntityArtificialSunCasing;
-import com.hamburger0abcde.mekanismsun.common.tiles.artificial_sun.TileEntityArtificialSunPort;
+import com.hamburger0abcde.mekanismsun.common.tiers.storage.*;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.TileEntityAdvanceInductionCell;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunCasing;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunPort;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityTransmutator;
@@ -32,10 +24,7 @@ import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceBin
 import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceChemicalTank;
 import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceFluidTank;
-import com.hamburger0abcde.mekanismsun.common.tiles.transmitter.TileEntityAdvanceLogisticalTransporter;
-import com.hamburger0abcde.mekanismsun.common.tiles.transmitter.TileEntityAdvanceMechanicalPipe;
-import com.hamburger0abcde.mekanismsun.common.tiles.transmitter.TileEntityAdvancePressurizedTube;
-import com.hamburger0abcde.mekanismsun.common.tiles.transmitter.TileEntityAdvanceUniversalCable;
+import com.hamburger0abcde.mekanismsun.common.tiles.transmitter.*;
 import com.hamburger0abcde.mekanismsun.common.utils.MSAttachedSideConfig;
 import com.hamburger0abcde.mekanismsun.common.world.MSOreType;
 import mekanism.common.attachments.component.AttachedEjector;
@@ -47,6 +36,7 @@ import mekanism.common.attachments.containers.item.ItemSlotsBuilder;
 import mekanism.common.block.BlockOre;
 import mekanism.common.block.interfaces.IHasDescription;
 import mekanism.common.block.prefab.BlockBasicMultiblock;
+import mekanism.common.block.prefab.BlockTile;
 import mekanism.common.block.prefab.BlockTile.BlockTileModel;
 import mekanism.common.block.transmitter.BlockLargeTransmitter;
 import mekanism.common.block.transmitter.BlockSmallTransmitter;
@@ -202,6 +192,20 @@ public class MSBlocks {
                 MSItemBlockLogisticalTransporter::new);
     }
 
+    private static BlockRegistryObject<BlockSmallTransmitter<TileEntityAdvanceThermodynamicConductor>,
+            MSItemBlockThermodynamicConductor> registerThermodynamicConductor(String nameTier,
+                                                                              BlockTypeTile<TileEntityAdvanceThermodynamicConductor> type) {
+        return registerTieredBlock(nameTier + "_thermodynamic_conductor", () -> new BlockSmallTransmitter<>(type),
+                MSItemBlockThermodynamicConductor::new);
+    }
+
+    private static BlockRegistryObject<BlockTile<TileEntityAdvanceInductionCell, BlockTypeTile<TileEntityAdvanceInductionCell>>,
+            MSItemBlockInductionCell> registerInductionCell(BlockTypeTile<TileEntityAdvanceInductionCell> type) {
+        AdvanceInductionCellTier tier = (AdvanceInductionCellTier) Objects.requireNonNull(type.get(MSAttributeTier.class)).tier();
+        return registerTieredBlock(tier, "_induction_cell", color ->
+                new BlockTile<>(type, properties -> properties.mapColor(color)), MSItemBlockInductionCell::new);
+    }
+
     //TODO: recipes
 
     public static final BlockRegistryObject<BlockTileModel<TileEntityAlloyer, Machine<TileEntityAlloyer>>,
@@ -295,4 +299,10 @@ public class MSBlocks {
 
     public static final BlockRegistryObject<BlockLargeTransmitter<TileEntityAdvanceLogisticalTransporter>, MSItemBlockLogisticalTransporter>
             SUPERNOVA_LOGISTICAL_TRANSPORTER = registerLogisticalTransporter("supernova", MSBlockTypes.SUPERNOVA_LOGISTICAL_TRANSPORTER);
+
+    public static final BlockRegistryObject<BlockSmallTransmitter<TileEntityAdvanceThermodynamicConductor>, MSItemBlockThermodynamicConductor>
+            SUPERNOVA_THERMODYNAMIC_CONDUCTOR = registerThermodynamicConductor("supernova", MSBlockTypes.SUPERNOVA_THERMODYNAMIC_CONDUCTOR);
+
+    public static final BlockRegistryObject<BlockTile<TileEntityAdvanceInductionCell, BlockTypeTile<TileEntityAdvanceInductionCell>>,
+            MSItemBlockInductionCell> SUPERNOVA_INDUCTION_CELL = registerInductionCell(MSBlockTypes.SUPERNOVA_INDUCTION_CELL);
 }

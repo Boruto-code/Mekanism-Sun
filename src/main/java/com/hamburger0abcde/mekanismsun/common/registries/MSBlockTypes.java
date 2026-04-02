@@ -3,12 +3,10 @@ package com.hamburger0abcde.mekanismsun.common.registries;
 import com.hamburger0abcde.mekanismsun.common.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.common.block.attribute.MSAttributeTier;
 import com.hamburger0abcde.mekanismsun.common.block.attribute.MSAttributeUpgradeable;
-import com.hamburger0abcde.mekanismsun.common.tiers.storage.AdvanceBinTier;
-import com.hamburger0abcde.mekanismsun.common.tiers.storage.AdvanceChemicalTankTier;
-import com.hamburger0abcde.mekanismsun.common.tiers.storage.AdvanceEnergyCubeTier;
-import com.hamburger0abcde.mekanismsun.common.tiers.storage.AdvanceFluidTankTier;
-import com.hamburger0abcde.mekanismsun.common.tiles.artificial_sun.TileEntityArtificialSunCasing;
-import com.hamburger0abcde.mekanismsun.common.tiles.artificial_sun.TileEntityArtificialSunPort;
+import com.hamburger0abcde.mekanismsun.common.tiers.storage.*;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.TileEntityAdvanceInductionCell;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunCasing;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunPort;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityTransmutator;
@@ -30,10 +28,7 @@ import mekanism.common.lib.transmitter.TransmissionType;
 import mekanism.common.registration.impl.BlockRegistryObject;
 import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
 import mekanism.common.registries.MekanismSounds;
-import mekanism.common.tier.CableTier;
-import mekanism.common.tier.PipeTier;
-import mekanism.common.tier.TransporterTier;
-import mekanism.common.tier.TubeTier;
+import mekanism.common.tier.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 import java.util.function.Supplier;
@@ -124,6 +119,22 @@ public class MSBlockTypes {
         return createTransmitter(tier, tile, MekanismLang.DESCRIPTION_TELEPORTER);
     }
 
+    private static BlockTypeTile<TileEntityAdvanceThermodynamicConductor> createConductor(
+            ConductorTier tier, Supplier<TileEntityTypeRegistryObject<TileEntityAdvanceThermodynamicConductor>> tile
+    ) {
+        return createTransmitter(tier, tile, MekanismLang.DESCRIPTION_CONDUCTOR);
+    }
+
+    private static <TILE extends TileEntityAdvanceInductionCell> BlockTypeTile<TILE> createInductionCell(
+            AdvanceInductionCellTier tier, Supplier<TileEntityTypeRegistryObject<TILE>> tile
+    ) {
+        return BlockTypeTile.BlockTileBuilder.createBlock(tile, MekanismLang.DESCRIPTION_INDUCTION_CELL)
+                .withEnergyConfig(tier::getMaxEnergy)
+                .with(new MSAttributeTier<>(tier))
+                .internalMultiblock()
+                .build();
+    }
+
     public static final Machine<TileEntityAlloyer> ALLOYER = Machine.MachineBuilder
             .createMachine(() -> MSTileEntityTypes.ALLOYER, MekanismSunLang.DESCRIPTION_ALLOYER)
             .withGui(() -> MSContainerTypes.ALLOYER)
@@ -195,4 +206,10 @@ public class MSBlockTypes {
 
     public static final BlockTypeTile<TileEntityAdvanceLogisticalTransporter> SUPERNOVA_LOGISTICAL_TRANSPORTER =
             createTransporter(TransporterTier.BASIC, () -> MSTileEntityTypes.SUPERNOVA_LOGISTICAL_TRANSPORTER);
+
+    public static final BlockTypeTile<TileEntityAdvanceThermodynamicConductor> SUPERNOVA_THERMODYNAMIC_CONDUCTOR =
+            createConductor(ConductorTier.BASIC, () -> MSTileEntityTypes.SUPERNOVA_THERMODYNAMIC_CONDUCTOR);
+
+    public static final BlockTypeTile<TileEntityAdvanceInductionCell> SUPERNOVA_INDUCTION_CELL =
+            createInductionCell(AdvanceInductionCellTier.SUPERNOVA, () -> MSTileEntityTypes.SUPERNOVA_INDUCTION_CELL);
 }

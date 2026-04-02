@@ -1,4 +1,4 @@
-package com.hamburger0abcde.mekanismsun.common.tiles.artificial_sun;
+package com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun;
 
 import com.hamburger0abcde.mekanismsun.common.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.common.registries.MSBlocks;

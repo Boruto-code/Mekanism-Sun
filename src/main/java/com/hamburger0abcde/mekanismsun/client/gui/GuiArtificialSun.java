@@ -5,7 +5,7 @@ import com.hamburger0abcde.mekanismsun.client.recipe_viewer.type.MSRecipeViewerR
 import com.hamburger0abcde.mekanismsun.common.config.MSConfig;
 import com.hamburger0abcde.mekanismsun.common.multiblock.artificial_sun.ArtificialSunMultiblockData;
 import com.hamburger0abcde.mekanismsun.common.network.to_server.PacketMSGuiInteract;
-import com.hamburger0abcde.mekanismsun.common.tiles.artificial_sun.TileEntityArtificialSunCasing;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunCasing;
 import mekanism.api.math.MathUtils;
 import mekanism.client.gui.GuiMekanismTile;
 import mekanism.client.gui.element.GuiInnerScreen;

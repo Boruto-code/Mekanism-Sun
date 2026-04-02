@@ -1,0 +1,9 @@
+{
+  "parent": "mekanism:block/transmitter/small/small",
+  "textures": {
+    "side": "mekanismsun:block/models/multipart/supernova_thermodynamic_conductor_vertical",
+    "center_down": "mekanismsun:block/models/multipart/supernova_thermodynamic_conductor",
+    "side_opaque": "mekanismsun:block/models/multipart/opaque/supernova_thermodynamic_conductor_vertical",
+    "center_opaque": "mekanismsun:block/models/multipart/supernova_thermodynamic_conductor"
+  }
+}

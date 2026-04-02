@@ -1,6 +1,7 @@
 package com.hamburger0abcde.mekanismsun.client;
 
 import com.hamburger0abcde.mekanismsun.MekanismSun;
+import com.hamburger0abcde.mekanismsun.client.render.transmitter.RenderAdvanceThermodynamicConductor;
 import com.hamburger0abcde.mekanismsun.common.block.attribute.MSAttribute;
 import com.hamburger0abcde.mekanismsun.client.gui.*;
 import com.hamburger0abcde.mekanismsun.client.model.AdvanceEnergyCubeModelLoader;
@@ -23,6 +24,8 @@ import mekanism.client.ClientRegistrationUtil;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.client.render.RenderPropertiesProvider;
 import mekanism.client.render.item.TransmitterTypeDecorator;
+import mekanism.client.render.transmitter.RenderLogisticalTransporter;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.EventPriority;
@@ -65,6 +68,7 @@ public class MSClientRegistration {
         ClientRegistrationUtil.bindTileEntityRenderer(event, RenderAdvanceUniversalCable::new, MSTileEntityTypes.SUPERNOVA_UNIVERSAL_CABLE);
         ClientRegistrationUtil.bindTileEntityRenderer(event, RenderAdvanceMechanicalPipe::new, MSTileEntityTypes.SUPERNOVA_MECHANICAL_PIPE);
         ClientRegistrationUtil.bindTileEntityRenderer(event, RenderAdvancePressurizedTube::new, MSTileEntityTypes.SUPERNOVA_PRESSURIZED_TUBE);
+        ClientRegistrationUtil.bindTileEntityRenderer(event, RenderAdvanceThermodynamicConductor::new, MSTileEntityTypes.SUPERNOVA_THERMODYNAMIC_CONDUCTOR);
     }
 
     @SubscribeEvent
@@ -119,7 +123,8 @@ public class MSClientRegistration {
         TransmitterTypeDecorator.registerDecorators(
                 event,
                 MSBlocks.SUPERNOVA_UNIVERSAL_CABLE,
-                MSBlocks.SUPERNOVA_PRESSURIZED_TUBE
+                MSBlocks.SUPERNOVA_PRESSURIZED_TUBE,
+                MSBlocks.SUPERNOVA_THERMODYNAMIC_CONDUCTOR
         );
     }
 
