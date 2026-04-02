@@ -6,16 +6,12 @@ import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockBin;
 import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockChemicalTank;
 import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockEnergyCube;
 import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockFluidTank;
-import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.TileEntityAdvanceInductionCell;
+import com.hamburger0abcde.mekanismsun.common.tiles.storage.*;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunPort;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityTransmutator;
-import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceBin;
-import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceChemicalTank;
-import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceEnergyCube;
-import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceFluidTank;
 import com.hamburger0abcde.mekanismsun.common.tiles.transmitter.*;
 import mekanism.api.functions.ConstantPredicates;
 import mekanism.common.Mekanism;
@@ -187,6 +183,11 @@ public class MSTileEntityTypes {
     public static final TileEntityTypeRegistryObject<TileEntityAdvanceInductionCell> SUPERNOVA_INDUCTION_CELL =
             TILE_ENTITY_TYPES.builder(MSBlocks.SUPERNOVA_INDUCTION_CELL,
                     (pos, state) -> new TileEntityAdvanceInductionCell(MSBlocks.SUPERNOVA_INDUCTION_CELL, pos, state))
+                    .build();
+
+    public static final TileEntityTypeRegistryObject<TileEntityAdvanceInductionProvider> SUPERNOVA_INDUCTION_PROVIDER =
+            TILE_ENTITY_TYPES.builder(MSBlocks.SUPERNOVA_INDUCTION_PROVIDER,
+                    (pos, state) -> new TileEntityAdvanceInductionProvider(MSBlocks.SUPERNOVA_INDUCTION_PROVIDER, pos, state))
                     .build();
 
     @FunctionalInterface

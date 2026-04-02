@@ -4,16 +4,12 @@ import com.hamburger0abcde.mekanismsun.common.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.common.block.attribute.MSAttributeTier;
 import com.hamburger0abcde.mekanismsun.common.block.attribute.MSAttributeUpgradeable;
 import com.hamburger0abcde.mekanismsun.common.tiers.storage.*;
-import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.TileEntityAdvanceInductionCell;
+import com.hamburger0abcde.mekanismsun.common.tiles.storage.*;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunPort;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityTransmutator;
-import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceBin;
-import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceChemicalTank;
-import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceEnergyCube;
-import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceFluidTank;
 import com.hamburger0abcde.mekanismsun.common.tiles.transmitter.*;
 import mekanism.api.Upgrade;
 import mekanism.api.text.ILangEntry;
@@ -135,6 +131,15 @@ public class MSBlockTypes {
                 .build();
     }
 
+    private static <TILE extends TileEntityAdvanceInductionProvider> BlockTypeTile<TILE> createInductionProvider(
+            AdvanceInductionProviderTier tier, Supplier<TileEntityTypeRegistryObject<TILE>> tile
+    ) {
+        return BlockTypeTile.BlockTileBuilder.createBlock(tile, MekanismLang.DESCRIPTION_INDUCTION_PROVIDER)
+                .with(new MSAttributeTier<>(tier))
+                .internalMultiblock()
+                .build();
+    }
+
     public static final Machine<TileEntityAlloyer> ALLOYER = Machine.MachineBuilder
             .createMachine(() -> MSTileEntityTypes.ALLOYER, MekanismSunLang.DESCRIPTION_ALLOYER)
             .withGui(() -> MSContainerTypes.ALLOYER)
@@ -212,4 +217,7 @@ public class MSBlockTypes {
 
     public static final BlockTypeTile<TileEntityAdvanceInductionCell> SUPERNOVA_INDUCTION_CELL =
             createInductionCell(AdvanceInductionCellTier.SUPERNOVA, () -> MSTileEntityTypes.SUPERNOVA_INDUCTION_CELL);
+
+    public static final BlockTypeTile<TileEntityAdvanceInductionProvider> SUPERNOVA_INDUCTION_PROVIDER =
+            createInductionProvider(AdvanceInductionProviderTier.SUPERNOVA, () -> MSTileEntityTypes.SUPERNOVA_INDUCTION_PROVIDER);
 }

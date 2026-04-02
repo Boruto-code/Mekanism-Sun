@@ -14,16 +14,12 @@ import com.hamburger0abcde.mekanismsun.common.recipes.MSInputRecipeCache;
 import com.hamburger0abcde.mekanismsun.common.recipes.MSRecipeType;
 import com.hamburger0abcde.mekanismsun.common.tiers.IAdvancedTier;
 import com.hamburger0abcde.mekanismsun.common.tiers.storage.*;
-import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.TileEntityAdvanceInductionCell;
+import com.hamburger0abcde.mekanismsun.common.tiles.storage.*;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunPort;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityTransmutator;
-import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceBin;
-import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceChemicalTank;
-import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceEnergyCube;
-import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceFluidTank;
 import com.hamburger0abcde.mekanismsun.common.tiles.transmitter.*;
 import com.hamburger0abcde.mekanismsun.common.utils.MSAttachedSideConfig;
 import com.hamburger0abcde.mekanismsun.common.world.MSOreType;
@@ -206,6 +202,13 @@ public class MSBlocks {
                 new BlockTile<>(type, properties -> properties.mapColor(color)), MSItemBlockInductionCell::new);
     }
 
+    private static BlockRegistryObject<BlockTile<TileEntityAdvanceInductionProvider, BlockTypeTile<TileEntityAdvanceInductionProvider>>,
+            MSItemBlockInductionProvider> registerInductionProvider(BlockTypeTile<TileEntityAdvanceInductionProvider> type) {
+        AdvanceInductionProviderTier tier = (AdvanceInductionProviderTier) Objects.requireNonNull(type.get(MSAttributeTier.class)).tier();
+        return registerTieredBlock(tier, "_induction_provider", color ->
+                new BlockTile<>(type, properties -> properties.mapColor(color)), MSItemBlockInductionProvider::new);
+    }
+
     //TODO: recipes
 
     public static final BlockRegistryObject<BlockTileModel<TileEntityAlloyer, Machine<TileEntityAlloyer>>,
@@ -305,4 +308,7 @@ public class MSBlocks {
 
     public static final BlockRegistryObject<BlockTile<TileEntityAdvanceInductionCell, BlockTypeTile<TileEntityAdvanceInductionCell>>,
             MSItemBlockInductionCell> SUPERNOVA_INDUCTION_CELL = registerInductionCell(MSBlockTypes.SUPERNOVA_INDUCTION_CELL);
+
+    public static final BlockRegistryObject<BlockTile<TileEntityAdvanceInductionProvider, BlockTypeTile<TileEntityAdvanceInductionProvider>>,
+            MSItemBlockInductionProvider> SUPERNOVA_INDUCTION_PROVIDER = registerInductionProvider(MSBlockTypes.SUPERNOVA_INDUCTION_PROVIDER);
 }
