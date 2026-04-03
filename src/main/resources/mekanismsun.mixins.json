@@ -6,7 +6,6 @@
   "refmap": "mekanismsun.refmap.json",
   "mixins": [
     "LogisticalTransporterBaseMixin",
-    "MatrixValidatorMixin",
     "MekanismBlocksMixin",
     "MekanismRecipeTypeMixin",
     "OreTypeMixin",
