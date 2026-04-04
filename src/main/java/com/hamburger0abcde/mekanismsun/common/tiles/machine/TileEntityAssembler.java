@@ -1,10 +1,10 @@
 package com.hamburger0abcde.mekanismsun.common.tiles.machine;
 
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.type.MSRecipeViewerRecipeTypes;
-import com.hamburger0abcde.mekanismsun.common.recipes.ItemItemChemicalCachedRecipe;
-import com.hamburger0abcde.mekanismsun.common.recipes.BasicItemItemChemicalRecipe;
 import com.hamburger0abcde.mekanismsun.common.recipes.MSInputRecipeCache;
+import com.hamburger0abcde.mekanismsun.common.recipes.BasicItemItemChemicalRecipe;
 import com.hamburger0abcde.mekanismsun.common.recipes.MSRecipeType;
+import com.hamburger0abcde.mekanismsun.common.recipes.ItemItemChemicalCachedRecipe;
 import com.hamburger0abcde.mekanismsun.common.recipes.vanilla_input.ItemItemChemicalRecipeInput;
 import com.hamburger0abcde.mekanismsun.common.registries.MSBlocks;
 import lombok.Getter;
@@ -28,7 +28,7 @@ import mekanism.common.capabilities.holder.energy.EnergyContainerHelper;
 import mekanism.common.capabilities.holder.energy.IEnergyContainerHolder;
 import mekanism.common.capabilities.holder.slot.IInventorySlotHolder;
 import mekanism.common.capabilities.holder.slot.InventorySlotHelper;
-import mekanism.common.integration.computer.SpecialComputerMethodWrapper.*;
+import mekanism.common.integration.computer.SpecialComputerMethodWrapper;
 import mekanism.common.integration.computer.annotation.ComputerMethod;
 import mekanism.common.integration.computer.annotation.WrappingComputerMethod;
 import mekanism.common.integration.computer.computercraft.ComputerConstants;
@@ -37,7 +37,7 @@ import mekanism.common.inventory.container.sync.SyncableLong;
 import mekanism.common.inventory.slot.EnergyInventorySlot;
 import mekanism.common.inventory.slot.InputInventorySlot;
 import mekanism.common.inventory.slot.OutputInventorySlot;
-import mekanism.common.inventory.warning.WarningTracker.WarningType;
+import mekanism.common.inventory.warning.WarningTracker;
 import mekanism.common.lib.transmitter.TransmissionType;
 import mekanism.common.recipe.IMekanismRecipeTypeProvider;
 import mekanism.common.recipe.lookup.ITripleRecipeLookupHandler;
@@ -51,11 +51,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class TileEntityAlloyer extends TileEntityProgressMachine<BasicItemItemChemicalRecipe>
+public class TileEntityAssembler extends TileEntityProgressMachine<BasicItemItemChemicalRecipe>
         implements ITripleRecipeLookupHandler<ItemStack, ItemStack, ChemicalStack, BasicItemItemChemicalRecipe,
             MSInputRecipeCache.ItemItemChemical<BasicItemItemChemicalRecipe>> {
 
-    public static final RecipeError NOT_ENOUGH_ITEM_INPUT_ERROR = RecipeError.create();
+    public static final RecipeError NOT_ENOUGH_ITEM_INPUT_ERROR =  RecipeError.create();
     public static final RecipeError NOT_ENOUGH_EXTRA_INPUT_ERROR = RecipeError.create();
     public static final RecipeError NOT_ENOUGH_GAS_INPUT_ERROR = RecipeError.create();
     public static final RecipeError NOT_ENOUGH_SPACE_ITEM_OUTPUT_ERROR = RecipeError.create();
@@ -71,7 +71,7 @@ public class TileEntityAlloyer extends TileEntityProgressMachine<BasicItemItemCh
     private static final int BASE_DURATION = 100;
     public static final long MAX_GAS = 16_000;
 
-    @WrappingComputerMethod(wrapper = ComputerChemicalTankWrapper.class, methodNames = {"getInputChemical",
+    @WrappingComputerMethod(wrapper = SpecialComputerMethodWrapper.ComputerChemicalTankWrapper.class, methodNames = {"getInputChemical",
             "getInputChemicalCapacity", "getInputChemicalNeeded", "getInputChemicalFilledPercentage"}, docPlaceholder = "chemical input")
     public IChemicalTank inputChemicalTank;
     private final IOutputHandler<@NotNull ItemStack> outputHandler;
@@ -82,22 +82,22 @@ public class TileEntityAlloyer extends TileEntityProgressMachine<BasicItemItemCh
     private long clientEnergyUsed = 0L;
 
     @Getter
-    private MachineEnergyContainer<TileEntityAlloyer> energyContainer;
-    @WrappingComputerMethod(wrapper = ComputerIInventorySlotWrapper.class, methodNames = "getInputItem",
+    private MachineEnergyContainer<TileEntityAssembler> energyContainer;
+    @WrappingComputerMethod(wrapper = SpecialComputerMethodWrapper.ComputerIInventorySlotWrapper.class, methodNames = "getInputItem",
             docPlaceholder = "item input slot")
     InputInventorySlot mainInputSlot;
-    @WrappingComputerMethod(wrapper = ComputerIInventorySlotWrapper.class, methodNames = "getExtraInputItem",
+    @WrappingComputerMethod(wrapper = SpecialComputerMethodWrapper.ComputerIInventorySlotWrapper.class, methodNames = "getExtraInputItem",
             docPlaceholder = "extra item input slot")
     InputInventorySlot extraInputSlot;
-    @WrappingComputerMethod(wrapper = ComputerIInventorySlotWrapper.class, methodNames = "getOutputItem",
+    @WrappingComputerMethod(wrapper = SpecialComputerMethodWrapper.ComputerIInventorySlotWrapper.class, methodNames = "getOutputItem",
             docPlaceholder = "item output slot")
     OutputInventorySlot outputSlot;
-    @WrappingComputerMethod(wrapper = ComputerIInventorySlotWrapper.class, methodNames = "getEnergyItem",
+    @WrappingComputerMethod(wrapper = SpecialComputerMethodWrapper.ComputerIInventorySlotWrapper.class, methodNames = "getEnergyItem",
             docPlaceholder = "energy slot")
     EnergyInventorySlot energySlot;
 
-    public TileEntityAlloyer(BlockPos pos, BlockState state) {
-        super(MSBlocks.ALLOYER, pos, state, TRACKED_ERROR_TYPES, BASE_DURATION);
+    public TileEntityAssembler(BlockPos pos, BlockState state) {
+        super(MSBlocks.ASSEMBLER, pos, state, TRACKED_ERROR_TYPES, BASE_DURATION);
         configComponent.setupItemIOExtraConfig(mainInputSlot, outputSlot, extraInputSlot, energySlot);
         configComponent.setupInputConfig(TransmissionType.CHEMICAL, inputChemicalTank);
         configComponent.setupInputConfig(TransmissionType.ENERGY, energyContainer);
@@ -132,7 +132,6 @@ public class TileEntityAlloyer extends TileEntityProgressMachine<BasicItemItemCh
         EnergyContainerHelper builder = EnergyContainerHelper.forSideWithConfig(this);
         energyContainer = MachineEnergyContainer.input(this, listener);
         builder.addContainer(energyContainer);
-
         return builder.build();
     }
 
@@ -142,15 +141,15 @@ public class TileEntityAlloyer extends TileEntityProgressMachine<BasicItemItemCh
                                                        IContentsListener unpause) {
         InventorySlotHelper builder = InventorySlotHelper.forSideWithConfig(this);
         builder.addSlot(mainInputSlot = InputInventorySlot.at(item -> containsRecipeABC(item, extraInputSlot.getStack(),
-                                inputChemicalTank.getStack()), this::containsRecipeA, recipeCacheListener, 64, 17))
-                .tracksWarnings(slot -> slot.warning(WarningType.NO_MATCHING_RECIPE,
+                        inputChemicalTank.getStack()), this::containsRecipeA, recipeCacheListener, 64, 17))
+                .tracksWarnings(slot -> slot.warning(WarningTracker.WarningType.NO_MATCHING_RECIPE,
                         getWarningCheck(NOT_ENOUGH_ITEM_INPUT_ERROR)));
         builder.addSlot(extraInputSlot = InputInventorySlot.at(item -> containsRecipeBAC(mainInputSlot.getStack(),
-                        item, inputChemicalTank.getStack()), this::containsRecipeB, recipeCacheListener, 64, 53)
-        ).tracksWarnings(slot -> slot.warning(WarningType.NO_MATCHING_RECIPE,
+                item, inputChemicalTank.getStack()), this::containsRecipeB, recipeCacheListener, 64, 53)
+        ).tracksWarnings(slot -> slot.warning(WarningTracker.WarningType.NO_MATCHING_RECIPE,
                 getWarningCheck(RecipeError.NOT_ENOUGH_SECONDARY_INPUT)));
         builder.addSlot(outputSlot = OutputInventorySlot.at(listener, 116, 35))
-                .tracksWarnings(slot -> slot.warning(WarningType.NO_SPACE_IN_OUTPUT,
+                .tracksWarnings(slot -> slot.warning(WarningTracker.WarningType.NO_SPACE_IN_OUTPUT,
                         getWarningCheck(NOT_ENOUGH_SPACE_ITEM_OUTPUT_ERROR)));
         builder.addSlot(energySlot = EnergyInventorySlot.fillOrConvert(energyContainer, this::getLevel, listener, 141, 35));
         return builder.build();
@@ -167,8 +166,8 @@ public class TileEntityAlloyer extends TileEntityProgressMachine<BasicItemItemCh
     @NotNull
     @Override
     public IMekanismRecipeTypeProvider<ItemItemChemicalRecipeInput, BasicItemItemChemicalRecipe,
-                MSInputRecipeCache.ItemItemChemical<BasicItemItemChemicalRecipe>> getRecipeType() {
-        return MSRecipeType.ALLOYING;
+            MSInputRecipeCache.ItemItemChemical<BasicItemItemChemicalRecipe>> getRecipeType() {
+        return MSRecipeType.ASSEMBLE;
     }
 
     @Nullable
@@ -198,7 +197,7 @@ public class TileEntityAlloyer extends TileEntityProgressMachine<BasicItemItemCh
 
     @Override
     public @Nullable IRecipeViewerRecipeType<BasicItemItemChemicalRecipe> recipeViewerType() {
-        return MSRecipeViewerRecipeTypes.ALLOYING;
+        return MSRecipeViewerRecipeTypes.ASSEMBLE;
     }
 
     @Override

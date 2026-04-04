@@ -1,0 +1,18 @@
+{
+  "type": "mekanismsun:assemble",
+  "main_input": {
+    "tag": "c:circuits/ultimate"
+  },
+  "extra_input": {
+    "count": 4,
+    "tag": "mekanismsun:alloys/supernova"
+  },
+  "chemical_input": {
+    "amount": 100,
+    "chemical": "mekanismsun:helium"
+  },
+  "output": {
+    "count": 1,
+    "id": "mekanismsun:supernova_control_circuit"
+  }
+}

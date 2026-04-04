@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "mekanism:steel_casing"
+    },
+    "P": {
+      "item": "mekanism:induction_casing"
+    }
+  },
+  "pattern": [
+    " S ",
+    "SPS",
+    " S "
+  ],
+  "result": {
+    "count": 1,
+    "id": "mekanismsun:advance_induction_casing"
+  }
+}

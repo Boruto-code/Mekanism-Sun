@@ -1,0 +1,18 @@
+{
+  "type": "mekanismsun:assemble",
+  "main_input": {
+    "count": 8,
+    "item": "mekanism:ultimate_logistical_transporter"
+  },
+  "extra_input": {
+    "tag": "mekanismsun:alloys/supernova"
+  },
+  "chemical_input": {
+    "amount": 10,
+    "chemical": "mekanismsun:helium"
+  },
+  "output": {
+    "count": 8,
+    "id": "mekanismsun:supernova_logistical_transporter"
+  }
+}

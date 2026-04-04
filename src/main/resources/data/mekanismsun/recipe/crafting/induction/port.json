@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "item": "mekanismsun:advance_induction_casing"
+    },
+    "T": {
+      "tag": "c:circuits/supernova"
+    }
+  },
+  "pattern": [
+    " T ",
+    "TCT",
+    " T "
+  ],
+  "result": {
+    "count": 1,
+    "id": "mekanismsun:advance_induction_port"
+  }
+}

@@ -8,9 +8,11 @@
   "item.mekanismsun.silver_nugget": "Silver Nugget",
   "item.mekanismsun.electrum_nugget": "Electrum Nugget",
   "item.mekanismsun.supernova_alloy": "Supernova Alloy",
+  "item.mekanismsun.supernova_control_circuit": "Supernova Control Circuit",
   "block.mekanismsun.alloyer": "Alloyer",
   "block.mekanismsun.transmutator": "Transmutator",
   "block.mekanismsun.electric_neutron_activator": "Electric Neutron Activator",
+  "block.mekanismsun.assembler": "Assembler",
   "block.mekanismsun.artificial_sun_casing": "Artificial Sun Casing",
   "block.mekanismsun.artificial_sun_port": "Artificial Sun Port",
   "block.mekanismsun.silver_ore": "Silver Ore",
@@ -33,6 +35,7 @@
   "container.mekanismsun.alloyer": "Alloyer",
   "container.mekanismsun.transmutator": "Transmutator",
   "container.mekanismsun.electric_neutron_activator": "Electric Neutron Activator",
+  "container.mekanismsun.assembler": "Assembler",
   "container.mekanismsun.supernova_chemical_tank": "Supernova Chemical Tank",
   "container.mekanismsun.supernova_fluid_tank": "Supernova Fluid Tank",
   "container.mekanismsun.supernova_energy_cube": "Supernova Energy Cube",
@@ -54,5 +57,6 @@
   "tag.item.c.ingots.electrum": "Electrum Ingots",
   "tag.item.c.nuggets.silver": "Silver Nuggets",
   "tag.item.c.nuggets.electrum": "Electrum Nuggets",
-  "tag.item.c.ores.silver": "Silver Ores"
+  "tag.item.c.ores.silver": "Silver Ores",
+  "tag.item.mekanismsun.alloys.supernova": "Supernova Alloy"
 }

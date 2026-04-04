@@ -45,6 +45,7 @@ public class MSClientRegistration {
         ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ALLOYER, GuiAlloyer::new);
         ClientRegistrationUtil.registerElectricScreen(event, MSContainerTypes.TRANSMUTATOR);
         ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ELECTRIC_NEUTRON_ACTIVATOR, GuiElectricNeutronActivator::new);
+        ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ASSEMBLER, GuiAssembler::new);
 
         ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ADVANCE_CHEMICAL_TANK, GuiAdvanceChemicalTank::new);
         ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ADVANCE_FLUID_TANK, GuiAdvanceFluidTank::new);

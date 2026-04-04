@@ -1,6 +1,6 @@
 package com.hamburger0abcde.mekanismsun.mixins;
 
-import com.hamburger0abcde.mekanismsun.common.recipes.alloying.AlloyingRecipe;
+import com.hamburger0abcde.mekanismsun.common.recipes.BasicItemItemChemicalRecipe;
 import com.hamburger0abcde.mekanismsun.common.recipes.MSInputRecipeCache;
 import com.hamburger0abcde.mekanismsun.common.recipes.MSRecipeType;
 import mekanism.api.recipes.ItemStackToItemStackRecipe;
@@ -34,9 +34,15 @@ public class MekanismRecipeTypeMixin {
         MSRecipeType.ALLOYING = register(Mekanism.rl("alloyer"),
                 recipeType ->
                         new MSInputRecipeCache.ItemItemChemical<>(recipeType,
-                                AlloyingRecipe::getMainInput, AlloyingRecipe::getExtraInput, AlloyingRecipe::getChemicalInput));
+                                BasicItemItemChemicalRecipe::getMainInput, BasicItemItemChemicalRecipe::getExtraInput,
+                                BasicItemItemChemicalRecipe::getChemicalInput));
         MSRecipeType.TRANSMUTATION = register(Mekanism.rl("transmutation"),
                 recipeType ->
                         new InputRecipeCache.SingleItem<>(recipeType, ItemStackToItemStackRecipe::getInput));
+        MSRecipeType.ASSEMBLE = register(Mekanism.rl("assemble"),
+                recipeType ->
+                        new MSInputRecipeCache.ItemItemChemical<>(recipeType,
+                                BasicItemItemChemicalRecipe::getMainInput, BasicItemItemChemicalRecipe::getExtraInput,
+                                BasicItemItemChemicalRecipe::getChemicalInput));
     }
 }

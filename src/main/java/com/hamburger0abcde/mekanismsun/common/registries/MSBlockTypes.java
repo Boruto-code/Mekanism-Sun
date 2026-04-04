@@ -4,6 +4,7 @@ import com.hamburger0abcde.mekanismsun.common.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.common.block.attribute.MSAttributeTier;
 import com.hamburger0abcde.mekanismsun.common.block.attribute.MSAttributeUpgradeable;
 import com.hamburger0abcde.mekanismsun.common.tiers.storage.*;
+import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityAssembler;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionCasing;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionCell;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionPort;
@@ -171,6 +172,16 @@ public class MSBlockTypes {
             .withSupportedUpgrades(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING)
             .withComputerSupport("electric_neutron_activator")
             .withSideConfig(TransmissionType.CHEMICAL, TransmissionType.ENERGY)
+            .build();
+
+    public static final Machine<TileEntityAssembler> ASSEMBLER = Machine.MachineBuilder
+            .createMachine(() -> MSTileEntityTypes.ASSEMBLER, MekanismSunLang.DESCRIPTION_ASSEMBLER)
+            .withGui(() -> MSContainerTypes.ASSEMBLER)
+            .withSound(MekanismSounds.COMBINER)
+            .withEnergyConfig(MekanismConfig.usage.combiner, MekanismConfig.storage.combiner)
+            .withSupportedUpgrades(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING)
+            .withComputerSupport("assembler")
+            .withSideConfig(TransmissionType.ITEM, TransmissionType.CHEMICAL, TransmissionType.ENERGY)
             .build();
 
     public static final BlockTypeTile<TileEntityArtificialSunCasing> ARTIFICIAL_SUN_CASING = BlockTypeTile.BlockTileBuilder

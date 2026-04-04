@@ -1,0 +1,12 @@
+{
+  "parent": "mekanism:block/machine",
+  "textures": {
+    "sides": "mekanismsun:block/assembler/right",
+    "front": "mekanismsun:block/assembler/front",
+    "west": "mekanismsun:block/assembler/right",
+    "east": "mekanismsun:block/assembler/left",
+    "south": "mekanismsun:block/assembler/back",
+    "up": "mekanismsun:block/assembler/top",
+    "down": "mekanismsun:block/assembler/bottom"
+  }
+}

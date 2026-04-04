@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "mekanismsun:supernova_energy_cube"
+    },
+    "B": {
+      "item": "mekanism:ultimate_induction_cell"
+    },
+    "C": {
+      "item": "mekanism:energy_tablet"
+    }
+  },
+  "pattern": [
+    "CBC",
+    "BAB",
+    "CBC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mekanismsun:supernova_induction_cell"
+  }
+}

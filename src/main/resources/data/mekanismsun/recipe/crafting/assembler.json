@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "mekanism:steel_casing"
+    },
+    "B": {
+      "item": "mekanism:ultimate_tier_installer"
+    },
+    "C": {
+      "tag": "c:alloys/supernova"
+    }
+  },
+  "pattern": [
+    "CBC",
+    "BAB",
+    "CBC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mekanismsun:assembler"
+  }
+}

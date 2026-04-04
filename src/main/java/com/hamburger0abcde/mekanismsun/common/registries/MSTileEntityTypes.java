@@ -6,6 +6,7 @@ import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockBin;
 import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockChemicalTank;
 import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockEnergyCube;
 import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockFluidTank;
+import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityAssembler;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionCasing;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionCell;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionPort;
@@ -141,6 +142,12 @@ public class MSTileEntityTypes {
 
     public static final TileEntityTypeRegistryObject<TileEntityElectricNeutronActivator> ELECTRIC_NEUTRON_ACTIVATOR =
             TILE_ENTITY_TYPES.mekBuilder(MSBlocks.ELECTRIC_NEUTRON_ACTIVATOR, TileEntityElectricNeutronActivator::new)
+                    .clientTicker(TileEntityMekanism::tickClient)
+                    .serverTicker(TileEntityMekanism::tickServer)
+                    .withSimple(Capabilities.CONFIG_CARD).build();
+
+    public static final TileEntityTypeRegistryObject<TileEntityAssembler> ASSEMBLER =
+            TILE_ENTITY_TYPES.mekBuilder(MSBlocks.ASSEMBLER, TileEntityAssembler::new)
                     .clientTicker(TileEntityMekanism::tickClient)
                     .serverTicker(TileEntityMekanism::tickServer)
                     .withSimple(Capabilities.CONFIG_CARD).build();

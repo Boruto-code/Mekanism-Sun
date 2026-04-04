@@ -1,4 +1,4 @@
-package com.hamburger0abcde.mekanismsun.common.recipes.alloying;
+package com.hamburger0abcde.mekanismsun.common.recipes;
 
 import com.hamburger0abcde.mekanismsun.common.recipes.vanilla_input.ItemItemChemicalRecipeInput;
 import lombok.Getter;
@@ -20,7 +20,7 @@ import java.util.Objects;
 
 @Getter
 @NothingNullByDefault
-public abstract class AlloyingRecipe extends MekanismRecipe<ItemItemChemicalRecipeInput>
+public abstract class BasicItemItemChemicalRecipe extends MekanismRecipe<ItemItemChemicalRecipeInput>
         implements TriPredicate<@NotNull ItemStack, @NotNull ItemStack, @NotNull ChemicalStack> {
 
     private final ItemStackIngredient mainInput;
@@ -28,8 +28,8 @@ public abstract class AlloyingRecipe extends MekanismRecipe<ItemItemChemicalReci
     private final ChemicalStackIngredient chemicalInput;
     private final ItemStack output;
 
-    public AlloyingRecipe(ItemStackIngredient mainInput, ItemStackIngredient extraInput,
-                          ChemicalStackIngredient chemicalInput, ItemStack output) {
+    public BasicItemItemChemicalRecipe(ItemStackIngredient mainInput, ItemStackIngredient extraInput,
+                                       ChemicalStackIngredient chemicalInput, ItemStack output) {
         this.mainInput = Objects.requireNonNull(mainInput, "Main input cannot be null.");
         this.extraInput = Objects.requireNonNull(extraInput, "Secondary input cannot be null.");
         this.chemicalInput = Objects.requireNonNull(chemicalInput, "Chemical input cannot be null.");

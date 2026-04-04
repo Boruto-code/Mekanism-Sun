@@ -22,13 +22,13 @@ import org.jetbrains.annotations.NotNull;
 
 import static mekanism.client.recipe_viewer.RecipeViewerUtils.FULL_BAR;
 
-public class AlloyingRecipeCategory extends HolderRecipeCategory<BasicItemItemChemicalRecipe> {
+public class AssembleRecipeCategory extends HolderRecipeCategory<BasicItemItemChemicalRecipe> {
     private final GuiSlot input;
     private final GuiGauge<?> inputGas;
     private final GuiSlot extra;
     private final GuiSlot output;
 
-    public AlloyingRecipeCategory(IGuiHelper helper, RVRecipeTypeWrapper<?, BasicItemItemChemicalRecipe, ?> recipeType) {
+    public AssembleRecipeCategory(IGuiHelper helper, RVRecipeTypeWrapper<?, BasicItemItemChemicalRecipe, ?> recipeType) {
         super(helper, recipeType);
         addElement(new GuiUpArrow(this, 68, 38));
         input = addSlot(SlotType.INPUT, 64, 17);
@@ -41,7 +41,8 @@ public class AlloyingRecipeCategory extends HolderRecipeCategory<BasicItemItemCh
     }
 
     @Override
-    public void setRecipe(@NotNull IRecipeLayoutBuilder builder, RecipeHolder<BasicItemItemChemicalRecipe> recipe, @NotNull IFocusGroup focusGroup) {
+    public void setRecipe(@NotNull IRecipeLayoutBuilder builder, RecipeHolder<BasicItemItemChemicalRecipe> recipe,
+                          @NotNull IFocusGroup focusGroup) {
         initChemical(builder, RecipeIngredientRole.INPUT, inputGas, recipe.value().getChemicalInput().getRepresentations());
         initItem(builder, RecipeIngredientRole.INPUT, input, recipe.value().getMainInput().getRepresentations());
         initItem(builder, RecipeIngredientRole.INPUT, extra, recipe.value().getExtraInput().getRepresentations());

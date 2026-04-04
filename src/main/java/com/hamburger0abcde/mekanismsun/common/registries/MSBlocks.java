@@ -14,6 +14,7 @@ import com.hamburger0abcde.mekanismsun.common.recipes.MSInputRecipeCache;
 import com.hamburger0abcde.mekanismsun.common.recipes.MSRecipeType;
 import com.hamburger0abcde.mekanismsun.common.tiers.IAdvancedTier;
 import com.hamburger0abcde.mekanismsun.common.tiers.storage.*;
+import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityAssembler;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionCasing;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionCell;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionPort;
@@ -268,6 +269,23 @@ public class MSBlocks {
                                     .build()
                             )
                     );
+
+    public static final BlockRegistryObject<BlockTileModel<TileEntityAssembler, Machine<TileEntityAssembler>>,
+            ItemBlockTooltip<BlockTileModel<TileEntityAssembler, Machine<TileEntityAssembler>>>> ASSEMBLER = BLOCKS.register(
+                    "assembler", () -> new BlockTileModel<>(MSBlockTypes.ASSEMBLER,
+                            properties -> properties.mapColor(BlockResourceInfo.STEEL.getMapColor())),
+                    (block, properties) -> new ItemBlockTooltip<>(
+                            block, true, properties
+                            .component(MekanismDataComponents.EJECTOR, AttachedEjector.DEFAULT)
+                            .component(MekanismDataComponents.SIDE_CONFIG, MSAttachedSideConfig.ALLOYER_MACHINE)
+                    )).forItemHolder(holder -> holder
+                    .addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
+                            .addInput(MSRecipeType.ASSEMBLE, MSInputRecipeCache.ItemItemChemical::containsInputA)
+                            .addInput(MSRecipeType.ASSEMBLE, MSInputRecipeCache.ItemItemChemical::containsInputB)
+                            .addOutput().addEnergy().build()
+                    ).addAttachmentOnlyContainers(ContainerType.CHEMICAL, () -> ChemicalTanksBuilder.builder()
+                            .addBasic(TileEntityAlloyer.MAX_GAS, MSRecipeType.ASSEMBLE,
+                                    MSInputRecipeCache.ItemItemChemical::containsInputC).build()));
 
     public static final BlockRegistryObject<BlockBasicMultiblock<TileEntityArtificialSunCasing>,
             ItemBlockTooltip<BlockBasicMultiblock<TileEntityArtificialSunCasing>>> ARTIFICIAL_SUN_CASING = registerBlock(

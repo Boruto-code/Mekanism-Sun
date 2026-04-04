@@ -1,6 +1,7 @@
 package com.hamburger0abcde.mekanismsun.common.registries;
 
 import com.hamburger0abcde.mekanismsun.MekanismSun;
+import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityAssembler;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityElectricNeutronActivator;
@@ -23,6 +24,8 @@ public class MSContainerTypes {
             CONTAINER_TYPES.register(MSBlocks.TRANSMUTATOR, TileEntityTransmutator.class);
     public static final ContainerTypeRegistryObject<MekanismTileContainer<TileEntityElectricNeutronActivator>> ELECTRIC_NEUTRON_ACTIVATOR =
             CONTAINER_TYPES.register(MSBlocks.ELECTRIC_NEUTRON_ACTIVATOR, TileEntityElectricNeutronActivator.class);
+    public static final ContainerTypeRegistryObject<MekanismTileContainer<TileEntityAssembler>> ASSEMBLER =
+            CONTAINER_TYPES.register(MSBlocks.ASSEMBLER, TileEntityAssembler.class);
 
     public static final ContainerTypeRegistryObject<MekanismTileContainer<TileEntityArtificialSunCasing>> ARTIFICIAL_SUN =
             CONTAINER_TYPES.custom(MSBlocks.ARTIFICIAL_SUN_CASING, TileEntityArtificialSunCasing.class)

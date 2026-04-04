@@ -1,4 +1,4 @@
-package com.hamburger0abcde.mekanismsun.common.recipes.alloying;
+package com.hamburger0abcde.mekanismsun.common.recipes;
 
 import mekanism.api.annotations.NothingNullByDefault;
 import mekanism.api.chemical.ChemicalStack;
@@ -13,7 +13,7 @@ import java.util.Objects;
 import java.util.function.BooleanSupplier;
 
 @NothingNullByDefault
-public class AlloyerCachedRecipe extends CachedRecipe<AlloyingRecipe> {
+public class ItemItemChemicalCachedRecipe extends CachedRecipe<BasicItemItemChemicalRecipe> {
     private final IInputHandler<@NotNull ItemStack> itemInputHandler;
     private final IInputHandler<@NotNull ItemStack> extraInputHandler;
     private final IInputHandler<@NotNull ChemicalStack> chemicalInputHandler;
@@ -25,9 +25,9 @@ public class AlloyerCachedRecipe extends CachedRecipe<AlloyingRecipe> {
     @Nullable
     private ItemStack output;
 
-    public AlloyerCachedRecipe(AlloyingRecipe recipe, BooleanSupplier recheckAllErrors,
-                               IInputHandler<@NotNull ItemStack> itemInputHandler, IInputHandler<@NotNull ItemStack> extraInputHandler,
-                               IInputHandler<@NotNull ChemicalStack> chemicalInputHandler, IOutputHandler<@NotNull ItemStack> outputHandler) {
+    public ItemItemChemicalCachedRecipe(BasicItemItemChemicalRecipe recipe, BooleanSupplier recheckAllErrors,
+                                        IInputHandler<@NotNull ItemStack> itemInputHandler, IInputHandler<@NotNull ItemStack> extraInputHandler,
+                                        IInputHandler<@NotNull ChemicalStack> chemicalInputHandler, IOutputHandler<@NotNull ItemStack> outputHandler) {
         super(recipe, recheckAllErrors);
         this.itemInputHandler = Objects.requireNonNull(itemInputHandler, "Item input handler cannot be null.");
         this.extraInputHandler = Objects.requireNonNull(extraInputHandler, "Extra input handler cannot be null.");
