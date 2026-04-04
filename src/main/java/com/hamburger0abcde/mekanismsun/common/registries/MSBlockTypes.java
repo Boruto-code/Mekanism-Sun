@@ -4,6 +4,10 @@ import com.hamburger0abcde.mekanismsun.common.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.common.block.attribute.MSAttributeTier;
 import com.hamburger0abcde.mekanismsun.common.block.attribute.MSAttributeUpgradeable;
 import com.hamburger0abcde.mekanismsun.common.tiers.storage.*;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionCasing;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionCell;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionPort;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionProvider;
 import com.hamburger0abcde.mekanismsun.common.tiles.storage.*;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunPort;
@@ -183,6 +187,21 @@ public class MSBlockTypes {
             .withSound(MekanismSounds.SPS)
             .with(Attributes.ACTIVE, Attributes.COMPARATOR)
             .externalMultiblock()
+            .build();
+
+    public static final BlockTypeTile<TileEntityAdvanceInductionCasing> ADVANCE_INDUCTION_CASING = BlockTypeTile.BlockTileBuilder
+            .createBlock(() -> MSTileEntityTypes.ADVANCE_INDUCTION_CASING, MekanismLang.DESCRIPTION_INDUCTION_CASING)
+            .withGui(() -> MSContainerTypes.ADVANCE_INDUCTION_MATRIX, MekanismLang.MATRIX)
+            .with(Attributes.INVENTORY, Attributes.COMPARATOR)
+            .externalMultiblock()
+            .build();
+
+    public static final BlockTypeTile<TileEntityAdvanceInductionPort> ADVANCE_INDUCTION_PORT = BlockTypeTile.BlockTileBuilder
+            .createBlock(() -> MSTileEntityTypes.ADVANCE_INDUCTION_PORT, MekanismLang.DESCRIPTION_INDUCTION_PORT)
+            .withGui(() -> MSContainerTypes.ADVANCE_INDUCTION_MATRIX, MekanismLang.MATRIX)
+            .with(Attributes.INVENTORY, Attributes.COMPARATOR, Attributes.ACTIVE)
+            .externalMultiblock()
+            .withComputerSupport("advanceInductionPort")
             .build();
 
     public static final Machine<TileEntityAdvanceChemicalTank> SUPERNOVA_CHEMICAL_TANK =

@@ -2,7 +2,7 @@ package com.hamburger0abcde.mekanismsun.common.item.block;
 
 import com.hamburger0abcde.mekanismsun.common.block.attribute.MSAttribute;
 import com.hamburger0abcde.mekanismsun.common.tiers.storage.AdvanceInductionProviderTier;
-import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceInductionProvider;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionProvider;
 import mekanism.api.text.EnumColor;
 import mekanism.common.MekanismLang;
 import mekanism.common.block.prefab.BlockTile;

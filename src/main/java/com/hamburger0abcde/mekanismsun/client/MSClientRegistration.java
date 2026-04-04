@@ -39,6 +39,8 @@ public class MSClientRegistration {
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerScreens(RegisterMenuScreensEvent event) {
         ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ARTIFICIAL_SUN, GuiArtificialSun::new);
+        ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ADVANCE_INDUCTION_MATRIX, GuiAdvanceInductionMatrix::new);
+        ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ADVANCE_MATRIX_STATS, GuiAdvanceMatrixStats::new);
 
         ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ALLOYER, GuiAlloyer::new);
         ClientRegistrationUtil.registerElectricScreen(event, MSContainerTypes.TRANSMUTATOR);

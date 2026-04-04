@@ -5,9 +5,11 @@ import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.Ti
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityTransmutator;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionCasing;
 import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceChemicalTank;
 import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceFluidTank;
+import mekanism.common.inventory.container.tile.EmptyTileContainer;
 import mekanism.common.inventory.container.tile.MekanismTileContainer;
 import mekanism.common.registration.impl.ContainerTypeDeferredRegister;
 import mekanism.common.registration.impl.ContainerTypeRegistryObject;
@@ -25,6 +27,11 @@ public class MSContainerTypes {
     public static final ContainerTypeRegistryObject<MekanismTileContainer<TileEntityArtificialSunCasing>> ARTIFICIAL_SUN =
             CONTAINER_TYPES.custom(MSBlocks.ARTIFICIAL_SUN_CASING, TileEntityArtificialSunCasing.class)
                     .offset(0, 16).build();
+    public static final ContainerTypeRegistryObject<MekanismTileContainer<TileEntityAdvanceInductionCasing>> ADVANCE_INDUCTION_MATRIX =
+            CONTAINER_TYPES.custom("advance_induction_matrix", TileEntityAdvanceInductionCasing.class)
+                    .armorSideBar(-20, 41, 0).build();
+    public static final ContainerTypeRegistryObject<EmptyTileContainer<TileEntityAdvanceInductionCasing>> ADVANCE_MATRIX_STATS =
+            CONTAINER_TYPES.registerEmpty("advance_matrix_stats", TileEntityAdvanceInductionCasing.class);
 
     public static final ContainerTypeRegistryObject<MekanismTileContainer<TileEntityAdvanceChemicalTank>> ADVANCE_CHEMICAL_TANK =
             CONTAINER_TYPES.custom("advance_chemical_tank", TileEntityAdvanceChemicalTank.class).armorSideBar().build();

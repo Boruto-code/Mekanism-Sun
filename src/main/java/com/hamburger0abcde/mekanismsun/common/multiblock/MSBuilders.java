@@ -41,4 +41,27 @@ public class MSBuilders {
             return MSBlocks.ARTIFICIAL_SUN_CASING.defaultState();
         }
     }
+
+    public static class AdvanceMatrixBuilder extends StructureBuilder {
+        public AdvanceMatrixBuilder() {
+            super(18, 18, 18);
+        }
+
+        @Override
+        public void build(Level world, BlockPos start, boolean empty) {
+            buildFrame(world, start);
+            buildWalls(world, start);
+            if (empty) {
+                buildInteriorLayers(world, start, 1, 16, Blocks.AIR.defaultBlockState());
+            } else {
+                buildInteriorLayers(world, start, 1, 15, MSBlocks.SUPERNOVA_INDUCTION_CELL.defaultState());
+                buildInteriorLayer(world, start, 16, MSBlocks.SUPERNOVA_INDUCTION_PROVIDER.defaultState());
+            }
+        }
+
+        @Override
+        protected BlockState getCasing() {
+            return MSBlocks.ADVANCE_INDUCTION_CASING.defaultState();
+        }
+    }
 }

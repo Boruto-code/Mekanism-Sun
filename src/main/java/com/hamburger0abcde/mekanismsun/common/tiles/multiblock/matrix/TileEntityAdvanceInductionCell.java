@@ -1,4 +1,4 @@
-package com.hamburger0abcde.mekanismsun.common.tiles.storage;
+package com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix;
 
 import com.hamburger0abcde.mekanismsun.common.block.attribute.MSAttribute;
 import com.hamburger0abcde.mekanismsun.common.tiers.storage.AdvanceInductionCellTier;

@@ -6,6 +6,10 @@ import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockBin;
 import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockChemicalTank;
 import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockEnergyCube;
 import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockFluidTank;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionCasing;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionCell;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionPort;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionProvider;
 import com.hamburger0abcde.mekanismsun.common.tiles.storage.*;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunPort;
@@ -152,6 +156,21 @@ public class MSTileEntityTypes {
                     .clientTicker(TileEntityMekanism::tickClient)
                     .serverTicker(TileEntityMekanism::tickServer)
                     .withSimple(Capabilities.CONFIGURABLE).build();
+
+    public static final TileEntityTypeRegistryObject<TileEntityAdvanceInductionCasing> ADVANCE_INDUCTION_CASING =
+            TILE_ENTITY_TYPES.mekBuilder(MSBlocks.ADVANCE_INDUCTION_CASING, TileEntityAdvanceInductionCasing::new)
+                    .clientTicker(TileEntityMekanism::tickClient)
+                    .serverTicker(TileEntityMekanism::tickServer)
+                    .withSimple(Capabilities.CONFIGURABLE)
+                    .without(Capabilities.ITEM.block())
+                    .build();
+    
+    public static final TileEntityTypeRegistryObject<TileEntityAdvanceInductionPort> ADVANCE_INDUCTION_PORT =
+            TILE_ENTITY_TYPES.mekBuilder(MSBlocks.ADVANCE_INDUCTION_PORT, TileEntityAdvanceInductionPort::new)
+                    .clientTicker(TileEntityMekanism::tickClient)
+                    .serverTicker(TileEntityMekanism::tickServer)
+                    .withSimple(Capabilities.CONFIGURABLE)
+                    .build();
 
     public static final TileEntityTypeRegistryObject<TileEntityAdvanceChemicalTank> SUPERNOVA_CHEMICAL_TANK =
             registerChemicalTank(MSBlocks.SUPERNOVA_CHEMICAL_TANK);

@@ -14,6 +14,10 @@ import com.hamburger0abcde.mekanismsun.common.recipes.MSInputRecipeCache;
 import com.hamburger0abcde.mekanismsun.common.recipes.MSRecipeType;
 import com.hamburger0abcde.mekanismsun.common.tiers.IAdvancedTier;
 import com.hamburger0abcde.mekanismsun.common.tiers.storage.*;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionCasing;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionCell;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionPort;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionProvider;
 import com.hamburger0abcde.mekanismsun.common.tiles.storage.*;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunPort;
@@ -267,16 +271,28 @@ public class MSBlocks {
 
     public static final BlockRegistryObject<BlockBasicMultiblock<TileEntityArtificialSunCasing>,
             ItemBlockTooltip<BlockBasicMultiblock<TileEntityArtificialSunCasing>>> ARTIFICIAL_SUN_CASING = registerBlock(
-                    "artificial_sun_casing",
-                    () -> new BlockBasicMultiblock<>(MSBlockTypes.ARTIFICIAL_SUN_CASING,
-                            properties -> properties.mapColor(MapColor.COLOR_YELLOW))
+            "artificial_sun_casing",
+            () -> new BlockBasicMultiblock<>(MSBlockTypes.ARTIFICIAL_SUN_CASING,
+                    properties -> properties.mapColor(MapColor.COLOR_YELLOW))
     );
-
     public static final BlockRegistryObject<BlockBasicMultiblock<TileEntityArtificialSunPort>,
             ItemBlockTooltip<BlockBasicMultiblock<TileEntityArtificialSunPort>>> ARTIFICIAL_SUN_PORT = registerBlock(
-            "artificial_sun_port",
+                    "artificial_sun_port",
             () -> new BlockBasicMultiblock<>(MSBlockTypes.ARTIFICIAL_SUN_PORT,
                     properties -> properties.mapColor(MapColor.COLOR_YELLOW))
+    );
+
+    public static final BlockRegistryObject<BlockBasicMultiblock<TileEntityAdvanceInductionCasing>,
+            ItemBlockTooltip<BlockBasicMultiblock<TileEntityAdvanceInductionCasing>>> ADVANCE_INDUCTION_CASING = registerBlock(
+            "advance_induction_casing",
+            () -> new BlockBasicMultiblock<>(MSBlockTypes.ADVANCE_INDUCTION_CASING,
+                    properties -> properties.mapColor(MapColor.COLOR_LIGHT_GRAY))
+    );
+    public static final BlockRegistryObject<BlockBasicMultiblock<TileEntityAdvanceInductionPort>,
+            ItemBlockTooltip<BlockBasicMultiblock<TileEntityAdvanceInductionPort>>> ADVANCE_INDUCTION_PORT = registerBlock(
+            "advance_induction_port",
+            () -> new BlockBasicMultiblock<>(MSBlockTypes.ADVANCE_INDUCTION_PORT,
+                    properties -> properties.mapColor(MapColor.COLOR_LIGHT_GRAY))
     );
 
     public static final BlockRegistryObject<BlockTileModel<TileEntityAdvanceChemicalTank, Machine<TileEntityAdvanceChemicalTank>>,

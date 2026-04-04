@@ -18,6 +18,8 @@
     "mekanismsun:supernova_thermodynamic_conductor",
     "mekanismsun:supernova_induction_cell",
     "mekanismsun:supernova_induction_provider",
+    "mekanismsun:advance_induction_casing",
+    "mekanismsun:advance_induction_port",
     "evolvedmekanism:netherrack_silver_ore",
     "evolvedmekanism:end_stone_silver_ore"
   ]

@@ -9,7 +9,14 @@
     "mekanismsun:supernova_fluid_tank",
     "mekanismsun:supernova_energy_cube",
     "mekanismsun:supernova_bin",
+    "mekanismsun:supernova_induction_cell",
+    "mekanismsun:supernova_induction_provider",
+    "mekanismsun:advance_induction_casing",
+    "mekanismsun:advance_induction_port",
     "evolvedmekanism:netherrack_silver_ore",
-    "evolvedmekanism:end_stone_silver_ore"
+    "evolvedmekanism:end_stone_silver_ore",
+    "evolvedmekanism:holystone_silver_ore",
+    "evolvedmekanism:depthrock_silver_ore",
+    "evolvedmekanism:shiverstone_silver_ore"
   ]
 }
