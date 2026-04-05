@@ -17,6 +17,7 @@ import mekanism.common.command.builders.BuildCommand;
 import mekanism.common.lib.Version;
 import mekanism.common.lib.multiblock.MultiblockCache;
 import mekanism.common.lib.multiblock.MultiblockManager;
+import mekanism.common.util.UpgradeUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;

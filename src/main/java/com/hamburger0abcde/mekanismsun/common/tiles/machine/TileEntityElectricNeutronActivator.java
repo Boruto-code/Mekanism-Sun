@@ -21,6 +21,7 @@ import mekanism.api.recipes.outputs.OutputHelper;
 import mekanism.api.recipes.vanilla_input.SingleChemicalRecipeInput;
 import mekanism.client.recipe_viewer.type.IRecipeViewerRecipeType;
 import mekanism.client.recipe_viewer.type.RecipeViewerRecipeType;
+import mekanism.common.attachments.containers.ContainerType;
 import mekanism.common.capabilities.energy.MachineEnergyContainer;
 import mekanism.common.capabilities.holder.chemical.ChemicalTankHelper;
 import mekanism.common.capabilities.holder.chemical.IChemicalTankHolder;
@@ -45,6 +46,8 @@ import mekanism.common.recipe.lookup.ISingleRecipeLookupHandler;
 import mekanism.common.recipe.lookup.cache.InputRecipeCache;
 import mekanism.common.tile.component.TileComponentEjector;
 import mekanism.common.tile.prefab.TileEntityProgressMachine;
+import mekanism.common.tile.prefab.TileEntityRecipeMachine;
+import mekanism.common.util.MekanismUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
@@ -52,7 +55,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class TileEntityElectricNeutronActivator extends TileEntityProgressMachine<ChemicalToChemicalRecipe>
+public class TileEntityElectricNeutronActivator extends TileEntityRecipeMachine<ChemicalToChemicalRecipe>
         implements ISingleRecipeLookupHandler.ChemicalRecipeLookupHandler<ChemicalToChemicalRecipe> {
     private static final List<RecipeError> TRACKED_ERROR_TYPES = List.of(
             RecipeError.NOT_ENOUGH_ENERGY,
@@ -88,7 +91,7 @@ public class TileEntityElectricNeutronActivator extends TileEntityProgressMachin
     EnergyInventorySlot energySlot;
 
     public TileEntityElectricNeutronActivator(BlockPos pos, BlockState state) {
-        super(MSBlocks.ELECTRIC_NEUTRON_ACTIVATOR, pos, state, TRACKED_ERROR_TYPES, 20);
+        super(MSBlocks.ELECTRIC_NEUTRON_ACTIVATOR, pos, state, TRACKED_ERROR_TYPES);
         configComponent.setupIOConfig(TransmissionType.ITEM, inputSlot, outputSlot, RelativeSide.FRONT);
         configComponent.setupIOConfig(TransmissionType.CHEMICAL, inputTank, outputTank, RelativeSide.FRONT);
         configComponent.setupInputConfig(TransmissionType.ENERGY, energyContainer);
@@ -115,11 +118,10 @@ public class TileEntityElectricNeutronActivator extends TileEntityProgressMachin
     @NotNull
     @Override
     protected IEnergyContainerHolder getInitialEnergyContainers(IContentsListener listener, IContentsListener recipeCacheListener,
-                                                                IContentsListener unpause) {
+                                                                IContentsListener recipeCacheUnpauseListener) {
         EnergyContainerHelper builder = EnergyContainerHelper.forSideWithConfig(this);
-        energyContainer = MachineEnergyContainer.input(this, listener);
+        energyContainer = MachineEnergyContainer.input(this, recipeCacheUnpauseListener);
         builder.addContainer(energyContainer);
-
         return builder.build();
     }
 
@@ -188,6 +190,16 @@ public class TileEntityElectricNeutronActivator extends TileEntityProgressMachin
     @ComputerMethod(nameOverride = "getEnergyUsage", methodDescription = ComputerConstants.DESCRIPTION_GET_ENERGY_USAGE)
     long getEnergyUsed() {
         return clientEnergyUsed;
+    }
+
+    @Override
+    public int getRedstoneLevel() {
+        return MekanismUtils.redstoneLevelFromContents(inputTank.getStored(), inputTank.getCapacity());
+    }
+
+    @Override
+    protected boolean makesComparatorDirty(ContainerType<?, ?, ?> type) {
+        return type == ContainerType.CHEMICAL;
     }
 
     @Override
