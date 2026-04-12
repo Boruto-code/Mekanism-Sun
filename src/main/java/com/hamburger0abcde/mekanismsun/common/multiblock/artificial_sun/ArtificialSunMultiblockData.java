@@ -1,5 +1,6 @@
 package com.hamburger0abcde.mekanismsun.common.multiblock.artificial_sun;
 
+import com.hamburger0abcde.mekanismsun.MekanismSun;
 import com.hamburger0abcde.mekanismsun.common.config.MSConfig;
 import com.hamburger0abcde.mekanismsun.common.registries.MSChemicals;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunCasing;
