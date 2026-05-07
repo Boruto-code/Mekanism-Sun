@@ -30,7 +30,7 @@ public class TileEntityArtificialSunCasing extends TileEntityMultiblock<Artifici
     @Override
     protected boolean onUpdateServer(ArtificialSunMultiblockData multiblock) {
         boolean needsPacket = super.onUpdateServer(multiblock);
-        boolean active = multiblock.isFormed() && multiblock.handlesSound(this) && multiblock.progress > 0;
+        boolean active = multiblock.isFormed() && multiblock.handlesSound(this) && multiblock.lastBurnRate != 0;
         if (active != preActive) {
             preActive = active;
             needsPacket = true;
@@ -52,7 +52,7 @@ public class TileEntityArtificialSunCasing extends TileEntityMultiblock<Artifici
     @Override
     protected boolean canPlaySound() {
         ArtificialSunMultiblockData multiblock = getMultiblock();
-        return multiblock.isFormed() && handleSound && multiblock.progress > 0;
+        return multiblock.isFormed() && handleSound && multiblock.lastBurnRate != 0;
     }
 
     @NotNull

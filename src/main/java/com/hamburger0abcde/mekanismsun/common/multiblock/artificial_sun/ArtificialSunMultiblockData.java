@@ -16,7 +16,9 @@ import mekanism.api.math.MathUtils;
 import mekanism.api.recipes.ChemicalToChemicalRecipe;
 import mekanism.common.capabilities.chemical.VariableCapacityChemicalTank;
 import mekanism.common.capabilities.energy.VariableCapacityEnergyContainer;
+import mekanism.common.integration.computer.ComputerException;
 import mekanism.common.integration.computer.SpecialComputerMethodWrapper.ComputerChemicalTankWrapper;
+import mekanism.common.integration.computer.annotation.ComputerMethod;
 import mekanism.common.integration.computer.annotation.SyntheticComputerMethod;
 import mekanism.common.integration.computer.annotation.WrappingComputerMethod;
 import mekanism.common.inventory.container.sync.dynamic.ContainerSync;
@@ -52,11 +54,6 @@ public class ArtificialSunMultiblockData extends MultiblockData {
     public IChemicalTank wasteTank;
 
     @ContainerSync
-    public int progress;
-    @ContainerSync
-    public int defaultRecipeProgress = -1;
-
-    @ContainerSync
     public IEnergyContainer energyContainer;
 
     public RecipeHolder<ChemicalToChemicalRecipe> currentRecipe;
@@ -71,7 +68,7 @@ public class ArtificialSunMultiblockData extends MultiblockData {
     @ContainerSync
     @SyntheticComputerMethod(getter = "getBurnRate", getterDescription = "Configured burn rate")
     public double rateLimit = MSConfig.GENERAL.sunDefaultBurnRate.get();
-    public double burnRemaining = 0, partialWaste = 0;
+    public double partialWaste = 0;
 
     public ArtificialSunMultiblockData(TileEntityArtificialSunCasing tile) {
         super(tile);
@@ -149,12 +146,10 @@ public class ArtificialSunMultiblockData extends MultiblockData {
     @Override
     public void writeUpdateTag(CompoundTag tag, HolderLookup.Provider provider) {
         super.writeUpdateTag(tag, provider);
-        tag.putInt(SerializationConstants.PROGRESS, progress);
-        tag.putInt("defaultRecipeProgress", defaultRecipeProgress);
         tag.putFloat(SerializationConstants.SCALE, preFuelScale);
         tag.putFloat(SerializationConstants.SCALE_ALT, preWasteScale);
-        tag.put(SerializationConstants.CHEMICAL, fuelTank.getStack().saveOptional(provider));
-
+        tag.put(SerializationConstants.CHEMICAL_INPUT, fuelTank.getStack().saveOptional(provider));
+        tag.put(SerializationConstants.CHEMICAL_OUTPUT, wasteTank.getStack().saveOptional(provider));
     }
 
     @Override
@@ -162,9 +157,10 @@ public class ArtificialSunMultiblockData extends MultiblockData {
         super.readUpdateTag(tag, provider);
         NBTUtils.setFloatIfPresent(tag, SerializationConstants.SCALE, scale -> preFuelScale = scale);
         NBTUtils.setFloatIfPresent(tag, SerializationConstants.SCALE_ALT, scale -> preWasteScale = scale);
-        NBTUtils.setIntIfPresent(tag, SerializationConstants.PROGRESS, pg -> progress = pg);
-        NBTUtils.setIntIfPresent(tag, "defaultRecipeProgress", pg -> defaultRecipeProgress = pg);
-        NBTUtils.setChemicalStackIfPresent(provider, tag, SerializationConstants.CHEMICAL, value -> fuelTank.setStack(value));
+        NBTUtils.setChemicalStackIfPresent(provider, tag, SerializationConstants.CHEMICAL_INPUT,
+                value -> fuelTank.setStack(value));
+        NBTUtils.setChemicalStackIfPresent(provider, tag, SerializationConstants.CHEMICAL_OUTPUT,
+                value -> wasteTank.setStack(value));
     }
 
     @Override
@@ -188,5 +184,16 @@ public class ArtificialSunMultiblockData extends MultiblockData {
             rateLimit = rate;
             markDirty();
         }
+    }
+
+    @ComputerMethod
+    void setBurnRate(double rate) throws ComputerException {
+        rate = UnitDisplayUtils.roundDecimals(rate);
+        double max = MSConfig.GENERAL.sunMaxBurnRate.get();
+        if (rate < 0 || rate > max) {
+            //Validate bounds even though we can clamp
+            throw new ComputerException("Burn Rate '%.2f' is out of range must be between 0 and %d. (Inclusive)", rate, max);
+        }
+        setRateLimit(rate);
     }
 }

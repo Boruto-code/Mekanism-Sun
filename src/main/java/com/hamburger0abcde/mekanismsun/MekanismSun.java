@@ -44,6 +44,7 @@ public class MekanismSun {
             new MultiblockManager<>("advance_matrix", MultiblockCache::new, AdvanceMatrixValidator::new);
 
     public MekanismSun(IEventBus modEventBus, ModContainer modContainer) {
+        instance = this;
         versionNumber = new Version(modContainer);
         MSConfig.registerConfigs(modContainer);
 
