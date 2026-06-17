@@ -24,8 +24,6 @@ import mekanism.client.ClientRegistrationUtil;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.client.render.RenderPropertiesProvider;
 import mekanism.client.render.item.TransmitterTypeDecorator;
-import mekanism.client.render.transmitter.RenderLogisticalTransporter;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.EventPriority;

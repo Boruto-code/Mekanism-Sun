@@ -15,10 +15,10 @@ public class ArtificialSunCache extends MultiblockCache<ArtificialSunMultiblockD
 
     private double getRateLimit() {
         if (rateLimit == -1) {
-            //If it never got set it to the default
+            // If it never got set it to the default
             return MSConfig.GENERAL.sunDefaultBurnRate.get();
         }
-        //Otherwise, return the actual so that it can be manually set down to zero
+        // Otherwise, return the actual so that it can be manually set down to zero
         return rateLimit;
     }
 
@@ -32,7 +32,7 @@ public class ArtificialSunCache extends MultiblockCache<ArtificialSunMultiblockD
     @Override
     public void apply(HolderLookup.Provider provider, ArtificialSunMultiblockData data) {
         super.apply(provider, data);
-        data.rateLimit = Mth.clamp(getRateLimit(), 0, MSConfig.GENERAL.sunDefaultBurnRate.get());
+        data.rateLimit = Mth.clamp(getRateLimit(), 0, MSConfig.GENERAL.sunMaxBurnRate.get());
         data.partialWaste = partialWaste;
     }
 

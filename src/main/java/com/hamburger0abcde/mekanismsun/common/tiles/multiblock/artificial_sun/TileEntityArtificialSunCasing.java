@@ -30,7 +30,7 @@ public class TileEntityArtificialSunCasing extends TileEntityMultiblock<Artifici
     @Override
     protected boolean onUpdateServer(ArtificialSunMultiblockData multiblock) {
         boolean needsPacket = super.onUpdateServer(multiblock);
-        boolean active = multiblock.isFormed() && multiblock.handlesSound(this) && multiblock.lastBurnRate != 0;
+        boolean active = multiblock.handlesSound(this) && multiblock.lastBurnRate != 0;
         if (active != preActive) {
             preActive = active;
             needsPacket = true;
@@ -52,7 +52,10 @@ public class TileEntityArtificialSunCasing extends TileEntityMultiblock<Artifici
     @Override
     protected boolean canPlaySound() {
         ArtificialSunMultiblockData multiblock = getMultiblock();
-        return multiblock.isFormed() && handleSound && multiblock.lastBurnRate != 0;
+        if (handleSound) {
+            MekanismSun.LOGGER.debug("Can Play Sound");
+        }
+        return handleSound && multiblock.lastBurnRate != 0;
     }
 
     @NotNull
@@ -60,13 +63,16 @@ public class TileEntityArtificialSunCasing extends TileEntityMultiblock<Artifici
     public CompoundTag getReducedUpdateTag(HolderLookup.Provider provider) {
         CompoundTag updateTag = super.getReducedUpdateTag(provider);
         ArtificialSunMultiblockData multiblock = getMultiblock();
-        updateTag.putBoolean(SerializationConstants.HANDLE_SOUND, multiblock.isFormed() && multiblock.handlesSound(this));
+        if (multiblock.handlesSound(this)) {
+            MekanismSun.LOGGER.debug("Handles Sound");
+        }
+        updateTag.putBoolean(SerializationConstants.HANDLE_SOUND, multiblock.lastBurnRate != 0 && multiblock.handlesSound(this));
         return updateTag;
     }
 
     @Override
     public void handleUpdateTag(@NotNull CompoundTag tag, HolderLookup.Provider provider) {
-        super.handleUpdateTag(tag,provider);
+        super.handleUpdateTag(tag, provider);
         NBTUtils.setBooleanIfPresent(tag, SerializationConstants.HANDLE_SOUND, value -> handleSound = value);
     }
 

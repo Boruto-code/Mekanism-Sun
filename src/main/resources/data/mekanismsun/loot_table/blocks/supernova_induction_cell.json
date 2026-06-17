@@ -11,6 +11,13 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_components",
+              "include": ["mekanism:energy"],
+              "source": "block_entity"
+            }
+          ],
           "name": "mekanismsun:supernova_induction_cell"
         }
       ],
