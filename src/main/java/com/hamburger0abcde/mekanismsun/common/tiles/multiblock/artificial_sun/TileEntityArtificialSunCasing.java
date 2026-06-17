@@ -52,9 +52,6 @@ public class TileEntityArtificialSunCasing extends TileEntityMultiblock<Artifici
     @Override
     protected boolean canPlaySound() {
         ArtificialSunMultiblockData multiblock = getMultiblock();
-        if (handleSound) {
-            MekanismSun.LOGGER.debug("Can Play Sound");
-        }
         return handleSound && multiblock.lastBurnRate != 0;
     }
 
@@ -63,9 +60,6 @@ public class TileEntityArtificialSunCasing extends TileEntityMultiblock<Artifici
     public CompoundTag getReducedUpdateTag(HolderLookup.Provider provider) {
         CompoundTag updateTag = super.getReducedUpdateTag(provider);
         ArtificialSunMultiblockData multiblock = getMultiblock();
-        if (multiblock.handlesSound(this)) {
-            MekanismSun.LOGGER.debug("Handles Sound");
-        }
         updateTag.putBoolean(SerializationConstants.HANDLE_SOUND, multiblock.lastBurnRate != 0 && multiblock.handlesSound(this));
         return updateTag;
     }

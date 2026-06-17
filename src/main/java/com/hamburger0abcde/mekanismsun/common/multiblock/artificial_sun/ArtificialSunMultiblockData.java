@@ -90,6 +90,7 @@ public class ArtificialSunMultiblockData extends MultiblockData {
         long stored = fuelTank.getStored();
         lastBurnRate = MathUtils.clampToLong(Math.min(Math.max(stored, lastBurnRate), rateLimit));
 
+
         if (world.isClientSide) {
             ClientLevel clientLevel = (ClientLevel) world;
             clientLevel.setDayTime(1000);
