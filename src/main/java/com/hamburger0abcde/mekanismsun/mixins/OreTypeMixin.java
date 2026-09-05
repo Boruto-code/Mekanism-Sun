@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-@Mixin(value = OreType.class, remap = false)
+@Mixin(value = OreType.class, remap = false, priority = 2000)
 public class OreTypeMixin {
     @Shadow
     @Final
@@ -45,13 +45,38 @@ public class OreTypeMixin {
         throw new AssertionError();
     }
 
-    @Inject(method = "<clinit>",at = @At("TAIL"))
+    /**
+     * Run after ordinary OreType extension injectors. Other Mekanism addons such
+     * as Mekanism: MoreMachine also append SILVER at OreType.<clinit> TAIL.
+     * Mixin applies lower-priority mixins first, so Sun deliberately uses both
+     * a higher mixin priority and a late injector order here. At runtime this
+     * callback is therefore placed after the normal/default TAIL callbacks and
+     * can reuse an already-added silver OreType instead of creating a duplicate.
+     */
+    @Inject(method = "<clinit>", at = @At("TAIL"), order = 2000)
     private static void oreTypeClinit(CallbackInfo ci) {
+        OreType existingSilver = mekanismsun$findExistingSilver();
+        if (existingSilver != null) {
+            MSOreType.SILVER = existingSilver;
+            return;
+        }
+
         MSOreType.SILVER = mekanismsun$addVariant("SILVER", MSResources.SILVER,
                 new BaseOreConfig("normal", 8, 0,
                         4, HeightShape.TRAPEZOID, OreAnchor.absolute(-48), OreAnchor.absolute(32)));
 
         mekanismsun$reinitializeByIdMap();
+    }
+
+    @Unique
+    private static OreType mekanismsun$findExistingSilver() {
+        String targetSuffix = MSResources.SILVER.getRegistrySuffix();
+        for (OreType ore : $VALUES) {
+            if (targetSuffix.equals(ore.getResource().getRegistrySuffix())) {
+                return ore;
+            }
+        }
+        return null;
     }
 
     @Unique
