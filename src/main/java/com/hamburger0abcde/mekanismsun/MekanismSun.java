@@ -52,6 +52,7 @@ public class MekanismSun {
 
         MSBlocks.BLOCKS.register(modEventBus);
         MSItems.ITEMS.register(modEventBus);
+        MSFluids.FLUIDS.register(modEventBus);
         MSCreativeTabs.CREATIVE_TABS.register(modEventBus);
         MSTileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
         MSChemicals.CHEMICALS.register(modEventBus);
@@ -59,6 +60,7 @@ public class MekanismSun {
         MSRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
 
         //NeoForge.EVENT_BUS.register(this);
+        modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(MSConfig::onConfigLoad);
         packetHandler = new MSPacketHandler(modEventBus, versionNumber);
     }
@@ -75,5 +77,11 @@ public class MekanismSun {
         BuildCommand.register("artificial_sun", MekanismSunLang.ARTIFICIAL_SUN, new MSBuilders.ArtificialSunBuilder());
         BuildCommand.register("advance_matrix", MekanismSunLang.ADVANCE_MATRIX, new MSBuilders.AdvanceMatrixBuilder());
         event.getDispatcher().register(CommandMek.register());
+    }
+
+    private void commonSetup(FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            MSFluids.FLUIDS.registerBucketDispenserBehavior();
+        });
     }
 }

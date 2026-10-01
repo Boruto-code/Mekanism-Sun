@@ -2,6 +2,7 @@ package com.hamburger0abcde.mekanismsun.client;
 
 import com.hamburger0abcde.mekanismsun.MekanismSun;
 import com.hamburger0abcde.mekanismsun.client.render.transmitter.RenderAdvanceThermodynamicConductor;
+import com.hamburger0abcde.mekanismsun.common.MSChemicalConstants;
 import com.hamburger0abcde.mekanismsun.common.block.attribute.MSAttribute;
 import com.hamburger0abcde.mekanismsun.client.gui.*;
 import com.hamburger0abcde.mekanismsun.client.model.AdvanceEnergyCubeModelLoader;
@@ -18,18 +19,24 @@ import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockEnergyCube;
 import com.hamburger0abcde.mekanismsun.common.item.block.MSItemBlockFluidTank;
 import com.hamburger0abcde.mekanismsun.common.registries.MSBlocks;
 import com.hamburger0abcde.mekanismsun.common.registries.MSContainerTypes;
+import com.hamburger0abcde.mekanismsun.common.registries.MSFluids;
 import com.hamburger0abcde.mekanismsun.common.registries.MSTileEntityTypes;
 import com.hamburger0abcde.mekanismsun.common.tiers.AdvancedTier;
 import mekanism.client.ClientRegistrationUtil;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.client.render.RenderPropertiesProvider;
 import mekanism.client.render.item.TransmitterTypeDecorator;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.material.FluidState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 
 @EventBusSubscriber(modid = MekanismSun.MODID, value = Dist.CLIENT)
@@ -117,6 +124,8 @@ public class MSClientRegistration {
             }
             return -1;
         }, MSBlocks.SUPERNOVA_ENERGY_CUBE);
+
+        ClientRegistrationUtil.registerBucketColorHandler(event, MSFluids.FLUIDS);
     }
 
     @SubscribeEvent
@@ -136,5 +145,40 @@ public class MSClientRegistration {
         ClientRegistrationUtil.registerItemExtensions(event, new RenderPropertiesProvider
                 .MekRenderProperties(RenderAdvanceEnergyCubeItem.ADVANCE_RENDERER), MSBlocks.SUPERNOVA_ENERGY_CUBE);
         ClientRegistrationUtil.registerBlockExtensions(event, MSBlocks.BLOCKS);
+
+        final ResourceLocation mekanismStill = ResourceLocation.fromNamespaceAndPath("mekanism", "liquid/liquid");
+        final ResourceLocation mekanismFlow = ResourceLocation.fromNamespaceAndPath("mekanism", "liquid/liquid_flow");
+        final ResourceLocation waterStill = ResourceLocation.fromNamespaceAndPath("minecraft", "block/water_still");
+        final ResourceLocation waterFlow = ResourceLocation.fromNamespaceAndPath("minecraft", "block/water_flow");
+
+        registerFluidType(event, MSFluids.HELIUM.getFluidType(), mekanismStill, mekanismFlow, MSChemicalConstants.HELIUM.getColor());
+    }
+
+    private static void registerFluidType(RegisterClientExtensionsEvent event, net.neoforged.neoforge.fluids.FluidType fluidType,
+                                          ResourceLocation still, ResourceLocation flowing, int tint) {
+        if (event.isFluidTypeRegistered(fluidType)) {
+            return;
+        }
+        event.registerFluidType(new IClientFluidTypeExtensions() {
+            @Override
+            public ResourceLocation getStillTexture() {
+                return still;
+            }
+
+            @Override
+            public ResourceLocation getFlowingTexture() {
+                return flowing;
+            }
+
+            @Override
+            public int getTintColor(FluidState state, BlockAndTintGetter level, BlockPos pos) {
+                return tint;
+            }
+
+            @Override
+            public int getTintColor() {
+                return tint;
+            }
+        }, fluidType);
     }
 }

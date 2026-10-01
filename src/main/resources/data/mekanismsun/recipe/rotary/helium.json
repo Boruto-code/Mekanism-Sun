@@ -1,0 +1,19 @@
+{
+  "type": "mekanism:rotary",
+  "chemical_input": {
+    "amount": 1,
+    "chemical": "mekanismsun:helium"
+  },
+  "chemical_output": {
+    "amount": 1,
+    "id": "mekanismsun:helium"
+  },
+  "fluid_input": {
+    "amount": 1,
+    "tag": "c:helium"
+  },
+  "fluid_output": {
+    "amount": 1,
+    "id": "mekanismsun:helium"
+  }
+}
