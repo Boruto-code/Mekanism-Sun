@@ -1,9 +1,9 @@
 {
-  "type": "mekanism:ore_retrogen",
+  "type": "mekanism:ore",
   "config": {
     "ore_type": {
       "type": "silver",
-      "index": 0
+      "index": 1
     },
     "targets": [
       {

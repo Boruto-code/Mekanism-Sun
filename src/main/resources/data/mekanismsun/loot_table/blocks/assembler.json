@@ -3,19 +3,10 @@
   "pools": [
     {
       "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ],
       "entries": [
         {
           "type": "minecraft:item",
           "functions": [
-            {
-              "function": "minecraft:copy_name",
-              "source": "block_entity"
-            },
             {
               "function": "minecraft:copy_components",
               "include": [
@@ -29,14 +20,17 @@
                 "mekanism:items"
               ],
               "source": "block_entity"
+            },
+            {
+              "function": "minecraft:copy_name",
+              "source": "block_entity"
             }
           ],
-          "name": "mekanismsun:alloyer"
+          "name": "mekanismsun:assembler"
         }
       ],
-      "name": "main",
       "rolls": 1.0
     }
   ],
-  "random_sequence": "mekanismsun:blocks/alloyer"
+  "random_sequence": "mekanismsun:blocks/assembler"
 }

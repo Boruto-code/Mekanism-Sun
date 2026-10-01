@@ -1,13 +1,13 @@
 {
-  "feature": "mekanismsun:ore_silver_normal_retrogen",
+  "feature": "mekanismsun:ore_silver_large",
   "placement": [
     {
       "type": "mekanism:disableable",
       "ore_type": {
         "type": "silver",
-        "index": 0
+        "index": 1
       },
-      "retro_gen": true
+      "retro_gen": false
     },
     {
       "type": "minecraft:count",
@@ -15,7 +15,7 @@
         "type": "mekanism:configurable_constant",
         "ore_type": {
           "type": "silver",
-          "index": 0
+          "index": 1
         }
       }
     },
@@ -28,7 +28,7 @@
         "type": "mekanism:configurable",
         "ore_type": {
           "type": "silver",
-          "index": 0
+          "index": 1
         }
       }
     },

@@ -48,8 +48,10 @@ public class OreTypeMixin {
     @Inject(method = "<clinit>",at = @At("TAIL"))
     private static void oreTypeClinit(CallbackInfo ci) {
         MSOreType.SILVER = mekanismsun$addVariant("SILVER", MSResources.SILVER,
-                new BaseOreConfig("normal", 8, 0,
-                        4, HeightShape.TRAPEZOID, OreAnchor.absolute(-48), OreAnchor.absolute(32)));
+                new BaseOreConfig("small", 16, 0, 4,
+                        HeightShape.TRAPEZOID, OreAnchor.absolute(-24), OreAnchor.absolute(88)),
+                new BaseOreConfig("large", 10, 0, 8,
+                        HeightShape.TRAPEZOID, OreAnchor.absolute(-32), OreAnchor.absolute(64)));
 
         mekanismsun$reinitializeByIdMap();
     }

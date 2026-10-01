@@ -116,6 +116,8 @@ dependencies {
     implementation "mekanism:Mekanism:${minecraft_version}-${mekanism_version}:generators"
     implementation "mekanism:Mekanism:${minecraft_version}-${mekanism_version}:tools"
 
+    implementation "curse.maven:evolved-mekanism-1230085:${evolvedmekanism_id}"
+
     compileOnly "curse.maven:projecte-api-226410:${projecte_api_id}"
     implementation "curse.maven:projecte-226410:${projecte_id}"
 
@@ -133,6 +135,8 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
                              mekanism_version_range : mekanism_version_range,
                              projecte_version_range : projecte_version_range,
                              projectexpansion_version_range : projectexpansion_version_range,
+                             evolvedmekanism_id     : evolvedmekanism_id,
+                             evolvedmekanism_version_range : evolvedmekanism_version_range,
                              mod_id                 : mod_id,
                              mod_name               : mod_name,
                              mod_license            : mod_license,

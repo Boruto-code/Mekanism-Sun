@@ -51,6 +51,8 @@ public enum MSConfigTranslations implements IConfigTranslation {
             "Heat capacity of Supernova Thermodynamic Conductor."),
     SUPERNOVA_THERMODYNAMIC_CONDUCTOR_INSULATION("tier.conductor.supernova.insulation", "Supernova",
             "Insulation value of Supernova Thermodynamic Conductor."),
+
+    ENABLE_ORES("world.enable_ores", "Enable Ores", "Allow ore registration.")
     ;
 
     private final String key;

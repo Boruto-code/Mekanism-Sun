@@ -1,5 +1,6 @@
 package com.hamburger0abcde.mekanismsun.mixins;
 
+import com.hamburger0abcde.mekanismsun.MekanismSun;
 import com.hamburger0abcde.mekanismsun.common.recipes.BasicItemItemChemicalRecipe;
 import com.hamburger0abcde.mekanismsun.common.recipes.MSInputRecipeCache;
 import com.hamburger0abcde.mekanismsun.common.recipes.MSRecipeType;

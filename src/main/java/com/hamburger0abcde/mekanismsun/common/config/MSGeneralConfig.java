@@ -28,7 +28,7 @@ public class MSGeneralConfig extends BaseMekanismConfig {
         sunFuelCapacity = CachedLongValue.wrap(this, MSConfigTranslations.SERVER_SUN_FUEL_CAPACITY.applyToBuilder(builder)
                 .defineInRange("fuelCapacity", FluidType.BUCKET_VOLUME, 1L, 1_000L * FluidType.BUCKET_VOLUME));
         sunEnergyCapacity = CachedLongValue.wrap(this, MSConfigTranslations.SERVER_SUN_ENERGY_CAPACITY.applyToBuilder(builder)
-                .defineInRange("energyCapacity", 8_192_000_000L, 1L, Long.MAX_VALUE));
+                .defineInRange("energyCapacity", 81_920_000_000L, 1L, Long.MAX_VALUE));
         sunDefaultBurnRate = CachedDoubleValue.wrap(this, MSConfigTranslations.SERVER_SUN_DEFAULT_BURN_RATE.applyToBuilder(builder)
                 .defineInRange("defaultBurnRate", 1D, 0.1D, 100D));
         sunMaxBurnRate = CachedDoubleValue.wrap(this, MSConfigTranslations.SERVER_SUN_MAX_BURN_RATE.applyToBuilder(builder)
@@ -44,7 +44,7 @@ public class MSGeneralConfig extends BaseMekanismConfig {
 
     @Override
     public String getTranslation() {
-        return "";
+        return "General Config";
     }
 
     @Override
