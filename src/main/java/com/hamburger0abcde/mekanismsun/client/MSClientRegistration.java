@@ -145,13 +145,7 @@ public class MSClientRegistration {
         ClientRegistrationUtil.registerItemExtensions(event, new RenderPropertiesProvider
                 .MekRenderProperties(RenderAdvanceEnergyCubeItem.ADVANCE_RENDERER), MSBlocks.SUPERNOVA_ENERGY_CUBE);
         ClientRegistrationUtil.registerBlockExtensions(event, MSBlocks.BLOCKS);
-
-        final ResourceLocation mekanismStill = ResourceLocation.fromNamespaceAndPath("mekanism", "liquid/liquid");
-        final ResourceLocation mekanismFlow = ResourceLocation.fromNamespaceAndPath("mekanism", "liquid/liquid_flow");
-        final ResourceLocation waterStill = ResourceLocation.fromNamespaceAndPath("minecraft", "block/water_still");
-        final ResourceLocation waterFlow = ResourceLocation.fromNamespaceAndPath("minecraft", "block/water_flow");
-
-        registerFluidType(event, MSFluids.HELIUM.getFluidType(), mekanismStill, mekanismFlow, MSChemicalConstants.HELIUM.getColor());
+        ClientRegistrationUtil.registerFluidExtensions(event, MSFluids.FLUIDS);
     }
 
     private static void registerFluidType(RegisterClientExtensionsEvent event, net.neoforged.neoforge.fluids.FluidType fluidType,

@@ -1,0 +1,5 @@
+{
+  "parent": "neoforge:item/bucket",
+  "fluid": "mekanismsun:superfluid_helium",
+  "loader": "neoforge:fluid_container"
+}

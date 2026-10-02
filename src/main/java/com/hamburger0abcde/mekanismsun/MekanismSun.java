@@ -10,6 +10,7 @@ import com.hamburger0abcde.mekanismsun.common.multiblock.matrix.AdvanceMatrixMul
 import com.hamburger0abcde.mekanismsun.common.multiblock.matrix.AdvanceMatrixValidator;
 import com.hamburger0abcde.mekanismsun.common.network.MSPacketHandler;
 import com.hamburger0abcde.mekanismsun.common.registries.*;
+import com.hamburger0abcde.mekanismsun.common.tags.MSTags;
 import com.mojang.logging.LogUtils;
 import mekanism.common.base.IModModule;
 import mekanism.common.command.CommandMek;
@@ -81,6 +82,7 @@ public class MekanismSun {
 
     private void commonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+            MSTags.init();
             MSFluids.FLUIDS.registerBucketDispenserBehavior();
         });
     }
