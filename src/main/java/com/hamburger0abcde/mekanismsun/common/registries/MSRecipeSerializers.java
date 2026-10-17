@@ -3,19 +3,26 @@ package com.hamburger0abcde.mekanismsun.common.registries;
 import com.hamburger0abcde.mekanismsun.MekanismSun;
 import com.hamburger0abcde.mekanismsun.common.recipes.alloying.BasicAlloyingRecipe;
 import com.hamburger0abcde.mekanismsun.common.recipes.assemble.BasicAssembleRecipe;
+import com.hamburger0abcde.mekanismsun.common.recipes.freeze.BasicFreezeRecipe;
+import com.hamburger0abcde.mekanismsun.common.recipes.freeze.FreezeRecipe;
 import com.hamburger0abcde.mekanismsun.common.recipes.transmutation.BasicTransmutationRecipe;
 import com.mojang.datafixers.util.Function4;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import mekanism.api.SerializationConstants;
+import mekanism.api.recipes.basic.BasicFluidToFluidRecipe;
 import mekanism.api.recipes.ingredients.ChemicalStackIngredient;
+import mekanism.api.recipes.ingredients.FluidStackIngredient;
 import mekanism.api.recipes.ingredients.ItemStackIngredient;
 import mekanism.common.recipe.serializer.MekanismRecipeSerializer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.BiFunction;
 
 public class MSRecipeSerializers {
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS =
@@ -27,6 +34,8 @@ public class MSRecipeSerializers {
             RECIPE_SERIALIZERS.register("transmutation", () -> MekanismRecipeSerializer.itemToItem(BasicTransmutationRecipe::new));
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<BasicAssembleRecipe>> ASSEMBLE =
             RECIPE_SERIALIZERS.register("assemble", () -> assemble(BasicAssembleRecipe::new));
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<BasicFreezeRecipe>> FREEZE =
+            RECIPE_SERIALIZERS.register("freeze", () -> freeze(BasicFreezeRecipe::new));
 
     public static <RECIPE extends BasicAlloyingRecipe> MekanismRecipeSerializer<RECIPE> alloying(
             Function4<ItemStackIngredient, ItemStackIngredient, ChemicalStackIngredient, ItemStack, RECIPE> factory) {
@@ -64,6 +73,18 @@ public class MSRecipeSerializers {
                 ItemStackIngredient.STREAM_CODEC, BasicAssembleRecipe::getExtraInput,
                 ChemicalStackIngredient.STREAM_CODEC, BasicAssembleRecipe::getChemicalInput,
                 ItemStack.STREAM_CODEC, BasicAssembleRecipe::getOutputRaw,
+                factory
+        ));
+    }
+
+    public static <RECIPE extends BasicFreezeRecipe> MekanismRecipeSerializer<RECIPE> freeze(
+            BiFunction<FluidStackIngredient, FluidStack, RECIPE> factory) {
+        return new MekanismRecipeSerializer<>(RecordCodecBuilder.mapCodec(instance -> instance.group(
+                FluidStackIngredient.CODEC.fieldOf(SerializationConstants.INPUT).forGetter(FreezeRecipe::getInput),
+                FluidStack.CODEC.fieldOf(SerializationConstants.OUTPUT).forGetter(BasicFreezeRecipe::getOutputRaw)
+        ).apply(instance, factory)), StreamCodec.composite(
+                FluidStackIngredient.STREAM_CODEC, FreezeRecipe::getInput,
+                FluidStack.STREAM_CODEC, BasicFreezeRecipe::getOutputRaw,
                 factory
         ));
     }

@@ -1,0 +1,14 @@
+{
+  "ctm": {
+    "ctm_version": 1,
+    "type": "CTM",
+    "layer": "SOLID",
+    "textures": ["mekanismsun:ctm/vacuum_freezer_casing"],
+    "extra": {
+      "connect_to": [
+        {"block":"mekanismsun:tungstensteel_casing"},
+        {"block":"mekanismsun:vacuum_freezer_port"}
+      ]
+    }
+  }
+}

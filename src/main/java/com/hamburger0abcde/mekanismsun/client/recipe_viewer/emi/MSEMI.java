@@ -1,7 +1,8 @@
 package com.hamburger0abcde.mekanismsun.client.recipe_viewer.emi;
 
-import com.hamburger0abcde.mekanismsun.client.recipe_viewer.emi.recipe.ArtificialSunEmiRecipe;
-import com.hamburger0abcde.mekanismsun.client.recipe_viewer.emi.recipe.ItemItemChemicalToItemStackEmiRecipe;
+import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.emi.machine.ArtificialSunEmiRecipe;
+import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.emi.machine.FreezeEmiRecipe;
+import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.emi.machine.ItemItemChemicalToItemStackEmiRecipe;
 import mekanism.client.recipe_viewer.emi.recipe.ItemStackToItemStackEmiRecipe;
 
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.ArtificialSunRecipeViewerRecipe;
@@ -19,6 +20,7 @@ import mekanism.client.recipe_viewer.emi.MekanismEmiRecipeCategory;
 import mekanism.client.recipe_viewer.emi.recipe.MekanismEmiRecipe;
 import mekanism.client.recipe_viewer.type.IRecipeViewerRecipeType;
 import mekanism.common.recipe.IMekanismRecipeTypeProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.ItemLike;
 
@@ -37,23 +39,21 @@ public class MSEMI implements EmiPlugin {
     @Override
     public void register(EmiRegistry registry) {
         addCategoryAndRecipes(registry, MSRecipeViewerRecipeTypes.ARTIFICIAL_SUN,
-                ArtificialSunEmiRecipe::new,
-                ArtificialSunRecipeViewerRecipe.getArtificialSunRecipes());
-        addCategoryAndRecipes(registry, MSRecipeViewerRecipeTypes.ALLOYING,
-                ItemItemChemicalToItemStackEmiRecipe::new);
-        addCategoryAndRecipes(registry, MSRecipeViewerRecipeTypes.TRANSMUTATION,
-                ItemStackToItemStackEmiRecipe::new);
-        addCategoryAndRecipes(registry, MSRecipeViewerRecipeTypes.ASSEMBLE,
-                ItemItemChemicalToItemStackEmiRecipe::new);
+                ArtificialSunEmiRecipe::new, ArtificialSunRecipeViewerRecipe.getArtificialSunRecipes());
+
+        addCategoryAndRecipes(registry, MSRecipeViewerRecipeTypes.ALLOYING, ItemItemChemicalToItemStackEmiRecipe::new);
+        addCategoryAndRecipes(registry, MSRecipeViewerRecipeTypes.TRANSMUTATION, ItemStackToItemStackEmiRecipe::new);
+        addCategoryAndRecipes(registry, MSRecipeViewerRecipeTypes.ASSEMBLE, ItemItemChemicalToItemStackEmiRecipe::new);
+        addCategoryAndRecipes(registry, MSRecipeViewerRecipeTypes.FREEZE, FreezeEmiRecipe::new);
     }
 
     /**
      * Registers a category plus all recipes of a {@link IMekanismRecipeTypeProvider}-backed recipe type, mirroring
      * Mekanism's own {@code MekanismEmi.addCategoryAndRecipes}.
      */
-    public static <RECIPE extends MekanismRecipe<?>, TYPE extends IRecipeViewerRecipeType<RECIPE> & IMekanismRecipeTypeProvider<?, RECIPE, ?>>
-    void addCategoryAndRecipes(EmiRegistry registry, TYPE recipeType,
-          BiFunction<MekanismEmiRecipeCategory, RecipeHolder<RECIPE>, MekanismEmiRecipe<RECIPE>> recipeCreator) {
+    public static <RECIPE extends MekanismRecipe<?>, TYPE extends IRecipeViewerRecipeType<RECIPE>
+            & IMekanismRecipeTypeProvider<?, RECIPE, ?>> void addCategoryAndRecipes(EmiRegistry registry, TYPE recipeType,
+                               BiFunction<MekanismEmiRecipeCategory, RecipeHolder<RECIPE>, MekanismEmiRecipe<RECIPE>> recipeCreator) {
         MekanismEmiRecipeCategory category = addCategory(registry, recipeType);
         for (RecipeHolder<RECIPE> recipe : recipeType.getRecipes(registry.getRecipeManager())) {
             registry.addRecipe(recipeCreator.apply(category, recipe));
@@ -65,7 +65,9 @@ public class MSEMI implements EmiPlugin {
      * {@link RecipeHolder}), mirroring Mekanism's own {@code MekanismEmi.addCategoryAndRecipes}.
      */
     public static <RECIPE extends INamedRVRecipe> void addCategoryAndRecipes(EmiRegistry registry,
-          IRecipeViewerRecipeType<RECIPE> recipeType, BasicRecipeCreator<RECIPE> recipeCreator, List<RECIPE> recipes) {
+                                                                             IRecipeViewerRecipeType<RECIPE> recipeType,
+                                                                             BasicRecipeCreator<RECIPE> recipeCreator,
+                                                                             List<RECIPE> recipes) {
         MekanismEmiRecipeCategory category = addCategory(registry, recipeType);
         for (RECIPE recipe : recipes) {
             registry.addRecipe(recipeCreator.create(category, recipe.id(), recipe));
@@ -87,7 +89,6 @@ public class MSEMI implements EmiPlugin {
 
     @FunctionalInterface
     public interface BasicRecipeCreator<RECIPE> {
-
-        MekanismEmiRecipe<RECIPE> create(MekanismEmiRecipeCategory category, net.minecraft.resources.ResourceLocation id, RECIPE recipe);
+        MekanismEmiRecipe<RECIPE> create(MekanismEmiRecipeCategory category, ResourceLocation id, RECIPE recipe);
     }
 }

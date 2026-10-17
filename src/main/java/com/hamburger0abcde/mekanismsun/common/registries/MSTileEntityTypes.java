@@ -11,6 +11,8 @@ import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntity
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionCell;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionPort;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionProvider;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.vacuum_freezer.TileEntityVacuumFreezerCasing;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.vacuum_freezer.TileEntityVacuumFreezerPort;
 import com.hamburger0abcde.mekanismsun.common.tiles.storage.*;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunPort;
@@ -174,6 +176,20 @@ public class MSTileEntityTypes {
     
     public static final TileEntityTypeRegistryObject<TileEntityAdvanceInductionPort> ADVANCE_INDUCTION_PORT =
             TILE_ENTITY_TYPES.mekBuilder(MSBlocks.ADVANCE_INDUCTION_PORT, TileEntityAdvanceInductionPort::new)
+                    .clientTicker(TileEntityMekanism::tickClient)
+                    .serverTicker(TileEntityMekanism::tickServer)
+                    .withSimple(Capabilities.CONFIGURABLE)
+                    .build();
+
+    public static final TileEntityTypeRegistryObject<TileEntityVacuumFreezerCasing> VACUUM_FREEZER_CASING =
+            TILE_ENTITY_TYPES.mekBuilder(MSBlocks.TUNGSTENSTEEL_CASING, TileEntityVacuumFreezerCasing::new)
+                    .clientTicker(TileEntityMekanism::tickClient)
+                    .serverTicker(TileEntityMekanism::tickServer)
+                    .withSimple(Capabilities.CONFIGURABLE)
+                    .build();
+
+    public static final TileEntityTypeRegistryObject<TileEntityVacuumFreezerPort> VACUUM_FREEZER_PORT =
+            TILE_ENTITY_TYPES.mekBuilder(MSBlocks.VACUUM_FREEZER_PORT, TileEntityVacuumFreezerPort::new)
                     .clientTicker(TileEntityMekanism::tickClient)
                     .serverTicker(TileEntityMekanism::tickServer)
                     .withSimple(Capabilities.CONFIGURABLE)

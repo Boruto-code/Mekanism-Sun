@@ -3,12 +3,15 @@ package com.hamburger0abcde.mekanismsun.common.registries;
 import com.hamburger0abcde.mekanismsun.common.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.common.block.attribute.MSAttributeTier;
 import com.hamburger0abcde.mekanismsun.common.block.attribute.MSAttributeUpgradeable;
+import com.hamburger0abcde.mekanismsun.common.config.MSConfig;
 import com.hamburger0abcde.mekanismsun.common.tiers.storage.*;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityAssembler;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionCasing;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionCell;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionPort;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionProvider;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.vacuum_freezer.TileEntityVacuumFreezerCasing;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.vacuum_freezer.TileEntityVacuumFreezerPort;
 import com.hamburger0abcde.mekanismsun.common.tiles.storage.*;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunPort;
@@ -213,6 +216,21 @@ public class MSBlockTypes {
             .with(Attributes.INVENTORY, Attributes.COMPARATOR, Attributes.ACTIVE)
             .externalMultiblock()
             .withComputerSupport("advanceInductionPort")
+            .build();
+
+    public static final BlockTypeTile<TileEntityVacuumFreezerCasing> VACUUM_FREEZER_CASING = BlockTypeTile.BlockTileBuilder
+            .createBlock(() -> MSTileEntityTypes.VACUUM_FREEZER_CASING, MekanismSunLang.DESCRIPTION_VACUUM_FREEZER_CASING)
+            .withGui(() -> MSContainerTypes.VACUUM_FREEZER, MekanismSunLang.VACUUM_FREEZER)
+            .with(Attributes.ACTIVE, Attributes.COMPARATOR)
+            .externalMultiblock()
+            .build();
+
+    public static final BlockTypeTile<TileEntityVacuumFreezerPort> VACUUM_FREEZER_PORT = BlockTypeTile.BlockTileBuilder
+            .createBlock(() -> MSTileEntityTypes.VACUUM_FREEZER_PORT, MekanismSunLang.DESCRIPTION_VACUUM_FREEZER_PORT)
+            .withGui(() -> MSContainerTypes.VACUUM_FREEZER, MekanismSunLang.VACUUM_FREEZER)
+            .withEnergyConfig(MSConfig.GENERAL.freezerEnergyCapacity)
+            .with(Attributes.ACTIVE, Attributes.COMPARATOR)
+            .externalMultiblock()
             .build();
 
     public static final Machine<TileEntityAdvanceChemicalTank> SUPERNOVA_CHEMICAL_TANK =

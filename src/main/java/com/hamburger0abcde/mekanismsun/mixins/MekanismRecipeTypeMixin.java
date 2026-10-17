@@ -4,6 +4,8 @@ import com.hamburger0abcde.mekanismsun.MekanismSun;
 import com.hamburger0abcde.mekanismsun.common.recipes.BasicItemItemChemicalRecipe;
 import com.hamburger0abcde.mekanismsun.common.recipes.MSInputRecipeCache;
 import com.hamburger0abcde.mekanismsun.common.recipes.MSRecipeType;
+import com.hamburger0abcde.mekanismsun.common.recipes.freeze.FreezeRecipe;
+import mekanism.api.recipes.FluidToFluidRecipe;
 import mekanism.api.recipes.ItemStackToItemStackRecipe;
 import mekanism.api.recipes.MekanismRecipe;
 import mekanism.common.Mekanism;
@@ -45,5 +47,8 @@ public class MekanismRecipeTypeMixin {
                         new MSInputRecipeCache.ItemItemChemical<>(recipeType,
                                 BasicItemItemChemicalRecipe::getMainInput, BasicItemItemChemicalRecipe::getExtraInput,
                                 BasicItemItemChemicalRecipe::getChemicalInput));
+        MSRecipeType.FREEZE = register(Mekanism.rl("freeze"),
+                recipeType ->
+                        new InputRecipeCache.SingleFluid<>(recipeType, FreezeRecipe::getInput));
     }
 }

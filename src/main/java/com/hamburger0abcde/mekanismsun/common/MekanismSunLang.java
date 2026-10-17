@@ -9,6 +9,8 @@ public enum MekanismSunLang implements ILangEntry {
 
     DESCRIPTION_ARTIFICIAL_SUN_CASING("description", "artificial_sun_casing"),
     DESCRIPTION_ARTIFICIAL_SUN_PORT("description", "artificial_sun_port"),
+    DESCRIPTION_VACUUM_FREEZER_CASING("description", "vacuum_freezer_casing"),
+    DESCRIPTION_VACUUM_FREEZER_PORT("description", "vacuum_freezer_port"),
     DESCRIPTION_ALLOYER("description", "alloyer"),
     DESCRIPTION_TRANSMUTATOR("description", "transmutator"),
     DESCRIPTION_ELECTRIC_NEUTRON_ACTIVATOR("description", "electric_neutron_activator"),
@@ -21,7 +23,13 @@ public enum MekanismSunLang implements ILangEntry {
     ARTIFICIAL_SUN_PORT_MODE_OUTPUT("artificial_sun", "port_mode_output"),
     ARTIFICIAL_SUN_BURN_RATE_LIMIT("artificial_sun", "burn_rate_limit"),
 
-    ADVANCE_MATRIX("advance_matrix", "advance_matrix")
+    ADVANCE_MATRIX("advance_matrix", "advance_matrix"),
+
+    VACUUM_FREEZER("vacuum_freezer", "vacuum_freezer"),
+    VACUUM_FREEZER_PORT_MODE("vacuum_freezer", "port_mode"),
+    VACUUM_FREEZER_PORT_MODE_CHANGE("vacuum_freezer", "port_mode_change"),
+    VACUUM_FREEZER_PORT_MODE_INPUT("vacuum_freezer", "port_mode_input"),
+    VACUUM_FREEZER_PORT_MODE_OUTPUT("vacuum_freezer", "port_mode_output"),
     ;
 
     private final String key;

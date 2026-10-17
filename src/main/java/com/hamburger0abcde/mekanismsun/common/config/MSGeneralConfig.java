@@ -2,6 +2,7 @@ package com.hamburger0abcde.mekanismsun.common.config;
 
 import mekanism.common.config.BaseMekanismConfig;
 import mekanism.common.config.value.CachedDoubleValue;
+import mekanism.common.config.value.CachedIntValue;
 import mekanism.common.config.value.CachedLongValue;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.common.ModConfigSpec;
@@ -9,6 +10,7 @@ import net.neoforged.neoforge.fluids.FluidType;
 
 public class MSGeneralConfig extends BaseMekanismConfig {
     private static final String ARTIFICIAL_SUN_CATEGORY = "artificial_sun";
+    private static final String VACUUM_FREEZER_CATEGORY = "vacuum_freezer";
     private static final String ITEMS_CATEGORY = "items";
 
     private final ModConfigSpec configSpec;
@@ -19,21 +21,40 @@ public class MSGeneralConfig extends BaseMekanismConfig {
     public final CachedDoubleValue sunDefaultBurnRate;
     public final CachedDoubleValue sunMaxBurnRate;
 
+    public final CachedIntValue freezerInputCapacity;
+    public final CachedIntValue freezerOutputCapacity;
+    public final CachedLongValue freezerEnergyCapacity;
+    //public final CachedLongValue freezerEnergyConsumption;
+    public final CachedIntValue freezerDefaultDuration;
+
     MSGeneralConfig() {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
 
-        MSConfigTranslations.SERVER_SUN.applyToBuilder(builder).push(ARTIFICIAL_SUN_CATEGORY);
-        energyPerHydrogen = CachedLongValue.definePositive(this, builder, MSConfigTranslations.SERVER_SUN_HYDROGEN_ENERGY,
+        MSConfigTranslations.SUN.applyToBuilder(builder).push(ARTIFICIAL_SUN_CATEGORY);
+        energyPerHydrogen = CachedLongValue.definePositive(this, builder, MSConfigTranslations.SUN_HYDROGEN_ENERGY,
                 "hydrogenEnergy", 2_048_000_000L);
-        sunFuelCapacity = CachedLongValue.wrap(this, MSConfigTranslations.SERVER_SUN_FUEL_CAPACITY.applyToBuilder(builder)
+        sunFuelCapacity = CachedLongValue.wrap(this, MSConfigTranslations.SUN_FUEL_CAPACITY.applyToBuilder(builder)
                 .defineInRange("fuelCapacity", FluidType.BUCKET_VOLUME, 1L, 1_000L * FluidType.BUCKET_VOLUME));
-        sunEnergyCapacity = CachedLongValue.wrap(this, MSConfigTranslations.SERVER_SUN_ENERGY_CAPACITY.applyToBuilder(builder)
+        sunEnergyCapacity = CachedLongValue.wrap(this, MSConfigTranslations.SUN_ENERGY_CAPACITY.applyToBuilder(builder)
                 .defineInRange("energyCapacity", 81_920_000_000L, 1L, Long.MAX_VALUE));
-        sunDefaultBurnRate = CachedDoubleValue.wrap(this, MSConfigTranslations.SERVER_SUN_DEFAULT_BURN_RATE.applyToBuilder(builder)
+        sunDefaultBurnRate = CachedDoubleValue.wrap(this, MSConfigTranslations.SUN_DEFAULT_BURN_RATE.applyToBuilder(builder)
                 .defineInRange("defaultBurnRate", 1D, 0.1D, 100D));
-        sunMaxBurnRate = CachedDoubleValue.wrap(this, MSConfigTranslations.SERVER_SUN_MAX_BURN_RATE.applyToBuilder(builder)
+        sunMaxBurnRate = CachedDoubleValue.wrap(this, MSConfigTranslations.SUN_MAX_BURN_RATE.applyToBuilder(builder)
                 .defineInRange("maxBurnRate", 100D, 0.1D, 1000D));
         builder.pop();
+        MSConfigTranslations.FREEZER.applyToBuilder(builder).push(VACUUM_FREEZER_CATEGORY);
+        freezerInputCapacity = CachedIntValue.wrap(this, MSConfigTranslations.FREEZER_INPUT_CAPACITY.applyToBuilder(builder)
+                .defineInRange("inputCapacity", 1_000_000 * FluidType.BUCKET_VOLUME,
+                        1, 1_000_000 * FluidType.BUCKET_VOLUME));
+        freezerOutputCapacity = CachedIntValue.wrap(this, MSConfigTranslations.FREEZER_OUTPUT_CAPACITY.applyToBuilder(builder)
+                .defineInRange("outputCapacity", 1_000_000 * FluidType.BUCKET_VOLUME,
+                        1, 2_000_000 * FluidType.BUCKET_VOLUME));
+        freezerEnergyCapacity = CachedLongValue.wrap(this, MSConfigTranslations.FREEZER_ENERGY_CAPACITY.applyToBuilder(builder)
+                .defineInRange("energyCapacity", 8_000_000_000L, 1L, Long.MAX_VALUE));
+        freezerDefaultDuration = CachedIntValue.wrap(this, MSConfigTranslations.FREEZER_DEFAULT_DURATION.applyToBuilder(builder)
+                .defineInRange("defaultDuration", 20, 1, Integer.MAX_VALUE));
+        builder.pop();
+
         configSpec = builder.build();
     }
 

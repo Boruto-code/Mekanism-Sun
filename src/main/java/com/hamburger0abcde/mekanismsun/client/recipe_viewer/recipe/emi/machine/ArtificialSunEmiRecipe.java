@@ -1,4 +1,4 @@
-package com.hamburger0abcde.mekanismsun.client.recipe_viewer.emi.recipe;
+package com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.emi.machine;
 
 import com.hamburger0abcde.mekanismsun.common.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.ArtificialSunRecipeViewerRecipe;

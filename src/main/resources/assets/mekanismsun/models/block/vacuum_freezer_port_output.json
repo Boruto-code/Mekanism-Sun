@@ -1,0 +1,6 @@
+{
+  "parent": "mekanismsun:block/vacuum_freezer_port",
+  "textures": {
+    "all": "mekanismsun:block/vacuum_freezer_port_output"
+  }
+}

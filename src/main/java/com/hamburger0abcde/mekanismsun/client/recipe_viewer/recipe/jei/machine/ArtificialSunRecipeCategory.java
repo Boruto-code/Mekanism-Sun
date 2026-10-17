@@ -56,8 +56,7 @@ public class ArtificialSunRecipeCategory extends BaseRecipeCategory<ArtificialSu
 
     @NotNull
     @Override
-    public Codec<ArtificialSunRecipeViewerRecipe> getCodec(@NotNull ICodecHelper codecHelper,
-                                                           @NotNull IRecipeManager recipeManager) {
+    public Codec<ArtificialSunRecipeViewerRecipe> getCodec(@NotNull ICodecHelper codecHelper, @NotNull IRecipeManager recipeManager) {
         return ArtificialSunRecipeViewerRecipe.CODEC;
     }
 }

@@ -1,0 +1,11 @@
+{
+  "type": "mekanismsun:transmutation",
+  "input": {
+    "count": 1,
+    "item": "mekanism:ingot_steel"
+  },
+  "output": {
+    "count": 1,
+    "id": "mekanismsun:tungstensteel_ingot"
+  }
+}

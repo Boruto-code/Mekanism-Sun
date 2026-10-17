@@ -8,6 +8,9 @@ import com.hamburger0abcde.mekanismsun.common.multiblock.artificial_sun.Artifici
 import com.hamburger0abcde.mekanismsun.common.multiblock.artificial_sun.ArtificialSunValidator;
 import com.hamburger0abcde.mekanismsun.common.multiblock.matrix.AdvanceMatrixMultiblockData;
 import com.hamburger0abcde.mekanismsun.common.multiblock.matrix.AdvanceMatrixValidator;
+import com.hamburger0abcde.mekanismsun.common.multiblock.vacuum_freezer.VacuumFreezerCache;
+import com.hamburger0abcde.mekanismsun.common.multiblock.vacuum_freezer.VacuumFreezerMultiblockData;
+import com.hamburger0abcde.mekanismsun.common.multiblock.vacuum_freezer.VacuumFreezerValidator;
 import com.hamburger0abcde.mekanismsun.common.network.MSPacketHandler;
 import com.hamburger0abcde.mekanismsun.common.registries.*;
 import com.hamburger0abcde.mekanismsun.common.tags.MSTags;
@@ -43,6 +46,8 @@ public class MekanismSun {
             new MultiblockManager<>("artificial_sun", ArtificialSunCache::new, ArtificialSunValidator::new);
     public static final MultiblockManager<AdvanceMatrixMultiblockData> matrixManager =
             new MultiblockManager<>("advance_matrix", MultiblockCache::new, AdvanceMatrixValidator::new);
+    public static final MultiblockManager<VacuumFreezerMultiblockData> vacuumFreezerManager =
+            new MultiblockManager<>("vacuum_freezer", VacuumFreezerCache::new, VacuumFreezerValidator::new);
 
     public MekanismSun(IEventBus modEventBus, ModContainer modContainer) {
         instance = this;
@@ -77,6 +82,7 @@ public class MekanismSun {
     private void registerCommands(RegisterCommandsEvent event) {
         BuildCommand.register("artificial_sun", MekanismSunLang.ARTIFICIAL_SUN, new MSBuilders.ArtificialSunBuilder());
         BuildCommand.register("advance_matrix", MekanismSunLang.ADVANCE_MATRIX, new MSBuilders.AdvanceMatrixBuilder());
+        BuildCommand.register("vacuum_freezer", MekanismSunLang.VACUUM_FREEZER, new MSBuilders.VacuumFreezerBuilder());
         event.getDispatcher().register(CommandMek.register());
     }
 

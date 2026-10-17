@@ -1,4 +1,4 @@
-package com.hamburger0abcde.mekanismsun.client.recipe_viewer.emi.recipe;
+package com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.emi.machine;
 
 import com.hamburger0abcde.mekanismsun.common.recipes.BasicItemItemChemicalRecipe;
 import dev.emi.emi.api.widget.WidgetHolder;
@@ -14,7 +14,6 @@ import mekanism.common.inventory.container.slot.SlotOverlay;
 import net.minecraft.world.item.crafting.RecipeHolder;
 
 public class ItemItemChemicalToItemStackEmiRecipe extends MekanismEmiHolderRecipe<BasicItemItemChemicalRecipe> {
-
     private static final int PROCESS_TIME = 100;
 
     public ItemItemChemicalToItemStackEmiRecipe(MekanismEmiRecipeCategory category,

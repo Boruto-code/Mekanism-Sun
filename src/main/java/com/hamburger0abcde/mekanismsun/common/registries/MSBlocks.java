@@ -19,6 +19,8 @@ import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntity
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionCell;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionPort;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionProvider;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.vacuum_freezer.TileEntityVacuumFreezerCasing;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.vacuum_freezer.TileEntityVacuumFreezerPort;
 import com.hamburger0abcde.mekanismsun.common.tiles.storage.*;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunCasing;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.artificial_sun.TileEntityArtificialSunPort;
@@ -311,6 +313,19 @@ public class MSBlocks {
             "advance_induction_port",
             () -> new BlockBasicMultiblock<>(MSBlockTypes.ADVANCE_INDUCTION_PORT,
                     properties -> properties.mapColor(MapColor.COLOR_LIGHT_GRAY))
+    );
+
+    public static final BlockRegistryObject<BlockBasicMultiblock<TileEntityVacuumFreezerCasing>,
+            ItemBlockTooltip<BlockBasicMultiblock<TileEntityVacuumFreezerCasing>>> TUNGSTENSTEEL_CASING = registerBlock(
+            "tungstensteel_casing",
+            () -> new BlockBasicMultiblock<>(MSBlockTypes.VACUUM_FREEZER_CASING,
+                    properties -> properties.mapColor(MapColor.COLOR_BLUE))
+    );
+    public static final BlockRegistryObject<BlockBasicMultiblock<TileEntityVacuumFreezerPort>,
+            ItemBlockTooltip<BlockBasicMultiblock<TileEntityVacuumFreezerPort>>> VACUUM_FREEZER_PORT = registerBlock(
+            "vacuum_freezer_port",
+            () -> new BlockBasicMultiblock<>(MSBlockTypes.VACUUM_FREEZER_PORT,
+                    properties -> properties.mapColor(MapColor.COLOR_BLUE))
     );
 
     public static final BlockRegistryObject<BlockTileModel<TileEntityAdvanceChemicalTank, Machine<TileEntityAdvanceChemicalTank>>,

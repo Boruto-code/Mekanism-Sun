@@ -1,0 +1,11 @@
+{
+  "type": "mekanismsun:freeze",
+  "input": {
+    "amount": 1000,
+    "fluid": "mekanismsun:helium"
+  },
+  "output": {
+    "amount": 1000,
+    "id": "mekanismsun:superfluid_helium"
+  }
+}

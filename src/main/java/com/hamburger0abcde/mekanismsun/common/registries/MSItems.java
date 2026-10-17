@@ -40,6 +40,7 @@ public class MSItems {
 
     public static final ItemRegistryObject<Item> SILVER_INGOT = ITEMS.register("silver_ingot");
     public static final ItemRegistryObject<Item> ELECTRUM_INGOT = ITEMS.register("electrum_ingot");
+    public static final ItemRegistryObject<Item> TUNGSTENSTEEL_INGOT = ITEMS.register("tungstensteel_ingot");
 
     public static final ItemRegistryObject<Item> SILVER_DUST = ITEMS.register("silver_dust");
     public static final ItemRegistryObject<Item> ELECTRUM_DUST = ITEMS.register("electrum_dust");

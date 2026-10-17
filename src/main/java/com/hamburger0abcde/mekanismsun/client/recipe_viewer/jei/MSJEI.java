@@ -5,6 +5,7 @@ import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.ArtificialSun
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.jei.machine.AlloyingRecipeCategory;
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.jei.machine.ArtificialSunRecipeCategory;
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.jei.machine.AssembleRecipeCategory;
+import com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.jei.machine.FreezeRecipeCategory;
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.type.MSRecipeViewerRecipeTypes;
 import com.hamburger0abcde.mekanismsun.common.recipes.MSRecipeType;
 import mekanism.client.recipe_viewer.jei.CatalystRegistryHelper;
@@ -35,6 +36,7 @@ public class MSJEI implements IModPlugin {
         registry.addRecipeCategories(new AlloyingRecipeCategory(guiHelper, MSRecipeViewerRecipeTypes.ALLOYING));
         registry.addRecipeCategories(new ItemStackToItemStackRecipeCategory(guiHelper, MSRecipeViewerRecipeTypes.TRANSMUTATION));
         registry.addRecipeCategories(new AssembleRecipeCategory(guiHelper, MSRecipeViewerRecipeTypes.ASSEMBLE));
+        registry.addRecipeCategories(new FreezeRecipeCategory(guiHelper, MSRecipeViewerRecipeTypes.FREEZE));
     }
 
     @Override
@@ -45,6 +47,7 @@ public class MSJEI implements IModPlugin {
         RecipeRegistryHelper.register(registry, MSRecipeViewerRecipeTypes.ALLOYING, MSRecipeType.ALLOYING);
         RecipeRegistryHelper.register(registry, MSRecipeViewerRecipeTypes.TRANSMUTATION, MSRecipeType.TRANSMUTATION);
         RecipeRegistryHelper.register(registry, MSRecipeViewerRecipeTypes.ASSEMBLE, MSRecipeType.ASSEMBLE);
+        RecipeRegistryHelper.register(registry, MSRecipeViewerRecipeTypes.FREEZE, MSRecipeType.FREEZE);
     }
 
     @Override
@@ -53,5 +56,6 @@ public class MSJEI implements IModPlugin {
         CatalystRegistryHelper.register(registry, MSRecipeViewerRecipeTypes.ALLOYING);
         CatalystRegistryHelper.register(registry, MSRecipeViewerRecipeTypes.TRANSMUTATION);
         CatalystRegistryHelper.register(registry, MSRecipeViewerRecipeTypes.ASSEMBLE);
+        CatalystRegistryHelper.register(registry, MSRecipeViewerRecipeTypes.FREEZE);
     }
 }

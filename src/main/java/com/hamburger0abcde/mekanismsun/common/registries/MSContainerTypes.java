@@ -7,6 +7,7 @@ import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityAlloyer;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityElectricNeutronActivator;
 import com.hamburger0abcde.mekanismsun.common.tiles.machine.TileEntityTransmutator;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.matrix.TileEntityAdvanceInductionCasing;
+import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.vacuum_freezer.TileEntityVacuumFreezerCasing;
 import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceChemicalTank;
 import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceEnergyCube;
 import com.hamburger0abcde.mekanismsun.common.tiles.storage.TileEntityAdvanceFluidTank;
@@ -29,6 +30,9 @@ public class MSContainerTypes {
 
     public static final ContainerTypeRegistryObject<MekanismTileContainer<TileEntityArtificialSunCasing>> ARTIFICIAL_SUN =
             CONTAINER_TYPES.custom(MSBlocks.ARTIFICIAL_SUN_CASING, TileEntityArtificialSunCasing.class)
+                    .offset(0, 16).build();
+    public static final ContainerTypeRegistryObject<MekanismTileContainer<TileEntityVacuumFreezerCasing>> VACUUM_FREEZER =
+            CONTAINER_TYPES.custom(MSBlocks.TUNGSTENSTEEL_CASING, TileEntityVacuumFreezerCasing.class)
                     .offset(0, 16).build();
     public static final ContainerTypeRegistryObject<MekanismTileContainer<TileEntityAdvanceInductionCasing>> ADVANCE_INDUCTION_MATRIX =
             CONTAINER_TYPES.custom("advance_induction_matrix", TileEntityAdvanceInductionCasing.class)

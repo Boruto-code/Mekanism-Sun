@@ -1,6 +1,7 @@
 package com.hamburger0abcde.mekanismsun.client;
 
 import com.hamburger0abcde.mekanismsun.MekanismSun;
+import com.hamburger0abcde.mekanismsun.client.render.multiblock.RenderArtificialSun;
 import com.hamburger0abcde.mekanismsun.client.render.transmitter.RenderAdvanceThermodynamicConductor;
 import com.hamburger0abcde.mekanismsun.common.MSChemicalConstants;
 import com.hamburger0abcde.mekanismsun.common.block.attribute.MSAttribute;
@@ -44,6 +45,7 @@ public class MSClientRegistration {
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerScreens(RegisterMenuScreensEvent event) {
         ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ARTIFICIAL_SUN, GuiArtificialSun::new);
+        ClientRegistrationUtil.registerScreen(event, MSContainerTypes.VACUUM_FREEZER, GuiVacuumFreezer::new);
         ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ADVANCE_INDUCTION_MATRIX, GuiAdvanceInductionMatrix::new);
         ClientRegistrationUtil.registerScreen(event, MSContainerTypes.ADVANCE_MATRIX_STATS, GuiAdvanceMatrixStats::new);
 
@@ -77,6 +79,8 @@ public class MSClientRegistration {
         ClientRegistrationUtil.bindTileEntityRenderer(event, RenderAdvanceMechanicalPipe::new, MSTileEntityTypes.SUPERNOVA_MECHANICAL_PIPE);
         ClientRegistrationUtil.bindTileEntityRenderer(event, RenderAdvancePressurizedTube::new, MSTileEntityTypes.SUPERNOVA_PRESSURIZED_TUBE);
         ClientRegistrationUtil.bindTileEntityRenderer(event, RenderAdvanceThermodynamicConductor::new, MSTileEntityTypes.SUPERNOVA_THERMODYNAMIC_CONDUCTOR);
+
+        event.registerBlockEntityRenderer(MSTileEntityTypes.ARTIFICIAL_SUN_CASING.get(), RenderArtificialSun::new);
     }
 
     @SubscribeEvent

@@ -64,4 +64,22 @@ public class MSBuilders {
             return MSBlocks.ADVANCE_INDUCTION_CASING.defaultState();
         }
     }
+
+    public static class VacuumFreezerBuilder extends StructureBuilder {
+        public VacuumFreezerBuilder() {
+            super(7, 7, 7);
+        }
+
+        @Override
+        public void build(Level world, BlockPos start, boolean empty) {
+            buildFrame(world, start);
+            buildWalls(world, start);
+            buildInteriorLayers(world, start, 1, 5, Blocks.AIR.defaultBlockState());
+        }
+
+        @Override
+        protected BlockState getCasing() {
+            return MSBlocks.TUNGSTENSTEEL_CASING.defaultState();
+        }
+    }
 }

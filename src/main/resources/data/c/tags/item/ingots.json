@@ -1,6 +1,7 @@
 {
   "values": [
     "#c:ingots/electrum",
-    "#c:ingots/silver"
+    "#c:ingots/silver",
+    "#c:ingots/tungstensteel"
   ]
 }
