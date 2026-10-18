@@ -1,8 +1,8 @@
 package com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.emi.machine;
 
+import com.hamburger0abcde.mekanismsun.client.gui.bars.GuiCustomDynamicHorizontalRateBar;
 import com.hamburger0abcde.mekanismsun.common.recipes.freeze.FreezeRecipe;
 import dev.emi.emi.api.widget.WidgetHolder;
-import fr.iglee42.evolvedmekanism.client.bars.GuiCustomDynamicHorizontalRateBar;
 import mekanism.client.gui.element.GuiInnerScreen;
 import mekanism.client.gui.element.gauge.GaugeType;
 import mekanism.client.gui.element.gauge.GuiFluidGauge;

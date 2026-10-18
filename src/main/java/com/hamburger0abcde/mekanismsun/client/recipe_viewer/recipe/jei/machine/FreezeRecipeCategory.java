@@ -1,9 +1,9 @@
 package com.hamburger0abcde.mekanismsun.client.recipe_viewer.recipe.jei.machine;
 
+import com.hamburger0abcde.mekanismsun.client.gui.bars.GuiCustomDynamicHorizontalRateBar;
 import com.hamburger0abcde.mekanismsun.common.MekanismSunLang;
 import com.hamburger0abcde.mekanismsun.common.recipes.freeze.FreezeRecipe;
 import com.mojang.serialization.Codec;
-import fr.iglee42.evolvedmekanism.client.bars.GuiCustomDynamicHorizontalRateBar;
 import mekanism.client.gui.element.GuiInnerScreen;
 import mekanism.client.gui.element.gauge.GaugeType;
 import mekanism.client.gui.element.gauge.GuiFluidGauge;

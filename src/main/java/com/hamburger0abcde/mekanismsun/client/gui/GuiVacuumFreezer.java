@@ -1,15 +1,14 @@
 package com.hamburger0abcde.mekanismsun.client.gui;
 
+import com.hamburger0abcde.mekanismsun.client.gui.bars.GuiCustomDynamicHorizontalRateBar;
 import com.hamburger0abcde.mekanismsun.client.recipe_viewer.type.MSRecipeViewerRecipeTypes;
 import com.hamburger0abcde.mekanismsun.common.config.MSConfig;
 import com.hamburger0abcde.mekanismsun.common.multiblock.vacuum_freezer.VacuumFreezerMultiblockData;
 import com.hamburger0abcde.mekanismsun.common.tiles.multiblock.vacuum_freezer.TileEntityVacuumFreezerCasing;
-import fr.iglee42.evolvedmekanism.client.bars.GuiCustomDynamicHorizontalRateBar;
 import mekanism.client.gui.GuiMekanismTile;
 import mekanism.client.gui.element.GuiInnerScreen;
 import mekanism.client.gui.element.bar.GuiBar;
 import mekanism.client.gui.element.gauge.GaugeType;
-import mekanism.client.gui.element.gauge.GuiEnergyGauge;
 import mekanism.client.gui.element.gauge.GuiFluidGauge;
 import mekanism.client.gui.element.tab.GuiEnergyTab;
 import mekanism.common.MekanismLang;
